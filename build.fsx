@@ -18,7 +18,7 @@ Target "Clean" (fun _ ->
 )
 
 Target "Publish specs" (fun _ ->
-    let args = "-f src/HM.JiraMetrics.Test.Acceptance/Features" + @" -o " + featuresDir
+    let args = "-f src/Olifant.JiraMetrics.Test.Acceptance/Features" + @" -o " + featuresDir
     let errorCode = Shell.Exec("packages/Pickles.CommandLine.1.0.0/tools/pickles.exe", args)
     ()
 )
@@ -39,7 +39,7 @@ Target "Build" (fun _ ->
             ]
     }
 
-  build setParams "HM.JiraMetrics.sln"
+  build setParams "Olifant.JiraMetrics.sln"
     |> DoNothing
 )
 
@@ -55,7 +55,7 @@ Target "Test" (fun _ ->
 )
 
 Target "Publish" (fun _ ->
-    let args = "-f src/HM.JiraMetrics.Test.Acceptance/Features -lr " + testResultFile + @" -o " + featuresWithTestResultsDir
+    let args = "-f src/Olifant.JiraMetrics.Test.Acceptance/Features -lr " + testResultFile + @" -o " + featuresWithTestResultsDir
     let errorCode = Shell.Exec("packages/Pickles.CommandLine.1.0.0/tools/pickles.exe", args)
     ()
 )

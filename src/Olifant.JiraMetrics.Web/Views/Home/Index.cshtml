@@ -1,0 +1,12 @@
+﻿@using Olífant.JiraMetrics.Web.Models
+@model DotNet.Highcharts.Highcharts
+
+@(Model)
+@{ Html.RenderAction("Cycles", "Home"); };
+
+
+@using (Html.BeginForm("Home", "Index"))
+{
+    @Html.TextBox("jql")
+    <input type="submit" value="Search" id="generate_graph" />
+}
