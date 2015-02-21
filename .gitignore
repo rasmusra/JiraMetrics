@@ -1,0 +1,42 @@
+# OS
+[Tt]humbs.db
+
+# Visual Studio
+*.user
+*.suo
+[Bb]in
+[Oo]bj
+
+#Tools bin folders
+!tools/**/bin
+
+# Visual Studio addin
+Visual Studio 2012
+
+# NuGet
+source/packages/*
+!source/packages/repositories.config
+
+# Merge temp files
+*.orig
+
+# Build 
+buildArtifacts
+
+# Resharper
+_ReSharper*/
+*.resharper
+/dev/src/HM.Disco.Integration.Import.Services/ImportServiceTrace.svclog
+
+#Code analysis log files
+/dev/src/CodeAnalysis/Log/*
+source/StyleCop.Cache
+source/CodeAnalysis/StyleCop/Log
+StyleCop.Cache
+source/CodeAnalysis/FxCop/Result.xml
+disco/dev/packages/
+*.ncrunchproject
+disco/dev/src/_NCrunch_HM.Disco/HM.Disco.crunchsolution.cache
+ofu/dev/packages/
+disco/dev/src/HM.Disco.Integration.Import.Services/ImportServiceTrace.svclog
+disco/dev/src/HM.Disco.ncrunchsolution

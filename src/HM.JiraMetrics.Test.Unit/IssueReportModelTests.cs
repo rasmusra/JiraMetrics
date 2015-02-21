@@ -1,0 +1,86 @@
+﻿using System.Diagnostics;
+using System.Linq;
+
+using FluentAssertions;
+
+using HM.JiraMetrics.Lib.Jira.Model;
+using HM.JiraMetrics.Lib.Metrics;
+using HM.JiraMetrics.Lib.Metrics.Model;
+using HM.JiraMetrics.Test.Fakes;
+using HM.JiraMetrics.Test.Fakes.Helpers;
+using HM.JiraMetrics.Test.Unit.Fakes;
+
+using Newtonsoft.Json;
+
+using NUnit.Framework;
+
+namespace HM.JiraMetrics.Test.Unit
+{
+    [TestFixture]
+    internal class IssueReportModelTests
+    {
+        [TestCase("DISCO-620", "2014-10-20 13:02:08", "Dev")]
+        [TestCase("DISCO-620", "2014-11-03 13:53:59", "Test")]
+        [TestCase("DISCO-665", "2014-07-15 08:33:00", "Full process")]
+        public void ProvidesDoneDateTimeOfCycle(string jiraKey, string expected, string cycle)
+        {
+            var issue = ReadFirstIssue(jiraKey, CycleName2StatusesDict.Lookup(cycle));
+
+            issue.DoneDateTime.ShouldBeEquivalentTo(expected);
+        }
+        
+        [TestCase("DISCO-620", "2014-10-02 12:45:35", "Dev", null)]
+        [TestCase("DISCO-620", "2014-10-20 13:02:08", "Test", null)]
+        [TestCase("DISCO-665", "2014-07-04 10:51:01", "Full process", "started")]
+        [TestCase("DISCO-665", "2014-07-02 14:50:44", "Backlog", null)]
+        public void ProvidesStartDateTimeOfCycle(string jiraKey, string expected, string cycle, string startLabel)
+        {
+            var issue = ReadFirstIssue(jiraKey, CycleName2StatusesDict.Lookup(cycle), startLabel);
+
+            issue.StartDateTime.ShouldBeEquivalentTo(expected);
+        }
+
+        [TestCase("CR is assigned 7 story points", "DISCO-620", "7,0")]
+        [TestCase("Defect is assigned 1 points", "DISCO-665", "1,0")]
+        [TestCase("CR is not assigned any points", "OFU-1462", "1,0")]
+        [TestCase("Defect is not assigned any points", "OFU-676", "0,5")]
+        public void ProvidesStoryPointsOfIssue(string scenarioDescription, string jiraKey, string expectedStoryPoints)
+        {
+            // arrange
+            var issue = ReadFirstIssue(jiraKey, CycleName2StatusesDict.Lookup("Dev"));
+
+            // act
+            var actual = issue.StoryPoints;
+
+            // assert
+            actual.ShouldBeEquivalentTo(expectedStoryPoints);
+        }
+
+        [TestCase("Calculate with weekends occuring on end date", "2015-01-29 15:30", "2015-02-01 20:33", 3.21)]
+        [TestCase("Calculate with same weekends occuring on start and end date", "2015-01-31 15:30", "2015-02-01 20:33", 1.21)]
+        [TestCase("No weekend days", "2015-01-26 15:30", "2015-01-30 20:33", 4.21)]
+        [TestCase("One work week", "2015-01-26 15:30", "2015-02-02 15:30", 5)]
+        [TestCase("Includes three weekends", "2015-01-29 15:30", "2015-02-19 20:33", 15.21)]
+        [TestCase("Less than a day", "2014-12-08 16:17", "2014-12-09 08:03", 0.66)]
+        public void CyckeTimeIgnoresWeekends(string description, string startDate, string endDate, decimal expectedDateDiff)
+        {
+            var cycleTime = new FakeCycleTimeRule(startDate, endDate);
+            
+            var target = new IssueReportModel(null, cycleTime, false);
+
+            target.CycleTime.ShouldBeEquivalentTo(expectedDateDiff);
+        }
+
+        private static IIssueReportModel ReadFirstIssue(string jiraKey, string[] statuses, string startedLabel = "")
+        {
+            var query = string.Format("key={0}", jiraKey);
+            var json = new FakeJiraRestClient().GetJsonChunks(query);
+            var issues = JsonConvert.DeserializeObject<Issues>(json.First());
+
+            var target = IssueReportModelFactory.Create(issues.IssueList, new CycleTimeRule(statuses, startedLabel))
+                .First();
+
+            return target;
+        }
+    }
+}
