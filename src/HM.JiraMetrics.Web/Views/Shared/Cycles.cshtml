@@ -1,0 +1,65 @@
+﻿@model HM.JiraMetrics.Web.Models.CyclesViewModel
+
+
+<table>
+    <tr>
+        <td>
+            @Html.ListBox("PreCycleStatusesListbox", Model.GetListItems(Model.PreCycleStatuses),
+                htmlAttributes: new { style = "width: 230px;height:221px" })
+        </td>
+        <td>
+            <a id="fromPreCycleStatusesToCycleStatusesButton" class="btn btn-success btn-sm glyphicon glyphicon-hand-right"> To cycle</a><br />
+            <a id="fromCycleStatusesToPreCycleStatusesButton" class="btn btn-success btn-sm glyphicon glyphicon-hand-left"> From cycle</a>
+        </td>
+        <td>
+            @Html.ListBox("CycleStatusesListbox", Model.GetListItems(Model.CycleStatuses),
+                htmlAttributes: new { style = "width: 230px;height:221px" })
+        </td>
+        <td>
+            <a id="fromPostCycleStatusesToCycleStatusesButton" class="btn btn-success btn-sm glyphicon glyphicon-hand-left"> To cycle</a><br />
+            <a id="fromCycleStatusesToPostCycleStatusesButton" class="btn btn-success btn-sm glyphicon glyphicon-hand-right"> From cycle</a>
+        </td>
+        <td>
+            @Html.ListBox("PostCycleStatusesListbox", Model.GetListItems(Model.PostCycleStatuses),
+                htmlAttributes: new { style = "width: 230px;height:221px" })
+        </td>
+    </tr>
+</table>
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $("#fromCycleToPrecycle").bind("click", function () {
+            var options = $("[id=CycleStatusesListbox] option:selected");
+            for (var i = 0; i < options.length; i++) {
+                var opt = $(options[i]).clone();
+                $("[id=PreCycleStatusesListbox]").append(opt);
+                $(options[i]).remove();
+            }
+        });
+        $("#fromPrecycleToCycle").bind("click", function () {
+            var options = $("[id=PreCycleStatusesListbox] option:selected");
+            for (var i = 0; i < options.length; i++) {
+                var opt = $(options[i]).clone();
+                $("[id=CycleStatusesListbox]").append(opt);
+                $(options[i]).remove();
+            }
+        });
+        $("#fromCycleToPostcycle").bind("click", function () {
+            var options = $("[id=CycleStatusesListbox] option:selected");
+            for (var i = 0; i < options.length; i++) {
+                var opt = $(options[i]).clone();
+                $("[id=PostCycleStatusesListbox]").append(opt);
+                $(options[i]).remove();
+            }
+        });
+        $("#fromPostcycleToCycle").bind("click", function () {
+            var options = $("[id=PostCycleStatusesListbox] option:selected");
+            for (var i = 0; i < options.length; i++) {
+                var opt = $(options[i]).clone();
+                $("[id=CycleStatusesListbox]").append(opt);
+                $(options[i]).remove();
+            }
+        });
+    });
+</script>

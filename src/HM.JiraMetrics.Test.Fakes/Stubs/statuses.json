@@ -1,0 +1,338 @@
+[
+    {
+        "self": "https://jira.hm.com/rest/api/latest/status/1",
+        "description": "The issue is open and ready for the assignee to start work on it.",
+        "iconUrl": "https://jira.hm.com/images/icons/statuses/open.png",
+        "name": "Open",
+        "id": "1",
+        "statusCategory": {
+            "self": "https://jira.hm.com/rest/api/latest/statuscategory/2",
+            "id": 2,
+            "key": "new",
+            "colorName": "blue-gray",
+            "name": "New"
+        }
+    },
+    {
+        "self": "https://jira.hm.com/rest/api/latest/status/5",
+        "description": "A resolution has been taken, and it is awaiting verification by reporter. From here issues are either reopened, or are closed.",
+        "iconUrl": "https://jira.hm.com/images/icons/statuses/resolved.png",
+        "name": "Resolved",
+        "id": "5",
+        "statusCategory": {
+            "self": "https://jira.hm.com/rest/api/latest/statuscategory/3",
+            "id": 3,
+            "key": "done",
+            "colorName": "green",
+            "name": "Complete"
+        }
+    },
+    {
+        "self": "https://jira.hm.com/rest/api/latest/status/6",
+        "description": "The issue is considered finished, the resolution is correct. Issues which are closed can be reopened.",
+        "iconUrl": "https://jira.hm.com/images/icons/statuses/closed.png",
+        "name": "Closed",
+        "id": "6",
+        "statusCategory": {
+            "self": "https://jira.hm.com/rest/api/latest/statuscategory/3",
+            "id": 3,
+            "key": "done",
+            "colorName": "green",
+            "name": "Complete"
+        }
+    },
+    {
+        "self": "https://jira.hm.com/rest/api/latest/status/10004",
+        "description": "Test phase for stakeholders",
+        "iconUrl": "https://jira.hm.com/images/icons/statuses/open.png",
+        "name": "Acceptance Test",
+        "id": "10004",
+        "statusCategory": {
+            "self": "https://jira.hm.com/rest/api/latest/statuscategory/4",
+            "id": 4,
+            "key": "indeterminate",
+            "colorName": "yellow",
+            "name": "In Progress"
+        }
+    },
+    {
+        "self": "https://jira.hm.com/rest/api/latest/status/10007",
+        "description": "System Test ",
+        "iconUrl": "https://jira.hm.com/images/icons/statuses/open.png",
+        "name": "System Test",
+        "id": "10007",
+        "statusCategory": {
+            "self": "https://jira.hm.com/rest/api/latest/statuscategory/4",
+            "id": 4,
+            "key": "indeterminate",
+            "colorName": "yellow",
+            "name": "In Progress"
+        }
+    },
+    {
+        "self": "https://jira.hm.com/rest/api/latest/status/10015",
+        "description": "",
+        "iconUrl": "https://jira.hm.com/images/icons/statuses/generic.png",
+        "name": "Ready for Test",
+        "id": "10015",
+        "statusCategory": {
+            "self": "https://jira.hm.com/rest/api/latest/statuscategory/4",
+            "id": 4,
+            "key": "indeterminate",
+            "colorName": "yellow",
+            "name": "In Progress"
+        }
+    },
+    {
+        "self": "https://jira.hm.com/rest/api/latest/status/10016",
+        "description": "",
+        "iconUrl": "https://jira.hm.com/images/icons/statuses/inprogress.png",
+        "name": "Describing Requirement",
+        "id": "10016",
+        "statusCategory": {
+            "self": "https://jira.hm.com/rest/api/latest/statuscategory/4",
+            "id": 4,
+            "key": "indeterminate",
+            "colorName": "yellow",
+            "name": "In Progress"
+        }
+    },
+    {
+        "self": "https://jira.hm.com/rest/api/latest/status/10018",
+        "description": "",
+        "iconUrl": "https://jira.hm.com/images/icons/statuses/open.png",
+        "name": "Build & Configure",
+        "id": "10018",
+        "statusCategory": {
+            "self": "https://jira.hm.com/rest/api/latest/statuscategory/4",
+            "id": 4,
+            "key": "indeterminate",
+            "colorName": "yellow",
+            "name": "In Progress"
+        }
+    },
+    {
+        "self": "https://jira.hm.com/rest/api/latest/status/10019",
+        "description": "",
+        "iconUrl": "https://jira.hm.com/images/icons/statuses/inprogress.png",
+        "name": "Building & Configuring",
+        "id": "10019",
+        "statusCategory": {
+            "self": "https://jira.hm.com/rest/api/latest/statuscategory/4",
+            "id": 4,
+            "key": "indeterminate",
+            "colorName": "yellow",
+            "name": "In Progress"
+        }
+    },
+    {
+        "self": "https://jira.hm.com/rest/api/latest/status/10020",
+        "description": "",
+        "iconUrl": "https://jira.hm.com/images/icons/statuses/inprogress.png",
+        "name": "System Testing",
+        "id": "10020",
+        "statusCategory": {
+            "self": "https://jira.hm.com/rest/api/latest/statuscategory/4",
+            "id": 4,
+            "key": "indeterminate",
+            "colorName": "yellow",
+            "name": "In Progress"
+        }
+    },
+    {
+        "self": "https://jira.hm.com/rest/api/latest/status/10021",
+        "description": "",
+        "iconUrl": "https://jira.hm.com/images/icons/statuses/inprogress.png",
+        "name": "System Integration Testing",
+        "id": "10021",
+        "statusCategory": {
+            "self": "https://jira.hm.com/rest/api/latest/statuscategory/4",
+            "id": 4,
+            "key": "indeterminate",
+            "colorName": "yellow",
+            "name": "In Progress"
+        }
+    },
+    {
+        "self": "https://jira.hm.com/rest/api/latest/status/10022",
+        "description": "",
+        "iconUrl": "https://jira.hm.com/images/icons/statuses/inprogress.png",
+        "name": "Acceptance Testing",
+        "id": "10022",
+        "statusCategory": {
+            "self": "https://jira.hm.com/rest/api/latest/statuscategory/4",
+            "id": 4,
+            "key": "indeterminate",
+            "colorName": "yellow",
+            "name": "In Progress"
+        }
+    },
+    {
+        "self": "https://jira.hm.com/rest/api/latest/status/10024",
+        "description": "",
+        "iconUrl": "https://jira.hm.com/images/icons/statuses/open.png",
+        "name": "Describe Requirement",
+        "id": "10024",
+        "statusCategory": {
+            "self": "https://jira.hm.com/rest/api/latest/statuscategory/4",
+            "id": 4,
+            "key": "indeterminate",
+            "colorName": "yellow",
+            "name": "In Progress"
+        }
+    },
+    {
+        "self": "https://jira.hm.com/rest/api/latest/status/10025",
+        "description": "",
+        "iconUrl": "https://jira.hm.com/images/icons/statuses/open.png",
+        "name": "System Integration Test",
+        "id": "10025",
+        "statusCategory": {
+            "self": "https://jira.hm.com/rest/api/latest/statuscategory/4",
+            "id": 4,
+            "key": "indeterminate",
+            "colorName": "yellow",
+            "name": "In Progress"
+        }
+    },
+    {
+        "self": "https://jira.hm.com/rest/api/latest/status/10031",
+        "description": "",
+        "iconUrl": "https://jira.hm.com/images/icons/statuses/visible.png",
+        "name": "Review",
+        "id": "10031",
+        "statusCategory": {
+            "self": "https://jira.hm.com/rest/api/latest/statuscategory/4",
+            "id": 4,
+            "key": "indeterminate",
+            "colorName": "yellow",
+            "name": "In Progress"
+        }
+    },
+    {
+        "self": "https://jira.hm.com/rest/api/latest/status/10034",
+        "description": "",
+        "iconUrl": "https://jira.hm.com/images/icons/statuses/document.png",
+        "name": "Design Architecture",
+        "id": "10034",
+        "statusCategory": {
+            "self": "https://jira.hm.com/rest/api/latest/statuscategory/4",
+            "id": 4,
+            "key": "indeterminate",
+            "colorName": "yellow",
+            "name": "In Progress"
+        }
+    },
+    {
+        "self": "https://jira.hm.com/rest/api/latest/status/10035",
+        "description": "",
+        "iconUrl": "https://jira.hm.com/images/icons/statuses/inprogress.png",
+        "name": "Designing Architecture",
+        "id": "10035",
+        "statusCategory": {
+            "self": "https://jira.hm.com/rest/api/latest/statuscategory/4",
+            "id": 4,
+            "key": "indeterminate",
+            "colorName": "yellow",
+            "name": "In Progress"
+        }
+    },
+    {
+        "self": "https://jira.hm.com/rest/api/latest/status/10036",
+        "description": "",
+        "iconUrl": "https://jira.hm.com/images/icons/statuses/open.png",
+        "name": "Implement",
+        "id": "10036",
+        "statusCategory": {
+            "self": "https://jira.hm.com/rest/api/latest/statuscategory/4",
+            "id": 4,
+            "key": "indeterminate",
+            "colorName": "yellow",
+            "name": "In Progress"
+        }
+    },
+    {
+        "self": "https://jira.hm.com/rest/api/latest/status/10037",
+        "description": "",
+        "iconUrl": "https://jira.hm.com/images/icons/statuses/inprogress.png",
+        "name": "Implementing",
+        "id": "10037",
+        "statusCategory": {
+            "self": "https://jira.hm.com/rest/api/latest/statuscategory/4",
+            "id": 4,
+            "key": "indeterminate",
+            "colorName": "yellow",
+            "name": "In Progress"
+        }
+    },
+    {
+        "self": "https://jira.hm.com/rest/api/latest/status/10039",
+        "description": "",
+        "iconUrl": "https://jira.hm.com/images/icons/statuses/open.png",
+        "name": "Test",
+        "id": "10039",
+        "statusCategory": {
+            "self": "https://jira.hm.com/rest/api/latest/statuscategory/4",
+            "id": 4,
+            "key": "indeterminate",
+            "colorName": "yellow",
+            "name": "In Progress"
+        }
+    },
+    {
+        "self": "https://jira.hm.com/rest/api/latest/status/10040",
+        "description": "",
+        "iconUrl": "https://jira.hm.com/images/icons/statuses/inprogress.png",
+        "name": "Testing",
+        "id": "10040",
+        "statusCategory": {
+            "self": "https://jira.hm.com/rest/api/latest/statuscategory/4",
+            "id": 4,
+            "key": "indeterminate",
+            "colorName": "yellow",
+            "name": "In Progress"
+        }
+    },
+    {
+        "self": "https://jira.hm.com/rest/api/latest/status/10041",
+        "description": "",
+        "iconUrl": "https://jira.hm.com/images/icons/statuses/open.png",
+        "name": "Deployed In Test",
+        "id": "10041",
+        "statusCategory": {
+            "self": "https://jira.hm.com/rest/api/latest/statuscategory/4",
+            "id": 4,
+            "key": "indeterminate",
+            "colorName": "yellow",
+            "name": "In Progress"
+        }
+    },
+    {
+        "self": "https://jira.hm.com/rest/api/latest/status/10043",
+        "description": "",
+        "iconUrl": "https://jira.hm.com/images/icons/statuses/open.png",
+        "name": "Deployed In Acceptance Test",
+        "id": "10043",
+        "statusCategory": {
+            "self": "https://jira.hm.com/rest/api/latest/statuscategory/4",
+            "id": 4,
+            "key": "indeterminate",
+            "colorName": "yellow",
+            "name": "In Progress"
+        }
+    },
+    {
+        "self": "https://jira.hm.com/rest/api/latest/status/10166",
+        "description": "",
+        "iconUrl": "https://jira.hm.com/images/icons/statuses/generic.png",
+        "name": "System Test Done",
+        "id": "10166",
+        "statusCategory": {
+            "self": "https://jira.hm.com/rest/api/latest/statuscategory/4",
+            "id": 4,
+            "key": "indeterminate",
+            "colorName": "yellow",
+            "name": "In Progress"
+        }
+    }
+]

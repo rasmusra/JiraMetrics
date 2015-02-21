@@ -1,0 +1,929 @@
+{
+    "expand": "names,schema",
+    "startAt": 0,
+    "maxResults": 50,
+    "total": 1,
+    "issues": [
+        {
+            "expand": "editmeta,renderedFields,transitions,changelog,operations",
+            "id": "190947",
+            "self": "https://jira.hm.com/rest/api/latest/issue/190947",
+            "key": "OFU-1462",
+            "fields": {
+                "progress": {
+                    "progress": 0,
+                    "total": 0
+                },
+                "summary": "Update date filter functionality and look in Order list page",
+                "customfield_13371": null,
+                "customfield_13370": null,
+                "customfield_11370": null,
+                "issuetype": {
+                    "self": "https://jira.hm.com/rest/api/2/issuetype/9",
+                    "id": "9",
+                    "description": "",
+                    "iconUrl": "https://jira.hm.com/images/icons/issuetypes/nova_changerequest.gif",
+                    "name": "Change Request",
+                    "subtask": false
+                },
+                "customfield_15271": null,
+                "customfield_15270": null,
+                "timespent": null,
+                "customfield_10241": null,
+                "customfield_10231": null,
+                "customfield_10230": null,
+                "reporter": {
+                    "self": "https://jira.hm.com/rest/api/2/user?username=SESOL",
+                    "name": "SESOL",
+                    "emailAddress": "Senai.Solomon@hm.com",
+                    "avatarUrls": {
+                        "16x16": "https://jira.hm.com/secure/useravatar?size=xsmall&avatarId=10359",
+                        "24x24": "https://jira.hm.com/secure/useravatar?size=small&avatarId=10359",
+                        "32x32": "https://jira.hm.com/secure/useravatar?size=medium&avatarId=10359",
+                        "48x48": "https://jira.hm.com/secure/useravatar?avatarId=10359"
+                    },
+                    "displayName": "Solomon Senai (SEIT)",
+                    "active": true
+                },
+                "customfield_11571": "2013-09-12 12:10:54.633",
+                "updated": "2013-12-11T13:14:14.000+0100",
+                "created": "2013-08-14T10:52:56.000+0200",
+                "priority": {
+                    "self": "https://jira.hm.com/rest/api/2/priority/6",
+                    "iconUrl": "https://jira.hm.com/images/icons/priorities/priority_none.png",
+                    "name": "None",
+                    "id": "6"
+                },
+                "description": "*Requirement*\r\n- Currently there are one \"From\" and \"To\" fields for each date type (OPD, TOD, ISW) in the filter. Change it to be only one for all date types according to the attached image.\r\n- By default \"All dates\" is selected and the \"From\" and \"To\" dates shall be empty and disabled.\r\n- User shall be able to filter on OPD, TOD or ISW by selecting one of them by clicking in the radio button.\r\n- When clicking in the radio button for OPD, TOD or ISW the \"From\" and \"To\" fields shall be enabled and possible to edit.\r\n- No new filtering on date will be done until user picks a date in either the \"From\" or \"To\" fields.\r\n- If user has filtered on for instance OPD and then changes to TOD/ISW the dates entered previously shall be applied until new dates are entered in the \"From\" and/or \"To\" fields. ",
+                "customfield_11572": "10025_*:*_1_*:*_1755843300_*|*_1_*:*_1_*:*_191350420_*|*_10026_*:*_1_*:*_624168730_*|*_6_*:*_1_*:*_0_*|*_10004_*:*_1_*:*_1884900517_*|*_10018_*:*_1_*:*_563026347",
+                "issuelinks": [
+                    {
+                        "id": "99057",
+                        "self": "https://jira.hm.com/rest/api/2/issueLink/99057",
+                        "type": {
+                            "id": "10150",
+                            "name": "Implement",
+                            "inward": "is implemented by",
+                            "outward": "Implemented in",
+                            "self": "https://jira.hm.com/rest/api/2/issueLinkType/10150"
+                        },
+                        "inwardIssue": {
+                            "id": "184026",
+                            "key": "OFU-1273",
+                            "self": "https://jira.hm.com/rest/api/2/issue/184026",
+                            "fields": {
+                                "summary": "SIT - The old selection should be cleared when focus is moved to a new criteria (OPD/ISW/TOD)",
+                                "status": {
+                                    "self": "https://jira.hm.com/rest/api/2/status/6",
+                                    "description": "The issue is considered finished, the resolution is correct. Issues which are closed can be reopened.",
+                                    "iconUrl": "https://jira.hm.com/images/icons/statuses/closed.png",
+                                    "name": "Closed",
+                                    "id": "6",
+                                    "statusCategory": {
+                                        "self": "https://jira.hm.com/rest/api/2/statuscategory/3",
+                                        "id": 3,
+                                        "key": "done",
+                                        "colorName": "green",
+                                        "name": "Complete"
+                                    }
+                                },
+                                "priority": {
+                                    "self": "https://jira.hm.com/rest/api/2/priority/6",
+                                    "iconUrl": "https://jira.hm.com/images/icons/priorities/priority_none.png",
+                                    "name": "None",
+                                    "id": "6"
+                                },
+                                "issuetype": {
+                                    "self": "https://jira.hm.com/rest/api/2/issuetype/15",
+                                    "id": "15",
+                                    "description": "Defects and discrepancies found",
+                                    "iconUrl": "https://jira.hm.com/images/icons/issuetypes/bug.png",
+                                    "name": "Defect",
+                                    "subtask": false
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "id": "102912",
+                        "self": "https://jira.hm.com/rest/api/2/issueLink/102912",
+                        "type": {
+                            "id": "10020",
+                            "name": "Relationship",
+                            "inward": "relates to",
+                            "outward": "relates to",
+                            "self": "https://jira.hm.com/rest/api/2/issueLinkType/10020"
+                        },
+                        "outwardIssue": {
+                            "id": "162198",
+                            "key": "OFU-683",
+                            "self": "https://jira.hm.com/rest/api/2/issue/162198",
+                            "fields": {
+                                "summary": "OPD/TOD/ISW filter",
+                                "status": {
+                                    "self": "https://jira.hm.com/rest/api/2/status/6",
+                                    "description": "The issue is considered finished, the resolution is correct. Issues which are closed can be reopened.",
+                                    "iconUrl": "https://jira.hm.com/images/icons/statuses/closed.png",
+                                    "name": "Closed",
+                                    "id": "6",
+                                    "statusCategory": {
+                                        "self": "https://jira.hm.com/rest/api/2/statuscategory/3",
+                                        "id": 3,
+                                        "key": "done",
+                                        "colorName": "green",
+                                        "name": "Complete"
+                                    }
+                                },
+                                "priority": {
+                                    "self": "https://jira.hm.com/rest/api/2/priority/6",
+                                    "iconUrl": "https://jira.hm.com/images/icons/priorities/priority_none.png",
+                                    "name": "None",
+                                    "id": "6"
+                                },
+                                "issuetype": {
+                                    "self": "https://jira.hm.com/rest/api/2/issuetype/9",
+                                    "id": "9",
+                                    "description": "",
+                                    "iconUrl": "https://jira.hm.com/images/icons/issuetypes/nova_changerequest.gif",
+                                    "name": "Change Request",
+                                    "subtask": false
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "id": "102913",
+                        "self": "https://jira.hm.com/rest/api/2/issueLink/102913",
+                        "type": {
+                            "id": "10020",
+                            "name": "Relationship",
+                            "inward": "relates to",
+                            "outward": "relates to",
+                            "self": "https://jira.hm.com/rest/api/2/issueLinkType/10020"
+                        },
+                        "inwardIssue": {
+                            "id": "162198",
+                            "key": "OFU-683",
+                            "self": "https://jira.hm.com/rest/api/2/issue/162198",
+                            "fields": {
+                                "summary": "OPD/TOD/ISW filter",
+                                "status": {
+                                    "self": "https://jira.hm.com/rest/api/2/status/6",
+                                    "description": "The issue is considered finished, the resolution is correct. Issues which are closed can be reopened.",
+                                    "iconUrl": "https://jira.hm.com/images/icons/statuses/closed.png",
+                                    "name": "Closed",
+                                    "id": "6",
+                                    "statusCategory": {
+                                        "self": "https://jira.hm.com/rest/api/2/statuscategory/3",
+                                        "id": 3,
+                                        "key": "done",
+                                        "colorName": "green",
+                                        "name": "Complete"
+                                    }
+                                },
+                                "priority": {
+                                    "self": "https://jira.hm.com/rest/api/2/priority/6",
+                                    "iconUrl": "https://jira.hm.com/images/icons/priorities/priority_none.png",
+                                    "name": "None",
+                                    "id": "6"
+                                },
+                                "issuetype": {
+                                    "self": "https://jira.hm.com/rest/api/2/issuetype/9",
+                                    "id": "9",
+                                    "description": "",
+                                    "iconUrl": "https://jira.hm.com/images/icons/issuetypes/nova_changerequest.gif",
+                                    "name": "Change Request",
+                                    "subtask": false
+                                }
+                            }
+                        }
+                    }
+                ],
+                "customfield_13175": null,
+                "customfield_15570": "0.0",
+                "customfield_10093": null,
+                "customfield_10571": null,
+                "subtasks": [
+                    {
+                        "id": "191269",
+                        "key": "OFU-1468",
+                        "self": "https://jira.hm.com/rest/api/2/issue/191269",
+                        "fields": {
+                            "summary": "Implement",
+                            "status": {
+                                "self": "https://jira.hm.com/rest/api/2/status/6",
+                                "description": "The issue is considered finished, the resolution is correct. Issues which are closed can be reopened.",
+                                "iconUrl": "https://jira.hm.com/images/icons/statuses/closed.png",
+                                "name": "Closed",
+                                "id": "6",
+                                "statusCategory": {
+                                    "self": "https://jira.hm.com/rest/api/2/statuscategory/3",
+                                    "id": 3,
+                                    "key": "done",
+                                    "colorName": "green",
+                                    "name": "Complete"
+                                }
+                            },
+                            "priority": {
+                                "self": "https://jira.hm.com/rest/api/2/priority/6",
+                                "iconUrl": "https://jira.hm.com/images/icons/priorities/priority_none.png",
+                                "name": "None",
+                                "id": "6"
+                            },
+                            "issuetype": {
+                                "self": "https://jira.hm.com/rest/api/2/issuetype/20",
+                                "id": "20",
+                                "description": "",
+                                "iconUrl": "https://jira.hm.com/images/icons/issuetypes/nova_implementingsubtask.gif",
+                                "name": "Implementation Sub-task",
+                                "subtask": true
+                            }
+                        }
+                    },
+                    {
+                        "id": "192132",
+                        "key": "OFU-1489",
+                        "self": "https://jira.hm.com/rest/api/2/issue/192132",
+                        "fields": {
+                            "summary": "Test",
+                            "status": {
+                                "self": "https://jira.hm.com/rest/api/2/status/6",
+                                "description": "The issue is considered finished, the resolution is correct. Issues which are closed can be reopened.",
+                                "iconUrl": "https://jira.hm.com/images/icons/statuses/closed.png",
+                                "name": "Closed",
+                                "id": "6",
+                                "statusCategory": {
+                                    "self": "https://jira.hm.com/rest/api/2/statuscategory/3",
+                                    "id": 3,
+                                    "key": "done",
+                                    "colorName": "green",
+                                    "name": "Complete"
+                                }
+                            },
+                            "priority": {
+                                "self": "https://jira.hm.com/rest/api/2/priority/6",
+                                "iconUrl": "https://jira.hm.com/images/icons/priorities/priority_none.png",
+                                "name": "None",
+                                "id": "6"
+                            },
+                            "issuetype": {
+                                "self": "https://jira.hm.com/rest/api/2/issuetype/19",
+                                "id": "19",
+                                "description": "",
+                                "iconUrl": "https://jira.hm.com/images/icons/issuetypes/nova_testsubtask.gif",
+                                "name": "Test Sub-task",
+                                "subtask": true
+                            }
+                        }
+                    }
+                ],
+                "status": {
+                    "self": "https://jira.hm.com/rest/api/2/status/6",
+                    "description": "The issue is considered finished, the resolution is correct. Issues which are closed can be reopened.",
+                    "iconUrl": "https://jira.hm.com/images/icons/statuses/closed.png",
+                    "name": "Closed",
+                    "id": "6",
+                    "statusCategory": {
+                        "self": "https://jira.hm.com/rest/api/2/statuscategory/3",
+                        "id": 3,
+                        "key": "done",
+                        "colorName": "green",
+                        "name": "Complete"
+                    }
+                },
+                "customfield_10090": null,
+                "customfield_10091": null,
+                "labels": [],
+                "workratio": -1,
+                "customfield_10252": null,
+                "project": {
+                    "self": "https://jira.hm.com/rest/api/2/project/10501",
+                    "id": "10501",
+                    "key": "OFU",
+                    "name": "OFU",
+                    "avatarUrls": {
+                        "16x16": "https://jira.hm.com/secure/projectavatar?size=xsmall&pid=10501&avatarId=15261",
+                        "24x24": "https://jira.hm.com/secure/projectavatar?size=small&pid=10501&avatarId=15261",
+                        "32x32": "https://jira.hm.com/secure/projectavatar?size=medium&pid=10501&avatarId=15261",
+                        "48x48": "https://jira.hm.com/secure/projectavatar?pid=10501&avatarId=15261"
+                    },
+                    "projectCategory": {
+                        "self": "https://jira.hm.com/rest/api/2/projectCategory/10802",
+                        "id": "10802",
+                        "description": "",
+                        "name": "Buying & Production - Production"
+                    }
+                },
+                "customfield_14871": null,
+                "aggregateprogress": {
+                    "progress": 0,
+                    "total": 0
+                },
+                "lastViewed": "2014-10-28T08:05:55.273+0100",
+                "components": [],
+                "timeoriginalestimate": null,
+                "customfield_13770": null,
+                "customfield_13771": null,
+                "customfield_10111": null,
+                "votes": {
+                    "self": "https://jira.hm.com/rest/api/2/issue/OFU-1462/votes",
+                    "votes": 0,
+                    "hasVoted": false
+                },
+                "fixVersions": [
+                    {
+                        "self": "https://jira.hm.com/rest/api/2/version/17145",
+                        "id": "17145",
+                        "description": "[RELEASED] | Codename: Pre-JULIET | OFU Phase 1",
+                        "name": "OFU 1.0.0",
+                        "archived": true,
+                        "released": true,
+                        "releaseDate": "2013-09-30"
+                    },
+                    {
+                        "self": "https://jira.hm.com/rest/api/2/version/20902",
+                        "id": "20902",
+                        "description": "[RELEASED] | Codename: JULIET Users go live | OFU Phase 1",
+                        "name": "OFU 1.0.32",
+                        "archived": true,
+                        "released": true,
+                        "releaseDate": "2013-10-17"
+                    }
+                ],
+                "resolution": {
+                    "self": "https://jira.hm.com/rest/api/2/resolution/1",
+                    "id": "1",
+                    "description": "A fix for this issue is checked into the tree and tested.",
+                    "name": "Fixed"
+                },
+                "customfield_13970": null,
+                "resolutiondate": "2013-10-11T13:07:45.000+0200",
+                "customfield_12970": "OFU-1771",
+                "creator": {
+                    "self": "https://jira.hm.com/rest/api/2/user?username=SESOL",
+                    "name": "SESOL",
+                    "emailAddress": "Senai.Solomon@hm.com",
+                    "avatarUrls": {
+                        "16x16": "https://jira.hm.com/secure/useravatar?size=xsmall&avatarId=10359",
+                        "24x24": "https://jira.hm.com/secure/useravatar?size=small&avatarId=10359",
+                        "32x32": "https://jira.hm.com/secure/useravatar?size=medium&avatarId=10359",
+                        "48x48": "https://jira.hm.com/secure/useravatar?avatarId=10359"
+                    },
+                    "displayName": "Solomon Senai (SEIT)",
+                    "active": true
+                },
+                "aggregatetimeoriginalestimate": null,
+                "customfield_10161": {
+                    "self": "https://jira.hm.com/rest/api/2/customFieldOption/10564",
+                    "value": "Functional",
+                    "id": "10564"
+                },
+                "duedate": null,
+                "customfield_10060": null,
+                "watches": {
+                    "self": "https://jira.hm.com/rest/api/2/issue/OFU-1462/watchers",
+                    "watchCount": 3,
+                    "isWatching": false
+                },
+                "customfield_11270": "149133",
+                "customfield_10270": "124942",
+                "customfield_12170": null,
+                "customfield_10370": null,
+                "assignee": {
+                    "self": "https://jira.hm.com/rest/api/2/user?username=ANOHR",
+                    "name": "ANOHR",
+                    "emailAddress": "anneli.ohrstrom@hm.com",
+                    "avatarUrls": {
+                        "16x16": "https://jira.hm.com/secure/useravatar?size=xsmall&avatarId=10372",
+                        "24x24": "https://jira.hm.com/secure/useravatar?size=small&avatarId=10372",
+                        "32x32": "https://jira.hm.com/secure/useravatar?size=medium&avatarId=10372",
+                        "48x48": "https://jira.hm.com/secure/useravatar?avatarId=10372"
+                    },
+                    "displayName": "Ohrstrom Anneli (SEBO)",
+                    "active": true
+                },
+                "customfield_10201": null,
+                "customfield_11273": [
+                    "com.atlassian.greenhopper.service.sprint.Sprint@37c6221f[rapidViewId=<null>,state=CLOSED,name=Sprint 19 The final sprint,startDate=2013-08-13T09:05:14.915+02:00,endDate=2013-08-23T20:05:14.915+02:00,completeDate=2013-10-08T13:43:15.042+02:00,id=134]"
+                ],
+                "aggregatetimeestimate": null,
+                "customfield_10076": null,
+                "versions": [],
+                "timeestimate": null,
+                "customfield_10030": null,
+                "customfield_10031": null,
+                "customfield_10034": null,
+                "aggregatetimespent": null
+            },
+            "changelog": {
+                "startAt": 0,
+                "maxResults": 18,
+                "total": 18,
+                "histories": [
+                    {
+                        "id": "1584074",
+                        "author": {
+                            "self": "https://jira.hm.com/rest/api/2/user?username=SESOL",
+                            "name": "SESOL",
+                            "emailAddress": "Senai.Solomon@hm.com",
+                            "avatarUrls": {
+                                "16x16": "https://jira.hm.com/secure/useravatar?size=xsmall&avatarId=10359",
+                                "24x24": "https://jira.hm.com/secure/useravatar?size=small&avatarId=10359",
+                                "32x32": "https://jira.hm.com/secure/useravatar?size=medium&avatarId=10359",
+                                "48x48": "https://jira.hm.com/secure/useravatar?avatarId=10359"
+                            },
+                            "displayName": "Solomon Senai (SEIT)",
+                            "active": true
+                        },
+                        "created": "2013-08-14T10:52:58.083+0200",
+                        "items": [
+                            {
+                                "field": "Rank",
+                                "fieldtype": "custom",
+                                "from": "",
+                                "fromString": "",
+                                "to": "",
+                                "toString": "Ranked higher"
+                            }
+                        ]
+                    },
+                    {
+                        "id": "1584075",
+                        "author": {
+                            "self": "https://jira.hm.com/rest/api/2/user?username=SESOL",
+                            "name": "SESOL",
+                            "emailAddress": "Senai.Solomon@hm.com",
+                            "avatarUrls": {
+                                "16x16": "https://jira.hm.com/secure/useravatar?size=xsmall&avatarId=10359",
+                                "24x24": "https://jira.hm.com/secure/useravatar?size=small&avatarId=10359",
+                                "32x32": "https://jira.hm.com/secure/useravatar?size=medium&avatarId=10359",
+                                "48x48": "https://jira.hm.com/secure/useravatar?avatarId=10359"
+                            },
+                            "displayName": "Solomon Senai (SEIT)",
+                            "active": true
+                        },
+                        "created": "2013-08-14T10:53:10.687+0200",
+                        "items": [
+                            {
+                                "field": "Sprint",
+                                "fieldtype": "custom",
+                                "from": null,
+                                "fromString": null,
+                                "to": "134",
+                                "toString": "Sprint 19 The final sprint"
+                            }
+                        ]
+                    },
+                    {
+                        "id": "1584076",
+                        "author": {
+                            "self": "https://jira.hm.com/rest/api/2/user?username=SESOL",
+                            "name": "SESOL",
+                            "emailAddress": "Senai.Solomon@hm.com",
+                            "avatarUrls": {
+                                "16x16": "https://jira.hm.com/secure/useravatar?size=xsmall&avatarId=10359",
+                                "24x24": "https://jira.hm.com/secure/useravatar?size=small&avatarId=10359",
+                                "32x32": "https://jira.hm.com/secure/useravatar?size=medium&avatarId=10359",
+                                "48x48": "https://jira.hm.com/secure/useravatar?avatarId=10359"
+                            },
+                            "displayName": "Solomon Senai (SEIT)",
+                            "active": true
+                        },
+                        "created": "2013-08-14T10:53:11.310+0200",
+                        "items": [
+                            {
+                                "field": "Rank",
+                                "fieldtype": "custom",
+                                "from": "",
+                                "fromString": "",
+                                "to": "",
+                                "toString": "Ranked higher"
+                            }
+                        ]
+                    },
+                    {
+                        "id": "1584081",
+                        "author": {
+                            "self": "https://jira.hm.com/rest/api/2/user?username=SESOL",
+                            "name": "SESOL",
+                            "emailAddress": "Senai.Solomon@hm.com",
+                            "avatarUrls": {
+                                "16x16": "https://jira.hm.com/secure/useravatar?size=xsmall&avatarId=10359",
+                                "24x24": "https://jira.hm.com/secure/useravatar?size=small&avatarId=10359",
+                                "32x32": "https://jira.hm.com/secure/useravatar?size=medium&avatarId=10359",
+                                "48x48": "https://jira.hm.com/secure/useravatar?avatarId=10359"
+                            },
+                            "displayName": "Solomon Senai (SEIT)",
+                            "active": true
+                        },
+                        "created": "2013-08-14T10:55:01.153+0200",
+                        "items": [
+                            {
+                                "field": "description",
+                                "fieldtype": "jira",
+                                "from": null,
+                                "fromString": "*Requirement*\r\n- Currently there are one \"From\" and \"To\" fields for each date type (OPD, TOD, ISW) in the filter. Change it to be only one for all date types according to the attached image.\r\n- By default \"All dates\" is selected and the \"From\" and \"To\" dates shall be empty and disabled.\r\n- User shall be able to filter on OPD, TOD or ISW by selecting one of them by clicking in the radio button.\r\n- When clicking in the radio button for OPD, TOD or ISW the \"From\" and \"To\" fields shall be enabled and possible to edit.\r\n- No new filtering on date will be done until user picks a date in either the \"From\" or \"To\" fields.\r\n- If user has filtered on for instance OPD and the changes to TOD the dates entered previously shall be applied until new dates are entered in the \"From\" and/or \"To\" fields. ",
+                                "to": null,
+                                "toString": "*Requirement*\r\n- Currently there are one \"From\" and \"To\" fields for each date type (OPD, TOD, ISW) in the filter. Change it to be only one for all date types according to the attached image.\r\n- By default \"All dates\" is selected and the \"From\" and \"To\" dates shall be empty and disabled.\r\n- User shall be able to filter on OPD, TOD or ISW by selecting one of them by clicking in the radio button.\r\n- When clicking in the radio button for OPD, TOD or ISW the \"From\" and \"To\" fields shall be enabled and possible to edit.\r\n- No new filtering on date will be done until user picks a date in either the \"From\" or \"To\" fields.\r\n- If user has filtered on for instance OPD and then changes to TOD/ISW the dates entered previously shall be applied until new dates are entered in the \"From\" and/or \"To\" fields. "
+                            }
+                        ]
+                    },
+                    {
+                        "id": "1590273",
+                        "author": {
+                            "self": "https://jira.hm.com/rest/api/2/user?username=temptoper",
+                            "name": "temptoper",
+                            "emailAddress": "?",
+                            "avatarUrls": {
+                                "16x16": "https://jira.hm.com/secure/useravatar?size=xsmall&avatarId=10373",
+                                "24x24": "https://jira.hm.com/secure/useravatar?size=small&avatarId=10373",
+                                "32x32": "https://jira.hm.com/secure/useravatar?size=medium&avatarId=10373",
+                                "48x48": "https://jira.hm.com/secure/useravatar?avatarId=10373"
+                            },
+                            "displayName": "temptoper",
+                            "active": false
+                        },
+                        "created": "2013-08-16T10:28:55.830+0200",
+                        "items": [
+                            {
+                                "field": "Link",
+                                "fieldtype": "jira",
+                                "from": null,
+                                "fromString": null,
+                                "to": "OFU-1273",
+                                "toString": "This issue is implemented by OFU-1273"
+                            }
+                        ]
+                    },
+                    {
+                        "id": "1591469",
+                        "author": {
+                            "self": "https://jira.hm.com/rest/api/2/user?username=FRSUN",
+                            "name": "FRSUN",
+                            "emailAddress": "Fredrik.Sundqvist@hm.com",
+                            "avatarUrls": {
+                                "16x16": "https://jira.hm.com/secure/useravatar?size=xsmall&avatarId=10372",
+                                "24x24": "https://jira.hm.com/secure/useravatar?size=small&avatarId=10372",
+                                "32x32": "https://jira.hm.com/secure/useravatar?size=medium&avatarId=10372",
+                                "48x48": "https://jira.hm.com/secure/useravatar?avatarId=10372"
+                            },
+                            "displayName": "Sundqvist Fredrik (SEIT)",
+                            "active": true
+                        },
+                        "created": "2013-08-16T14:57:48.030+0200",
+                        "items": [
+                            {
+                                "field": "Version",
+                                "fieldtype": "jira",
+                                "from": "17145",
+                                "fromString": "R 1.0",
+                                "to": null,
+                                "toString": null
+                            }
+                        ]
+                    },
+                    {
+                        "id": "1591993",
+                        "author": {
+                            "self": "https://jira.hm.com/rest/api/2/user?username=FRSUN",
+                            "name": "FRSUN",
+                            "emailAddress": "Fredrik.Sundqvist@hm.com",
+                            "avatarUrls": {
+                                "16x16": "https://jira.hm.com/secure/useravatar?size=xsmall&avatarId=10372",
+                                "24x24": "https://jira.hm.com/secure/useravatar?size=small&avatarId=10372",
+                                "32x32": "https://jira.hm.com/secure/useravatar?size=medium&avatarId=10372",
+                                "48x48": "https://jira.hm.com/secure/useravatar?avatarId=10372"
+                            },
+                            "displayName": "Sundqvist Fredrik (SEIT)",
+                            "active": true
+                        },
+                        "created": "2013-08-16T16:02:06.973+0200",
+                        "items": [
+                            {
+                                "field": "status",
+                                "fieldtype": "jira",
+                                "from": "1",
+                                "fromString": "Open",
+                                "to": "10018",
+                                "toString": "Build & Configure"
+                            }
+                        ]
+                    },
+                    {
+                        "id": "1606130",
+                        "author": {
+                            "self": "https://jira.hm.com/rest/api/2/user?username=tempvijay",
+                            "name": "tempvijay",
+                            "emailAddress": "?",
+                            "avatarUrls": {
+                                "16x16": "https://jira.hm.com/secure/useravatar?size=xsmall&avatarId=10373",
+                                "24x24": "https://jira.hm.com/secure/useravatar?size=small&avatarId=10373",
+                                "32x32": "https://jira.hm.com/secure/useravatar?size=medium&avatarId=10373",
+                                "48x48": "https://jira.hm.com/secure/useravatar?avatarId=10373"
+                            },
+                            "displayName": "tempvijay",
+                            "active": false
+                        },
+                        "created": "2013-08-23T04:25:53.320+0200",
+                        "items": [
+                            {
+                                "field": "status",
+                                "fieldtype": "jira",
+                                "from": "10018",
+                                "fromString": "Build & Configure",
+                                "to": "10025",
+                                "toString": "System Integration Test"
+                            }
+                        ]
+                    },
+                    {
+                        "id": "1658041",
+                        "author": {
+                            "self": "https://jira.hm.com/rest/api/2/user?username=LOALV",
+                            "name": "LOALV",
+                            "emailAddress": "Louise.Alvo@hm.com",
+                            "avatarUrls": {
+                                "16x16": "https://jira.hm.com/secure/useravatar?size=xsmall&ownerId=loalv&avatarId=19051",
+                                "24x24": "https://jira.hm.com/secure/useravatar?size=small&ownerId=loalv&avatarId=19051",
+                                "32x32": "https://jira.hm.com/secure/useravatar?size=medium&ownerId=loalv&avatarId=19051",
+                                "48x48": "https://jira.hm.com/secure/useravatar?ownerId=loalv&avatarId=19051"
+                            },
+                            "displayName": "Alvo Louise (SEIT)",
+                            "active": true
+                        },
+                        "created": "2013-09-12T12:09:52.953+0200",
+                        "items": [
+                            {
+                                "field": "assignee",
+                                "fieldtype": "jira",
+                                "from": null,
+                                "fromString": null,
+                                "to": "anohr",
+                                "toString": "Ohrstrom Anneli (SEBO)"
+                            }
+                        ]
+                    },
+                    {
+                        "id": "1658042",
+                        "author": {
+                            "self": "https://jira.hm.com/rest/api/2/user?username=LOALV",
+                            "name": "LOALV",
+                            "emailAddress": "Louise.Alvo@hm.com",
+                            "avatarUrls": {
+                                "16x16": "https://jira.hm.com/secure/useravatar?size=xsmall&ownerId=loalv&avatarId=19051",
+                                "24x24": "https://jira.hm.com/secure/useravatar?size=small&ownerId=loalv&avatarId=19051",
+                                "32x32": "https://jira.hm.com/secure/useravatar?size=medium&ownerId=loalv&avatarId=19051",
+                                "48x48": "https://jira.hm.com/secure/useravatar?ownerId=loalv&avatarId=19051"
+                            },
+                            "displayName": "Alvo Louise (SEIT)",
+                            "active": true
+                        },
+                        "created": "2013-09-12T12:09:56.620+0200",
+                        "items": [
+                            {
+                                "field": "status",
+                                "fieldtype": "jira",
+                                "from": "10025",
+                                "fromString": "System Integration Test",
+                                "to": "10004",
+                                "toString": "Acceptance Test"
+                            }
+                        ]
+                    },
+                    {
+                        "id": "1658049",
+                        "author": {
+                            "self": "https://jira.hm.com/rest/api/2/user?username=LOALV",
+                            "name": "LOALV",
+                            "emailAddress": "Louise.Alvo@hm.com",
+                            "avatarUrls": {
+                                "16x16": "https://jira.hm.com/secure/useravatar?size=xsmall&ownerId=loalv&avatarId=19051",
+                                "24x24": "https://jira.hm.com/secure/useravatar?size=small&ownerId=loalv&avatarId=19051",
+                                "32x32": "https://jira.hm.com/secure/useravatar?size=medium&ownerId=loalv&avatarId=19051",
+                                "48x48": "https://jira.hm.com/secure/useravatar?ownerId=loalv&avatarId=19051"
+                            },
+                            "displayName": "Alvo Louise (SEIT)",
+                            "active": true
+                        },
+                        "created": "2013-09-12T12:11:13.073+0200",
+                        "items": [
+                            {
+                                "field": "Link",
+                                "fieldtype": "jira",
+                                "from": null,
+                                "fromString": null,
+                                "to": "OFU-683",
+                                "toString": "This issue relates to OFU-683"
+                            }
+                        ]
+                    },
+                    {
+                        "id": "1658056",
+                        "author": {
+                            "self": "https://jira.hm.com/rest/api/2/user?username=LOALV",
+                            "name": "LOALV",
+                            "emailAddress": "Louise.Alvo@hm.com",
+                            "avatarUrls": {
+                                "16x16": "https://jira.hm.com/secure/useravatar?size=xsmall&ownerId=loalv&avatarId=19051",
+                                "24x24": "https://jira.hm.com/secure/useravatar?size=small&ownerId=loalv&avatarId=19051",
+                                "32x32": "https://jira.hm.com/secure/useravatar?size=medium&ownerId=loalv&avatarId=19051",
+                                "48x48": "https://jira.hm.com/secure/useravatar?ownerId=loalv&avatarId=19051"
+                            },
+                            "displayName": "Alvo Louise (SEIT)",
+                            "active": true
+                        },
+                        "created": "2013-09-12T12:11:56.190+0200",
+                        "items": [
+                            {
+                                "field": "Link",
+                                "fieldtype": "jira",
+                                "from": null,
+                                "fromString": null,
+                                "to": "OFU-683",
+                                "toString": "This issue is related to OFU-683"
+                            }
+                        ]
+                    },
+                    {
+                        "id": "1713330",
+                        "author": {
+                            "self": "https://jira.hm.com/rest/api/2/user?username=MAEKO",
+                            "name": "MAEKO",
+                            "emailAddress": "Martina.Ekbom@hm.com",
+                            "avatarUrls": {
+                                "16x16": "https://jira.hm.com/secure/useravatar?size=xsmall&ownerId=maeko&avatarId=16058",
+                                "24x24": "https://jira.hm.com/secure/useravatar?size=small&ownerId=maeko&avatarId=16058",
+                                "32x32": "https://jira.hm.com/secure/useravatar?size=medium&ownerId=maeko&avatarId=16058",
+                                "48x48": "https://jira.hm.com/secure/useravatar?ownerId=maeko&avatarId=16058"
+                            },
+                            "displayName": "Ekbom Martina (SEIT)",
+                            "active": true
+                        },
+                        "created": "2013-10-03T15:07:19.633+0200",
+                        "items": [
+                            {
+                                "field": "CR Type",
+                                "fieldtype": "custom",
+                                "from": null,
+                                "fromString": null,
+                                "to": "10564",
+                                "toString": "Functional"
+                            }
+                        ]
+                    },
+                    {
+                        "id": "1714189",
+                        "author": {
+                            "self": "https://jira.hm.com/rest/api/2/user?username=DACHI",
+                            "name": "DACHI",
+                            "emailAddress": "Daisy.Chiang@hm.com",
+                            "avatarUrls": {
+                                "16x16": "https://jira.hm.com/secure/useravatar?size=xsmall&avatarId=10372",
+                                "24x24": "https://jira.hm.com/secure/useravatar?size=small&avatarId=10372",
+                                "32x32": "https://jira.hm.com/secure/useravatar?size=medium&avatarId=10372",
+                                "48x48": "https://jira.hm.com/secure/useravatar?avatarId=10372"
+                            },
+                            "displayName": "Chiang Daisy (CNHK)",
+                            "active": true
+                        },
+                        "created": "2013-10-04T07:44:57.137+0200",
+                        "items": [
+                            {
+                                "field": "status",
+                                "fieldtype": "jira",
+                                "from": "10004",
+                                "fromString": "Acceptance Test",
+                                "to": "10026",
+                                "toString": "Release"
+                            }
+                        ]
+                    },
+                    {
+                        "id": "1734308",
+                        "author": {
+                            "self": "https://jira.hm.com/rest/api/2/user?username=FRSUN",
+                            "name": "FRSUN",
+                            "emailAddress": "Fredrik.Sundqvist@hm.com",
+                            "avatarUrls": {
+                                "16x16": "https://jira.hm.com/secure/useravatar?size=xsmall&avatarId=10372",
+                                "24x24": "https://jira.hm.com/secure/useravatar?size=small&avatarId=10372",
+                                "32x32": "https://jira.hm.com/secure/useravatar?size=medium&avatarId=10372",
+                                "48x48": "https://jira.hm.com/secure/useravatar?avatarId=10372"
+                            },
+                            "displayName": "Sundqvist Fredrik (SEIT)",
+                            "active": true
+                        },
+                        "created": "2013-10-11T13:07:45.867+0200",
+                        "items": [
+                            {
+                                "field": "status",
+                                "fieldtype": "jira",
+                                "from": "10026",
+                                "fromString": "Release",
+                                "to": "6",
+                                "toString": "Closed"
+                            },
+                            {
+                                "field": "resolution",
+                                "fieldtype": "jira",
+                                "from": null,
+                                "fromString": null,
+                                "to": "1",
+                                "toString": "Fixed"
+                            }
+                        ]
+                    },
+                    {
+                        "id": "1754695",
+                        "author": {
+                            "self": "https://jira.hm.com/rest/api/2/user?username=FRSUN",
+                            "name": "FRSUN",
+                            "emailAddress": "Fredrik.Sundqvist@hm.com",
+                            "avatarUrls": {
+                                "16x16": "https://jira.hm.com/secure/useravatar?size=xsmall&avatarId=10372",
+                                "24x24": "https://jira.hm.com/secure/useravatar?size=small&avatarId=10372",
+                                "32x32": "https://jira.hm.com/secure/useravatar?size=medium&avatarId=10372",
+                                "48x48": "https://jira.hm.com/secure/useravatar?avatarId=10372"
+                            },
+                            "displayName": "Sundqvist Fredrik (SEIT)",
+                            "active": true
+                        },
+                        "created": "2013-10-18T10:58:45.853+0200",
+                        "items": [
+                            {
+                                "field": "Fix Version",
+                                "fieldtype": "jira",
+                                "from": null,
+                                "fromString": null,
+                                "to": "21203",
+                                "toString": "JULIET"
+                            }
+                        ]
+                    },
+                    {
+                        "id": "1830435",
+                        "author": {
+                            "self": "https://jira.hm.com/rest/api/2/user?username=MAEKO",
+                            "name": "MAEKO",
+                            "emailAddress": "Martina.Ekbom@hm.com",
+                            "avatarUrls": {
+                                "16x16": "https://jira.hm.com/secure/useravatar?size=xsmall&ownerId=maeko&avatarId=16058",
+                                "24x24": "https://jira.hm.com/secure/useravatar?size=small&ownerId=maeko&avatarId=16058",
+                                "32x32": "https://jira.hm.com/secure/useravatar?size=medium&ownerId=maeko&avatarId=16058",
+                                "48x48": "https://jira.hm.com/secure/useravatar?ownerId=maeko&avatarId=16058"
+                            },
+                            "displayName": "Ekbom Martina (SEIT)",
+                            "active": true
+                        },
+                        "created": "2013-11-15T12:56:54.343+0100",
+                        "items": [
+                            {
+                                "field": "Epic Link",
+                                "fieldtype": "custom",
+                                "from": null,
+                                "fromString": null,
+                                "to": "208696",
+                                "toString": "OFU-1771"
+                            }
+                        ]
+                    },
+                    {
+                        "id": "1902371",
+                        "author": {
+                            "self": "https://jira.hm.com/rest/api/2/user?username=FRSUN",
+                            "name": "FRSUN",
+                            "emailAddress": "Fredrik.Sundqvist@hm.com",
+                            "avatarUrls": {
+                                "16x16": "https://jira.hm.com/secure/useravatar?size=xsmall&avatarId=10372",
+                                "24x24": "https://jira.hm.com/secure/useravatar?size=small&avatarId=10372",
+                                "32x32": "https://jira.hm.com/secure/useravatar?size=medium&avatarId=10372",
+                                "48x48": "https://jira.hm.com/secure/useravatar?avatarId=10372"
+                            },
+                            "displayName": "Sundqvist Fredrik (SEIT)",
+                            "active": true
+                        },
+                        "created": "2013-12-11T13:14:14.473+0100",
+                        "items": [
+                            {
+                                "field": "Fix Version",
+                                "fieldtype": "jira",
+                                "from": null,
+                                "fromString": null,
+                                "to": "20902",
+                                "toString": "OFU 1.0.32"
+                            },
+                            {
+                                "field": "Fix Version",
+                                "fieldtype": "jira",
+                                "from": "21203",
+                                "fromString": "JULIET",
+                                "to": null,
+                                "toString": null
+                            }
+                        ]
+                    }
+                ]
+            }
+        }
+    ]
+}
