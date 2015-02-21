@@ -1,6 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<StructureMap MementoStyle="Attribute">
-  <DefaultInstance
-    PluginType="HM.JiraMetrics.Lib.Jira.IJiraRestClient, HM.JiraMetrics.Lib"
-    PluggedType="HM.JiraMetrics.Test.Fakes.FakeJiraRestClient, HM.JiraMetrics.Test.Fakes"/>
-</StructureMap>
