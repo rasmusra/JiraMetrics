@@ -19,6 +19,7 @@ namespace Olifant.JiraMetrics.Test.Acceptance
         }
 
         [AfterTestRun]
+        [AfterFeature("chrome")]
         public static void RemoveFakes()
         {
             WebServer.RemoveFakes();
@@ -66,7 +67,6 @@ namespace Olifant.JiraMetrics.Test.Acceptance
             {
                 FeatureWrapper.PhantomJsDriver.Quit();
                 FeatureWrapper.PhantomJsDriver.Dispose();
-
             }
             catch (Exception e)
             {

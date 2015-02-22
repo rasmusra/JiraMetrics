@@ -34,7 +34,7 @@ namespace Olifant.JiraMetrics.Test.Acceptance.Steps.Helpers
             var cmd = string.Format(
                 "\"{0}\" /path:\"{1}\" /port:{2}",
                 IisExe,
-                new DirectoryInfo(@"..\..\..\HM.JiraMetrics.Web").FullName,
+                new DirectoryInfo(@"..\..\..\Olifant.JiraMetrics.Web").FullName,
                 Port);
 
             ProcessManager.Start(cmd);
