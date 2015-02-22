@@ -1,5 +1,5 @@
 // include Fake lib
-#r @"packages\FAKE\tools\FakeLib.dll"
+#r @"packages\FAKE.3.17.3\tools\FakeLib.dll"
 open Fake
 
 // Properties
@@ -10,9 +10,11 @@ let buildArtifacts = "buildArtifacts"
 let testResultFile = buildArtifacts + @"/testResults.xml"
 let featuresDir = buildArtifacts + @"/features"
 let featuresWithTestResultsDir = buildArtifacts + @"/featuresWithTestResults"
+let chrome = @"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe"
 
 // Targets
 Target "Clean" (fun _ ->
+    trace __SOURCE_DIRECTORY__
     DeleteFiles outputDllFiles
     CleanDir buildArtifacts
 )
@@ -44,6 +46,8 @@ Target "Build" (fun _ ->
 )
 
 Target "Test" (fun _ ->
+    ActivateBuildFailureTarget "PublishOnError"
+
     !! (srcRoot + @"\**\bin\Debug\*.Test.*.dll")
     --  (srcRoot + @"\**\bin\Debug\*.Fakes.dll")
     |> NUnit (fun p -> 
@@ -60,6 +64,18 @@ Target "Publish" (fun _ ->
     ()
 )
 
+BuildFailureTarget "PublishOnError" (fun _ ->
+    let args = "-f src/Olifant.JiraMetrics.Test.Acceptance/Features -lr " + testResultFile + @" -o " + featuresWithTestResultsDir
+    Shell.Exec("packages/Pickles.CommandLine.1.0.0/tools/pickles.exe", args)
+    |> ignore
+
+    let log = String.concat @"\" [__SOURCE_DIRECTORY__; featuresWithTestResultsDir; "index.html"]
+    Shell.Exec(chrome, log)     
+    |> ignore
+
+    ()
+)
+
 // Dependencies
 "Clean"
 ==> "Publish specs"
@@ -68,4 +84,4 @@ Target "Publish" (fun _ ->
 ==> "Publish"
 
 // start build
-RunTargetOrDefault "Publish"
+RunTargetOrDefault "Test"
