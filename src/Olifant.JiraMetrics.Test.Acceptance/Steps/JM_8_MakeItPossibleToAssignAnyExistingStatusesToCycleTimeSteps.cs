@@ -33,20 +33,18 @@ namespace Olifant.JiraMetrics.Test.Acceptance.Steps
         {
             var cycleSetupManager = new CycleSetupManager(table.CreateSet<CycleSetupSpec>());
 
-            var actualPreCycleStatuses = FeatureWrapper.PhantomJsDriver.FindElement(By.Name("PreCycleStatusesListbox"));
-            var actualCycleStatuses = FeatureWrapper.PhantomJsDriver.FindElement(By.Name("CycleStatusesListbox"));
-            var actualPostcycleStatuses = FeatureWrapper.PhantomJsDriver.FindElement(By.Name("PostCycleStatusesListbox"));
-            
-            actualPreCycleStatuses.Text
-                .ShouldBeEquivalentTo(cycleSetupManager.GetSpecifiedListBoxtext(cycleSetupManager.PreCycleStatuses));
-
-            actualCycleStatuses.Text
-                .ShouldBeEquivalentTo(cycleSetupManager.GetSpecifiedListBoxtext(cycleSetupManager.CycleStatuses));
-
-            actualPostcycleStatuses.Text
-                .ShouldBeEquivalentTo(cycleSetupManager.GetSpecifiedListBoxtext(cycleSetupManager.PostCycleStatuses));
+            VerifyStatuses(cycleSetupManager.PreCycleStatuses, "PreCycleStatusesListbox");
+            VerifyStatuses(cycleSetupManager.CycleStatuses, "CycleStatusesListbox");
+            VerifyStatuses(cycleSetupManager.PostCycleStatuses, "PostCycleStatusesListbox");
         }
-    
+
+        private static void VerifyStatuses(List<string> expectedCycleStatuses, string webControlName)
+        {
+            var actualStatuses = FeatureWrapper.PhantomJsDriver.FindElement(By.Name(webControlName));
+            expectedCycleStatuses.ForEach(expectedStatus =>
+                actualStatuses.Text.Should().Contain(expectedStatus));
+        }
+
         [When(@"I move status ""(.*)"" in ""(.*)"" to ""(.*)""")]
         public void MoveStatus(string status, string from, string to)
         {

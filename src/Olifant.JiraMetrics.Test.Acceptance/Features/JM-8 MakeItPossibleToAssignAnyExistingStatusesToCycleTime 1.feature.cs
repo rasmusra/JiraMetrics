@@ -246,7 +246,7 @@ this.ScenarioSetup(scenarioInfo);
                         "System Test",
                         "Deployed In Acceptance Test"});
             table6.AddRow(new string[] {
-                        "Build & configure",
+                        "Build & Configure",
                         "Ready for Test",
                         "System Integration Test"});
             table6.AddRow(new string[] {

@@ -9,7 +9,7 @@
         </td>
         <td>
             <a id="fromPreCycleStatusesToCycleStatusesButton" class="btn btn-success btn-sm glyphicon glyphicon-hand-right"> To cycle</a><br />
-            <a id="fromCycleStatusesToPreCycleStatusesButton" class="btn btn-success btn-sm glyphicon glyphicon-hand-left"> From cycle</a>
+            <a id="fromCycleStatusesToPreCycleStatusesButton" class="btn btn-danger btn-sm glyphicon glyphicon-hand-left"> From cycle</a>
         </td>
         <td>
             @Html.ListBox("CycleStatusesListbox", Model.GetListItems(Model.CycleStatuses),
@@ -17,7 +17,7 @@
         </td>
         <td>
             <a id="fromPostCycleStatusesToCycleStatusesButton" class="btn btn-success btn-sm glyphicon glyphicon-hand-left"> To cycle</a><br />
-            <a id="fromCycleStatusesToPostCycleStatusesButton" class="btn btn-success btn-sm glyphicon glyphicon-hand-right"> From cycle</a>
+            <a id="fromCycleStatusesToPostCycleStatusesButton" class="btn btn-danger btn-sm glyphicon glyphicon-hand-right"> From cycle</a>
         </td>
         <td>
             @Html.ListBox("PostCycleStatusesListbox", Model.GetListItems(Model.PostCycleStatuses),
@@ -29,7 +29,7 @@
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 <script type="text/javascript">
     $(function () {
-        $("#fromCycleToPrecycle").bind("click", function () {
+        $("#fromCycleStatusesToPreCycleStatusesButton").bind("click", function () {
             var options = $("[id=CycleStatusesListbox] option:selected");
             for (var i = 0; i < options.length; i++) {
                 var opt = $(options[i]).clone();
@@ -37,7 +37,7 @@
                 $(options[i]).remove();
             }
         });
-        $("#fromPrecycleToCycle").bind("click", function () {
+        $("#fromPreCycleStatusesToCycleStatusesButton").bind("click", function () {
             var options = $("[id=PreCycleStatusesListbox] option:selected");
             for (var i = 0; i < options.length; i++) {
                 var opt = $(options[i]).clone();
@@ -45,7 +45,7 @@
                 $(options[i]).remove();
             }
         });
-        $("#fromCycleToPostcycle").bind("click", function () {
+        $("#fromCycleStatusesToPostCycleStatusesButton").bind("click", function () {
             var options = $("[id=CycleStatusesListbox] option:selected");
             for (var i = 0; i < options.length; i++) {
                 var opt = $(options[i]).clone();
@@ -53,7 +53,7 @@
                 $(options[i]).remove();
             }
         });
-        $("#fromPostcycleToCycle").bind("click", function () {
+        $("#fromPostCycleStatusesToCycleStatusesButton").bind("click", function () {
             var options = $("[id=PostCycleStatusesListbox] option:selected");
             for (var i = 0; i < options.length; i++) {
                 var opt = $(options[i]).clone();

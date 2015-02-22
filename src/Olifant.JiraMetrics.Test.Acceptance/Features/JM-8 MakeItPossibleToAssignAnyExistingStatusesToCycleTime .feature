@@ -61,7 +61,7 @@ Scenario: Move statuses
 	Then I should see following setup for statuses in cycle:
 	| Precycle Status   | Cycle status           | Postcycle Status            |
 	| Open              | System Test            | Deployed In Acceptance Test |
-	| Build & configure | Ready for Test         | System Integration Test     |
+	| Build & Configure | Ready for Test         | System Integration Test     |
 	|                   | Describing Requirement | System Integration Testing  |
 	|                   | Building & Configuring | Resolved                    |
 	|                   | System Testing         | Acceptance Test             |

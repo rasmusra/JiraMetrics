@@ -46,7 +46,7 @@ namespace Olifant.JiraMetrics.Test.Acceptance
             Console.WriteLine(new string('-', 40));
             Console.WriteLine("Feature: " + FeatureContext.Current.FeatureInfo.Title);
             Console.WriteLine(FeatureContext.Current.FeatureInfo.Description);
-            Console.WriteLine(new string('-', 40));
+            Console.WriteLine();
         }
 
         [BeforeScenario]
