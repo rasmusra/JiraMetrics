@@ -14,6 +14,7 @@ namespace Olifant.JiraMetrics.Test.Fakes.Helpers
                                   "Implement", "Build & Configure", "Implementing", "Building & Configuring",
                                   "In Progress", "Review"
                               };
+            this["development"] = this["dev"];
             this["test"] = new[] { "System Test", "Test", "Ready for Test", "Deployed In Test", "Testing", "System Testing" };
             this["backlog"] = new[] { "Open", "Reopened" };
             this["full process"] = new[]

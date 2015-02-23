@@ -1,5 +1,5 @@
 ﻿@ignore
-Feature: JM-7 Create Value added time report
+Feature: Create Value added time report
 	To find waste in the process
 	As a person involved in Jira project
 	I need the value-added-times presented in a report

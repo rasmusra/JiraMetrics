@@ -81,15 +81,15 @@
     <Compile Include="..\GlobalAssemblyInfo.cs">
       <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="Features\JM-7 CreateValueAddedTimeReport.feature.cs">
-      <DependentUpon>JM-7 CreateValueAddedTimeReport.feature</DependentUpon>
+    <Compile Include="Features\CreateValueAddedTimeReport.feature.cs">
+      <DependentUpon>CreateValueAddedTimeReport.feature</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Features\JM-8 MakeItPossibleToAssignAnyExistingStatusesToCycleTime 1.feature.cs">
+    <Compile Include="Features\MakeItPossibleToAssignAnyExistingStatusesToCycleTime .feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>JM-8 MakeItPossibleToAssignAnyExistingStatusesToCycleTime .feature</DependentUpon>
+      <DependentUpon>MakeItPossibleToAssignAnyExistingStatusesToCycleTime .feature</DependentUpon>
     </Compile>
     <Compile Include="Hooks.cs" />
     <Compile Include="FeatureWrapper.cs" />
@@ -110,13 +110,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>GetIssues.feature</DependentUpon>
     </Compile>
-    <Compile Include="Features\JM-1 PresentingProjectProgress.feature.cs">
+    <Compile Include="Features\PresentingProjectProgress.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>JM-1 PresentingProjectProgress.feature</DependentUpon>
+      <DependentUpon>PresentingProjectProgress.feature</DependentUpon>
     </Compile>
     <Compile Include="Steps\ChooseFilterSteps.cs" />
-    <Compile Include="Steps\JM_8_MakeItPossibleToAssignAnyExistingStatusesToCycleTimeSteps.cs" />
+    <Compile Include="Steps\MakeItPossibleToAssignAnyExistingStatusesToCycleTimeSteps.cs" />
     <Compile Include="Steps\Helpers\DateFilterSpec.cs" />
     <Compile Include="Steps\Helpers\WebControlSpec.cs" />
     <Compile Include="Steps\Helpers\CycleTimeReportEntrySpec.cs" />
@@ -131,17 +131,17 @@
     <Compile Include="Steps\Helpers\JqlQuerySpec.cs" />
     <Compile Include="Steps\Helpers\WebServer.cs" />
     <Compile Include="Steps\Helpers\ProcessManager.cs" />
-    <Compile Include="Steps\JM_1_PresentingProjectProgressSteps.cs" />
-    <Compile Include="Steps\JM_7_CreateValueAddedTimeReportSteps.cs" />
+    <Compile Include="Steps\PresentingProjectProgressSteps.cs" />
+    <Compile Include="Steps\CreateValueAddedTimeReportSteps.cs" />
     <Compile Include="Steps\Helpers\ValueAddedTimeReportSpec.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Features\JM-7 CreateValueAddedTimeReport.feature">
+    <None Include="Features\CreateValueAddedTimeReport.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>JM-7 CreateValueAddedTimeReport.feature.cs</LastGenOutput>
+      <LastGenOutput>CreateValueAddedTimeReport.feature.cs</LastGenOutput>
     </None>
     <None Include="packages.config">
       <SubType>Designer</SubType>
@@ -154,17 +154,17 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CreateHistogram.feature.cs</LastGenOutput>
     </None>
-    <None Include="Features\JM-8 MakeItPossibleToAssignAnyExistingStatusesToCycleTime .feature">
+    <None Include="Features\MakeItPossibleToAssignAnyExistingStatusesToCycleTime .feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>JM-8 MakeItPossibleToAssignAnyExistingStatusesToCycleTime 1.feature.cs</LastGenOutput>
+      <LastGenOutput>MakeItPossibleToAssignAnyExistingStatusesToCycleTime .feature.cs</LastGenOutput>
     </None>
     <None Include="Features\GetIssues.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>GetIssues.feature.cs</LastGenOutput>
     </None>
-    <None Include="Features\JM-1 PresentingProjectProgress.feature">
+    <None Include="Features\PresentingProjectProgress.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>JM-1 PresentingProjectProgress.feature.cs</LastGenOutput>
+      <LastGenOutput>PresentingProjectProgress.feature.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <ItemGroup>

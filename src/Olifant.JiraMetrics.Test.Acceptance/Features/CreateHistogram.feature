@@ -3,7 +3,6 @@
 	As a Kanban number cruncher
 	I need automated ways to generate data for the histogram 
 
-
 Scenario: Assigning delta for histogram 
 	Given program is started
 	And I have entered the following query: "Issues started before and after 2014-07-01"

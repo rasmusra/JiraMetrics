@@ -10,7 +10,7 @@ using TechTalk.SpecFlow.Assist;
 namespace Olifant.JiraMetrics.Test.Acceptance.Steps
 {
     [Binding]
-    public class JM_1_PresentingProjectProgressSteps
+    public class PresentingProjectProgressSteps
     {
         [Given(@"I am logged in as ""(.*)""")]
         [Given(@"a team member named ""(.*)""")]

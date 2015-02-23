@@ -19,21 +19,21 @@ namespace Olifant.JiraMetrics.Test.Acceptance.Features
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "1.9.0.77")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("JM-1 Presenting project progress")]
+    [NUnit.Framework.DescriptionAttribute("Presenting project progress")]
     [NUnit.Framework.CategoryAttribute("chrome")]
-    public partial class JM_1PresentingProjectProgressFeature
+    public partial class PresentingProjectProgressFeature
     {
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "JM-1 PresentingProjectProgress.feature"
+#line 1 "PresentingProjectProgress.feature"
 #line hidden
         
         [NUnit.Framework.TestFixtureSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "JM-1 Presenting project progress", "In order to get a grip on project risks \r\nAs a stakeholder\r\nI want to see the pro" +
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Presenting project progress", "In order to get a grip on project risks \r\nAs a stakeholder\r\nI want to see the pro" +
                     "ject progress in a burn-up \r\nand the graph should be updated daily", ProgrammingLanguage.CSharp, new string[] {
                         "chrome"});
             testRunner.OnFeatureStart(featureInfo);

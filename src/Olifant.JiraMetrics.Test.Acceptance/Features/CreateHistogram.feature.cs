@@ -70,13 +70,13 @@ namespace Olifant.JiraMetrics.Test.Acceptance.Features
         public virtual void AssigningDeltaForHistogram()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Assigning delta for histogram", ((string[])(null)));
-#line 7
+#line 6
 this.ScenarioSetup(scenarioInfo);
-#line 8
+#line 7
  testRunner.Given("program is started", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 9
+#line 8
  testRunner.And("I have entered the following query: \"Issues started before and after 2014-07-01\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 10
+#line 9
  testRunner.And("I have chosen the start and end of cycle as \"Test\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
@@ -85,9 +85,9 @@ this.ScenarioSetup(scenarioInfo);
             table1.AddRow(new string[] {
                         "2014-07-01",
                         "2014-10-31"});
-#line 11
+#line 10
  testRunner.And("I enter the Start date interval as:", ((string)(null)), table1, "And ");
-#line 14
+#line 13
  testRunner.When("I click the \"Cycle time report\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
             TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
@@ -106,9 +106,9 @@ this.ScenarioSetup(scenarioInfo);
                         "4,96",
                         "1,5",
                         ""});
-#line 15
+#line 14
  testRunner.Then("I should be able to see the following cycle times in the report:", ((string)(null)), table2, "Then ");
-#line 18
+#line 17
  testRunner.But("I should not see \"OFU-1462\" in the report", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "But ");
 #line hidden
             this.ScenarioCleanup();

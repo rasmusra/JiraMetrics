@@ -1,5 +1,5 @@
 ﻿@chrome
-Feature: JM-8 Make it possible to assign any existing statuses to cycle time 
+Feature: Make it possible to assign any existing statuses to cycle time 
 	For being able to work with cycle times
 	As a person involved in Jira project
 	I need the exported cycle times presented in a report

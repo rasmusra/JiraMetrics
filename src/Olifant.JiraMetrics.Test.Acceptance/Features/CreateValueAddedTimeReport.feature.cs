@@ -19,21 +19,21 @@ namespace Olifant.JiraMetrics.Test.Acceptance.Features
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "1.9.0.77")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("JM-7 Create Value added time report")]
+    [NUnit.Framework.DescriptionAttribute("Create Value added time report")]
     [NUnit.Framework.IgnoreAttribute()]
-    public partial class JM_7CreateValueAddedTimeReportFeature
+    public partial class CreateValueAddedTimeReportFeature
     {
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "JM-7 CreateValueAddedTimeReport.feature"
+#line 1 "CreateValueAddedTimeReport.feature"
 #line hidden
         
         [NUnit.Framework.TestFixtureSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "JM-7 Create Value added time report", "To find waste in the process\r\nAs a person involved in Jira project\r\nI need the va" +
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Create Value added time report", "To find waste in the process\r\nAs a person involved in Jira project\r\nI need the va" +
                     "lue-added-times presented in a report", ProgrammingLanguage.CSharp, new string[] {
                         "ignore"});
             testRunner.OnFeatureStart(featureInfo);

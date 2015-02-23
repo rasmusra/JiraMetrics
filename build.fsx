@@ -46,7 +46,7 @@ Target "Build" (fun _ ->
 )
 
 Target "Test" (fun _ ->
-    ActivateBuildFailureTarget "PublishOnError"
+    ActivateFinalTarget "Publish"
 
     !! (srcRoot + @"\**\bin\Debug\*.Test.*.dll")
     --  (srcRoot + @"\**\bin\Debug\*.Fakes.dll")
@@ -58,13 +58,7 @@ Target "Test" (fun _ ->
     })
 )
 
-Target "Publish" (fun _ ->
-    let args = "-f src/Olifant.JiraMetrics.Test.Acceptance/Features -lr " + testResultFile + @" -o " + featuresWithTestResultsDir
-    let errorCode = Shell.Exec("packages/Pickles.CommandLine.1.0.0/tools/pickles.exe", args)
-    ()
-)
-
-BuildFailureTarget "PublishOnError" (fun _ ->
+FinalTarget "Publish" (fun _ ->
     let args = "-f src/Olifant.JiraMetrics.Test.Acceptance/Features -lr " + testResultFile + @" -o " + featuresWithTestResultsDir
     Shell.Exec("packages/Pickles.CommandLine.1.0.0/tools/pickles.exe", args)
     |> ignore
@@ -81,7 +75,6 @@ BuildFailureTarget "PublishOnError" (fun _ ->
 ==> "Publish specs"
 ==> "Build"
 ==> "Test"
-==> "Publish"
 
 // start build
 RunTargetOrDefault "Test"

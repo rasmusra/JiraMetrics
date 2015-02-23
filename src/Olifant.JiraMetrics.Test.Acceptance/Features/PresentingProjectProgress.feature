@@ -1,5 +1,5 @@
 ﻿@chrome
-Feature: JM-1 Presenting project progress
+Feature: Presenting project progress
 	In order to get a grip on project risks 
 	As a stakeholder
 	I want to see the project progress in a burn-up 

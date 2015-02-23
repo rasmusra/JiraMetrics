@@ -89,18 +89,16 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Different start and end date combinations")]
-        [NUnit.Framework.IgnoreAttribute()]
         public virtual void DifferentStartAndEndDateCombinations()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Different start and end date combinations", new string[] {
-                        "ignore"});
-#line 15
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Different start and end date combinations", ((string[])(null)));
+#line 14
 this.ScenarioSetup(scenarioInfo);
-#line 16
+#line 15
  testRunner.Given("program is started", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 17
+#line 16
  testRunner.And("I have entered the following query: \"Issues started before and after 2014-07-01\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 18
+#line 17
  testRunner.And("I have chosen the start and end of cycle as \"Test\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
@@ -109,9 +107,9 @@ this.ScenarioSetup(scenarioInfo);
             table2.AddRow(new string[] {
                         "2014-07-01",
                         "2014-10-31"});
-#line 19
+#line 18
  testRunner.And("I enter the Start date interval as:", ((string)(null)), table2, "And ");
-#line 22
+#line 21
  testRunner.When("I click the \"Cycle time report\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
             TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
@@ -130,9 +128,9 @@ this.ScenarioSetup(scenarioInfo);
                         "4,96",
                         "1,5",
                         ""});
-#line 23
+#line 22
  testRunner.Then("I should be able to see the following cycle times in the report:", ((string)(null)), table3, "Then ");
-#line 26
+#line 25
  testRunner.But("I should not see \"OFU-1462\" in the report", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "But ");
 #line hidden
             this.ScenarioCleanup();
@@ -140,30 +138,23 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Include issues not done")]
-        [NUnit.Framework.IgnoreAttribute()]
         [NUnit.Framework.TestCaseAttribute("Development not done yet", "DISCO-729", null)]
         public virtual void IncludeIssuesNotDone(string scenarioDescription, string key, string[] exampleTags)
         {
-            string[] @__tags = new string[] {
-                    "ignore"};
-            if ((exampleTags != null))
-            {
-                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
-            }
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Include issues not done", @__tags);
-#line 30
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Include issues not done", exampleTags);
+#line 28
 this.ScenarioSetup(scenarioInfo);
-#line 31
+#line 29
  testRunner.Given("program is started", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 32
+#line 30
  testRunner.And(string.Format("I have entered the following query: \"Key={0}\"", key), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 33
+#line 31
  testRunner.And("I have chosen the start and end of cycle as \"Development\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 34
+#line 32
  testRunner.And("I \"uncheck\" the checkbox \"Exclude issues that are not done\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 35
+#line 33
  testRunner.When("I click the \"Cycle time report\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 36
+#line 34
  testRunner.Then(string.Format("I should see \"{0}\" in the report", key), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -171,30 +162,23 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Exclude issues not done")]
-        [NUnit.Framework.IgnoreAttribute()]
         [NUnit.Framework.TestCaseAttribute("Development not done yet", "DISCO-729", null)]
         public virtual void ExcludeIssuesNotDone(string scenarioDescription, string key, string[] exampleTags)
         {
-            string[] @__tags = new string[] {
-                    "ignore"};
-            if ((exampleTags != null))
-            {
-                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
-            }
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Exclude issues not done", @__tags);
-#line 44
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Exclude issues not done", exampleTags);
+#line 41
 this.ScenarioSetup(scenarioInfo);
-#line 45
+#line 42
  testRunner.Given("program is started", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 46
+#line 43
  testRunner.And(string.Format("I have entered the following query: \"Key={0}\"", key), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 47
+#line 44
  testRunner.And("I have chosen the start and end of cycle as \"Development\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 48
+#line 45
  testRunner.And("I \"check\" the checkbox \"Exclude issues that are not done\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 49
+#line 46
  testRunner.When("I click the \"Cycle time report\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 50
+#line 47
  testRunner.Then(string.Format("I should not see \"{0}\" in the report", key), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -202,28 +186,21 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Exclude issues not started")]
-        [NUnit.Framework.IgnoreAttribute()]
         [NUnit.Framework.TestCaseAttribute("Opened but closed before work started", "SCSC-974", null)]
         public virtual void ExcludeIssuesNotStarted(string scenarioDescription, string key, string[] exampleTags)
         {
-            string[] @__tags = new string[] {
-                    "ignore"};
-            if ((exampleTags != null))
-            {
-                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
-            }
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Exclude issues not started", @__tags);
-#line 58
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Exclude issues not started", exampleTags);
+#line 54
 this.ScenarioSetup(scenarioInfo);
-#line 59
+#line 55
  testRunner.Given("program is started", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 60
+#line 56
  testRunner.And(string.Format("I have entered the following query: \"Key={0}\"", key), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 61
+#line 57
  testRunner.And("I have chosen the start and end of cycle as \"Development\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 62
+#line 58
  testRunner.When("I click the \"Cycle time report\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 63
+#line 59
  testRunner.Then(string.Format("I should not see \"{0}\" in the report", key), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -231,27 +208,20 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Include issue that matches filter on done date")]
-        [NUnit.Framework.IgnoreAttribute()]
         [NUnit.Framework.TestCaseAttribute("min date same day as done date", "2014-10-20", "2014-11-07", null)]
         [NUnit.Framework.TestCaseAttribute("max date one day after done date", "2014-10-10", "2014-10-21", null)]
         public virtual void IncludeIssueThatMatchesFilterOnDoneDate(string scenarioDescription, string minEndDate, string maxEndDate, string[] exampleTags)
         {
-            string[] @__tags = new string[] {
-                    "ignore"};
-            if ((exampleTags != null))
-            {
-                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
-            }
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Include issue that matches filter on done date", @__tags);
-#line 71
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Include issue that matches filter on done date", exampleTags);
+#line 66
 this.ScenarioSetup(scenarioInfo);
-#line 72
+#line 67
  testRunner.Given("program is started", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 73
+#line 68
  testRunner.And("I have entered the following query: \"Key=DISCO-620\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 74
+#line 69
  testRunner.And("I have chosen the start and end of cycle as \"Development\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 75
+#line 70
  testRunner.And("I \"check\" the checkbox \"Exclude issues that are not done\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
@@ -260,11 +230,11 @@ this.ScenarioSetup(scenarioInfo);
             table4.AddRow(new string[] {
                         string.Format("{0}", minEndDate),
                         string.Format("{0}", maxEndDate)});
-#line 76
+#line 71
  testRunner.And("I enter the Done date interval as:", ((string)(null)), table4, "And ");
-#line 79
+#line 74
  testRunner.When("I click the \"Cycle time report\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 80
+#line 75
  testRunner.Then("I should see \"DISCO-620\" in the report", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -272,27 +242,20 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Filter out issue that does not match filter on done date")]
-        [NUnit.Framework.IgnoreAttribute()]
         [NUnit.Framework.TestCaseAttribute("min date one day after done date", "2014-10-21", "2014-11-07", null)]
         [NUnit.Framework.TestCaseAttribute("max date one same day as done date", "2014-10-10", "2014-10-20", null)]
         public virtual void FilterOutIssueThatDoesNotMatchFilterOnDoneDate(string scenarioDescription, string minEndDate, string maxEndDate, string[] exampleTags)
         {
-            string[] @__tags = new string[] {
-                    "ignore"};
-            if ((exampleTags != null))
-            {
-                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
-            }
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Filter out issue that does not match filter on done date", @__tags);
-#line 89
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Filter out issue that does not match filter on done date", exampleTags);
+#line 83
 this.ScenarioSetup(scenarioInfo);
-#line 90
+#line 84
  testRunner.Given("program is started", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 91
+#line 85
  testRunner.And("I have entered the following query: \"Key=DISCO-620\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 92
+#line 86
  testRunner.And("I have chosen the start and end of cycle as \"Development\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 93
+#line 87
  testRunner.And("I \"check\" the checkbox \"Exclude issues that are not done\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
@@ -301,11 +264,11 @@ this.ScenarioSetup(scenarioInfo);
             table5.AddRow(new string[] {
                         string.Format("{0}", minEndDate),
                         string.Format("{0}", maxEndDate)});
-#line 94
+#line 88
  testRunner.And("I enter the Done date interval as:", ((string)(null)), table5, "And ");
-#line 97
+#line 91
  testRunner.When("I click the \"Cycle time report\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 98
+#line 92
  testRunner.Then("I should not see \"DISCO-620\" in the report", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();

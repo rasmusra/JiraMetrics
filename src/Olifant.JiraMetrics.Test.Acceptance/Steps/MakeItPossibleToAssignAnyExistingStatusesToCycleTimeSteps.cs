@@ -19,7 +19,7 @@ using TechTalk.SpecFlow.Tracing;
 namespace Olifant.JiraMetrics.Test.Acceptance.Steps
 {
     [Binding]
-    public class JM_8_MakeItPossibleToAssignAnyExistingStatusesToCycleTimeSteps
+    public class MakeItPossibleToAssignAnyExistingStatusesToCycleTimeSteps
     {
         [Then(@"I should be able to see the following header in the report: ""(.*)""")]
         public void ThenIShouldBeAbleToSeeTheFollowingHeaderInTheReport(string expectedHeader)
@@ -65,11 +65,11 @@ namespace Olifant.JiraMetrics.Test.Acceptance.Steps
             button.Click();
         }
 
-        private static string CreateButtonIdFromSpec(string @from, string to)
+        private static string CreateButtonIdFromSpec(string from, string to)
         {
             var buttonName = string.Format(
                 "from{0}To{1}Button",
-                CultureInfo.CurrentCulture.TextInfo.ToTitleCase(@from).Replace(" ", string.Empty),
+                CultureInfo.CurrentCulture.TextInfo.ToTitleCase(from).Replace(" ", string.Empty),
                 CultureInfo.CurrentCulture.TextInfo.ToTitleCase(to).Replace(" ", string.Empty));
             return buttonName;
         }
@@ -106,11 +106,6 @@ namespace Olifant.JiraMetrics.Test.Acceptance.Steps
             {
                 return this.GetStatuses(spec => spec.PostcycleStatus);
             }
-        }
-
-        public string GetSpecifiedListBoxtext(IEnumerable<string> texts)
-        {
-            return string.Join(" ", texts.ToArray());
         }
 
         private List<string> GetStatuses(Func<CycleSetupSpec, string> specField)

@@ -13,7 +13,7 @@ using TechTalk.SpecFlow.Assist;
 namespace Olifant.JiraMetrics.Test.Acceptance.Steps
 {
     [Binding]
-    public class JM_7_CreateValueAddedTimeReportSteps
+    public class CreateValueAddedTimeReportSteps
     {
         [Then(@"I should be able to see the following title header in the report: ""(.*)""")]
         public void ThenIShouldBeAbleToSeeTheFollowingTitleHeaderInTheReport(string title)
