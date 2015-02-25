@@ -15,16 +15,15 @@ Background:
 	And a project site named "OrderTracking on Epic"
 
 
-Scenario: JM-2 View burn-up controls
+Scenario: View burn-up
 	Given I am logged in as "Andreas"
-	When I navigate to burn-up page on the project site, with jql "key in (SCSC-1000,DISCO-789,DISCO-846,DISCO-937)"
-	Then I should see a burn-up graph with all iterations since OFU2-project started
-	And I should see the following controls:
-	| Type    | Name           | Value |
-	| textbox | jql            |       |
-	| button  | generate_graph |       |
+	When I navigate to burn-up page
+	Then I should see a burn-up graph
+	And I should see an empty search field
 
-Scenario: JM-3 Filter burn-up on dates
+
+	@ignore
+Scenario: Filter burn-up on dates
 	Given I am logged in as "Andreas"
 	When I navigate to burn-up page on the project site
 	And I enter the following start- and end-dates:
@@ -35,7 +34,9 @@ Scenario: JM-3 Filter burn-up on dates
 	| Start X    | End X      | Start Y | End Y                    |
 	| 2014-07-01 | 2014-12-01 | 0       | 163 (not determined yet) |
 
-Scenario: JM-4 Email link to graph
+
+	@ignore
+Scenario: Email link to graph
 	Given I am logged in as "Andreas"
 	And I see a burn-up graph with values:
 	| Start value at x-axis | End-value at x-axis | Start-value at y-axis | End-value at y-axis      |
@@ -48,6 +49,7 @@ Scenario: JM-4 Email link to graph
 	And "Sixten" should see the following start- and end-dates:
 	| Start date | End date   |
 	| 2014-07-01 | 2014-12-01 |
+
 
 	@ignore
 	# downprioritized for the time being

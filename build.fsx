@@ -1,4 +1,4 @@
-// include Fake lib
+    // include Fake lib
 #r @"packages\FAKE.3.17.3\tools\FakeLib.dll"
 open Fake
 
@@ -11,6 +11,7 @@ let testResultFile = buildArtifacts + @"/testResults.xml"
 let featuresDir = buildArtifacts + @"/features"
 let featuresWithTestResultsDir = buildArtifacts + @"/featuresWithTestResults"
 let chrome = @"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe"
+let includeCategory = getBuildParamOrDefault "includeCategory" ""
 
 // Targets
 Target "Clean" (fun _ ->
@@ -46,7 +47,10 @@ Target "Build" (fun _ ->
 )
 
 Target "Test" (fun _ ->
-    ActivateFinalTarget "Publish"
+    
+    match includeCategory with
+    | "" -> ActivateFinalTarget "Publish"
+    | _ -> ()
 
     !! (srcRoot + @"\**\bin\Debug\*.Test.*.dll")
     --  (srcRoot + @"\**\bin\Debug\*.Fakes.dll")
@@ -55,6 +59,7 @@ Target "Test" (fun _ ->
         p with 
             StopOnError = false 
             OutputFile = testResultFile
+            IncludeCategory = includeCategory
     })
 )
 

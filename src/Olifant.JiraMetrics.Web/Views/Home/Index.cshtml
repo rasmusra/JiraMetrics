@@ -1,12 +1,32 @@
 ﻿@using Olifant.JiraMetrics.Web.Models
 @model DotNet.Highcharts.Highcharts
 
-@(Model)
-@{ Html.RenderAction("Cycles", "Home"); };
-
-
 @using (Html.BeginForm("Home", "Index"))
 {
     @Html.TextBox("jql")
     <input type="submit" value="Search" id="generate_graph" />
 }
+
+@(Model)
+
+<a id="toggleStatusVisibility" class="btn btn-success btn-sm glyphicon glyphicon-arrow-down"> Change those statuses!</a><br />
+
+<div id="statusesDiv">
+    <script type="text/javascript">
+        $("[id=statusesDiv]").hide();
+    </script>
+    
+    @{ Html.RenderAction("Cycles", "Home"); };
+</div>
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+
+<script type="text/javascript">
+    $(function () {
+        $("#toggleStatusVisibility").bind("click", function () {
+            $("[id=statusesDiv]").toggle();
+            $("[id=toggleStatusVisibility]").toggleClass("glyphicon-arrow-down glyphicon-arrow-right");
+            $("[id=toggleStatusVisibility]").toggleClass("btn-success btn-danger");
+        });
+    });
+</script>

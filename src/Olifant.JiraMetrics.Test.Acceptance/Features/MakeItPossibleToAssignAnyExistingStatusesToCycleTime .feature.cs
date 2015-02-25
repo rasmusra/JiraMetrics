@@ -145,6 +145,8 @@ this.ScenarioSetup(scenarioInfo);
  testRunner.Given("I am logged in as \"Andreas\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 35
  testRunner.When("I navigate to burn-up page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 36
+ testRunner.And("I make the statuses visible", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
                         "Precycle Status",
@@ -210,8 +212,27 @@ this.ScenarioSetup(scenarioInfo);
                         "",
                         "",
                         "Deployed In Test"});
-#line 36
+#line 37
  testRunner.Then("I should see default setup for statuses in cycle:", ((string)(null)), table5, "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Hide statuses")]
+        public virtual void HideStatuses()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Hide statuses", ((string[])(null)));
+#line 56
+this.ScenarioSetup(scenarioInfo);
+#line 57
+ testRunner.Given("I am logged in as \"Andreas\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 58
+ testRunner.And("I navigate to burn-up page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 59
+ testRunner.When("I hide the statuses", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 60
+ testRunner.Then("the statuses should be hidden", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -221,20 +242,22 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void MoveStatuses()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Move statuses", ((string[])(null)));
-#line 54
+#line 63
 this.ScenarioSetup(scenarioInfo);
-#line 55
+#line 64
  testRunner.Given("I am logged in as \"Andreas\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 56
+#line 65
  testRunner.And("I navigate to burn-up page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 57
- testRunner.When("I move status \"Build & Configure\" in \"Cycle Statuses\" to \"Pre Cycle Statuses\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 58
+#line 66
+ testRunner.When("I make the statuses visible", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 67
+ testRunner.And("I move status \"Build & Configure\" in \"Cycle Statuses\" to \"Pre Cycle Statuses\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 68
  testRunner.And("I move status \"Reopened\" in \"Pre Cycle Statuses\" to \"Cycle Statuses\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 59
+#line 69
  testRunner.And("I move status \"Describe Requirement\" in \"Cycle Statuses\" to \"Post Cycle statuses\"" +
                     "", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 60
+#line 70
  testRunner.And("I move status \"Closed\" in \"Post Cycle Statuses\" to \"Cycle statuses\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
@@ -301,7 +324,7 @@ this.ScenarioSetup(scenarioInfo);
                         "",
                         "",
                         "Describe Requirement"});
-#line 61
+#line 71
  testRunner.Then("I should see following setup for statuses in cycle:", ((string)(null)), table6, "Then ");
 #line hidden
             this.ScenarioCleanup();

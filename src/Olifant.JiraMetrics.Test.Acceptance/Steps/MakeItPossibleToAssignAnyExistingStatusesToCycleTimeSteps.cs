@@ -65,6 +65,19 @@ namespace Olifant.JiraMetrics.Test.Acceptance.Steps
             button.Click();
         }
 
+        [When(@"I make the statuses visible")]
+        [When(@"I hide the statuses")]
+        public void ToggleStatuses()
+        {
+            ClickTheButton("toggleStatusVisibility");
+        }
+
+        [Then(@"the statuses should be hidden")]
+        public void ThenTheStatusesShouldBeHidden()
+        {
+            // TODO: how the ... ccan we verify this?
+        }
+
         private static string CreateButtonIdFromSpec(string from, string to)
         {
             var buttonName = string.Format(

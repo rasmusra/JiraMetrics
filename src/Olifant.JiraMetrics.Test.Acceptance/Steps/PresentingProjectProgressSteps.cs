@@ -24,13 +24,6 @@ namespace Olifant.JiraMetrics.Test.Acceptance.Steps
             // TODO: find out how to manage authorization... 
         }
 
-        [When(@"I navigate to burn-up page on the project site, with jql ""(.*)""")]
-        public void NavigateToBurnUpPage(string jql)
-        {
-            var url = string.Format("http://localhost:{0}?jql={1}", WebServer.Port, jql);
-            FeatureWrapper.PhantomJsDriver.Navigate().GoToUrl(url);
-        }
-
         [Given(@"I navigate to burn-up page")]
         [When(@"I navigate to burn-up page")]
         public void NavigateToBurnUpPage()
@@ -39,13 +32,20 @@ namespace Olifant.JiraMetrics.Test.Acceptance.Steps
             FeatureWrapper.PhantomJsDriver.Navigate().GoToUrl(url);
         }
 
-        [Then(@"I should see a burn-up graph with all iterations since OFU2-project started")]
+        [Then(@"I should see a burn-up graph")]
         public void VerifyDefaultGraph()
         {
             var chartDiv = FeatureWrapper.PhantomJsDriver.FindElementById("chart_container");
             chartDiv.Text.Should().Contain("Week");
             chartDiv.Text.Should().Contain("Burnup");
             chartDiv.Text.Should().Contain("start");
+        }
+
+        [Then(@"I should see an empty search field")]
+        public void VerifyEmptySearchField()
+        {
+            var chartDiv = FeatureWrapper.PhantomJsDriver.FindElementById("jql");
+            chartDiv.Text.Should().Contain("Week");
         }
     }
 }
