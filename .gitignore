@@ -184,3 +184,6 @@ FakesAssemblies/
 
 # the build artifacts are placed here
 buildArtifacts/
+
+# database data
+data/

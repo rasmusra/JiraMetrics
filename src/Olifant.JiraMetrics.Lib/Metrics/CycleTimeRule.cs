@@ -102,7 +102,7 @@ namespace Olifant.JiraMetrics.Lib.Metrics
         {
             if (issue.Fields.Status.IsOpen && !issue.HasLabel(this.startedLabel))
             {
-                // this happens when issue is open but has not been started with rthe started-label
+                // this happens when issue is open but has not been started with the started-label
                 return false;
             }
 

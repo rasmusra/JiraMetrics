@@ -28,9 +28,12 @@ namespace Olifant.JiraMetrics.Web.Controllers
             this.jiraClient = jiraClient;
         }
 
-        public ActionResult Index(string jql = "project in (OFU,SCSC,DISCO) and type='Change Request' and labels in (y15w1,y15w2,y15w3,y15w4,y15w5,y15w6,y15w7,y15w8,y15w9,y15w10,y15w11,y15w12,y15w13,y15w14,y15w15)")
+        public ActionResult Index(string jql, string[] statuses)
         {
-            var issues = new List<IIssueReportModel>();//GetIssues(jql);
+            var issues = String.IsNullOrEmpty(jql)
+                ? new List<IIssueReportModel>()
+                : GetIssues(jql, statuses);
+
             var burnUpData = BurnUpGraphManager.SummonData(issues);
 
             var xaxisValues = new List<string> { "start" };
@@ -95,12 +98,12 @@ namespace Olifant.JiraMetrics.Web.Controllers
             return PartialView(cyclesViewModel);
         }
 
-        private IList<IIssueReportModel> GetIssues(string jql)
+        private IList<IIssueReportModel> GetIssues(string jql, string[] cycleStatuses)
         {
             var jiraCyclesFacade = new JiraMetricsFacade(this.jiraClient);
             var filters = new List<IIssueFilter> { new WorkDoneFilter() };
             // TODO: add statuses from UI instead of hardcoded
-            var result = jiraCyclesFacade.GetIssues(jql, new CycleTimeRule(new[] { "Implement", "Test" }), filters);
+            var result = jiraCyclesFacade.GetIssues(jql, new CycleTimeRule(cycleStatuses), filters);
             return result;
         }
     }

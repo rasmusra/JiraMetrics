@@ -1,7 +1,7 @@
 ﻿@using Olifant.JiraMetrics.Web.Models
 @model DotNet.Highcharts.Highcharts
 
-@using (Html.BeginForm("Home", "Index"))
+@using (Html.BeginForm("Index", "Home"))
 {
     @Html.TextBox("jql")
     <input type="submit" value="Search" id="generate_graph" />

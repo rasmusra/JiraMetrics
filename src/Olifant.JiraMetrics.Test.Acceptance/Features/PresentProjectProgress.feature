@@ -1,5 +1,5 @@
 ﻿@chrome
-Feature: Presenting project progress
+Feature: Present project progress
 	In order to get a grip on project risks 
 	As a stakeholder
 	I want to see the project progress in a burn-up 
@@ -20,7 +20,24 @@ Scenario: View burn-up
 	When I navigate to burn-up page
 	Then I should see a burn-up graph
 	And I should see an empty search field
+	But the statuses should be hidden
 
+
+Scenario: Plot burn-up
+	Given I am logged in as "Andreas"
+	And I navigate to burn-up page
+	When I search for issues with jql query 'key=DISCO-838' 
+	Then I should see a burn-up graph with values:
+	| Start X    | End X      | Start Y | End Y                    |
+	| 2014-07-01 | 2014-12-01 | 0       | 163 (not determined yet) |
+
+Scenario: Plot graph of 1000 Jira issues on web page in 5 secs
+	Given I am logged in as "Andreas"
+	And I navigate to burn-up page
+	And there exists a Jira project called 'Huge project' with 1000 issues
+	When I query "project = 'Huge project'"
+	Then I should be presented a histogram of issues
+	And I should not need to wait more than 5 seconds
 
 	@ignore
 Scenario: Filter burn-up on dates

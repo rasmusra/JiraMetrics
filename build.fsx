@@ -12,8 +12,12 @@ let featuresDir = buildArtifacts + @"/features"
 let featuresWithTestResultsDir = buildArtifacts + @"/featuresWithTestResults"
 let chrome = @"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe"
 let includeCategory = getBuildParamOrDefault "includeCategory" ""
+let mongod = @"C:\Program Files\MongoDB\Server\3.0\bin\mongod.exe"
+let mongoPort = "27113"
+let mongoDbPath = String.concat @"\" [__SOURCE_DIRECTORY__; "data" ; "db"]
+let mongoLogDir = String.concat @"\" [__SOURCE_DIRECTORY__; "data" ; "log" ]
 
-// Targets
+// Targets  
 Target "Clean" (fun _ ->
     trace __SOURCE_DIRECTORY__
     DeleteFiles outputDllFiles
@@ -74,6 +78,16 @@ FinalTarget "Publish" (fun _ ->
 
     ()
 )
+
+Target "StartMongoDb" (fun _ ->
+    CreateDir mongoDbPath
+    CreateDir mongoLogDir
+    let logfile = String.concat @"\" [ mongoLogDir ; "JiraMetricsDB.log" ]
+    let args = "--dbpath " + mongoDbPath + " --logpath " + logfile + " --port " + mongoPort
+    let errorCode = Shell.Exec(mongod, args)
+    ()
+)
+
 
 // Dependencies
 "Clean"

@@ -10,7 +10,7 @@ using TechTalk.SpecFlow.Assist;
 namespace Olifant.JiraMetrics.Test.Acceptance.Steps
 {
     [Binding]
-    public class PresentingProjectProgressSteps
+    public class PresentProjectProgressSteps
     {
         [Given(@"I am logged in as ""(.*)""")]
         [Given(@"a team member named ""(.*)""")]
@@ -41,11 +41,35 @@ namespace Olifant.JiraMetrics.Test.Acceptance.Steps
             chartDiv.Text.Should().Contain("start");
         }
 
+        [When(@"I search for issues with jql query '(.*)'")]
+        public void WhenISearchForIssuesWithJqlQuery(string jql)
+        {
+            var inputField = FeatureWrapper.PhantomJsDriver.FindElementById("jql");
+            inputField.SendKeys(jql);
+            inputField.Submit();
+        }
+
+        [Then(@"I should see a burn-up graph with values:")]
+        public void VerifyGraph(Table table)
+        {
+            var graphData = table.CreateSet<BurnUpGraphSpec>().ToList();
+            VerifyDefaultGraph();
+
+            var chartDiv = FeatureWrapper.PhantomJsDriver.FindElementById("chart_container");
+            graphData.ForEach(data =>
+            {
+                chartDiv.Text.Should().Contain(data.StartX);
+                chartDiv.Text.Should().Contain(data.EndX);
+                chartDiv.Text.Should().Contain(data.StartY);
+                chartDiv.Text.Should().Contain(data.EndY);
+            });
+        }
+
         [Then(@"I should see an empty search field")]
         public void VerifyEmptySearchField()
         {
-            var chartDiv = FeatureWrapper.PhantomJsDriver.FindElementById("jql");
-            chartDiv.Text.Should().Contain("Week");
+            var textField = FeatureWrapper.PhantomJsDriver.FindElementById("jql");
+            textField.Text.Should().BeEmpty();
         }
     }
 }

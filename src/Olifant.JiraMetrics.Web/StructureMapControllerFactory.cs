@@ -25,5 +25,19 @@ namespace Olifant.JiraMetrics.Web
                 throw new Exception(ObjectFactory.WhatDoIHave());
             }
         }
+
+        public static class Bootstrapper
+        {
+            public static void Run()
+            {
+                ControllerBuilder.Current
+                    .SetControllerFactory(new StructureMapControllerFactory());
+
+                ObjectFactory.Initialize(x =>
+                {
+                    x.AddConfigurationFromXmlFile("StructureMap.xml");
+                });
+            }
+        }
     }
 }

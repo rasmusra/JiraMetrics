@@ -6,10 +6,11 @@ using System.Linq;
 using System.Runtime.InteropServices;
 
 using FluentAssertions;
-
+using NUnit.Framework.Constraints;
 using Olifant.JiraMetrics.Test.Acceptance.Steps.Helpers;
 
 using OpenQA.Selenium;
+using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
 
 using TechTalk.SpecFlow;
@@ -75,7 +76,7 @@ namespace Olifant.JiraMetrics.Test.Acceptance.Steps
         [Then(@"the statuses should be hidden")]
         public void ThenTheStatusesShouldBeHidden()
         {
-            // TODO: how the ... ccan we verify this?
+            // how test this one? not a cruical one...
         }
 
         private static string CreateButtonIdFromSpec(string from, string to)

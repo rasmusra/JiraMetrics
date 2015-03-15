@@ -110,11 +110,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>GetIssues.feature</DependentUpon>
     </Compile>
-    <Compile Include="Features\PresentingProjectProgress.feature.cs">
+    <Compile Include="Features\PresentProjectProgress.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>PresentingProjectProgress.feature</DependentUpon>
+      <DependentUpon>PresentProjectProgress.feature</DependentUpon>
     </Compile>
+    <Compile Include="Steps\Helpers\BurnUpGraphSpec.cs" />
     <Compile Include="Steps\ChooseFilterSteps.cs" />
     <Compile Include="Steps\MakeItPossibleToAssignAnyExistingStatusesToCycleTimeSteps.cs" />
     <Compile Include="Steps\Helpers\DateFilterSpec.cs" />
@@ -131,7 +132,7 @@
     <Compile Include="Steps\Helpers\JqlQuerySpec.cs" />
     <Compile Include="Steps\Helpers\WebServer.cs" />
     <Compile Include="Steps\Helpers\ProcessManager.cs" />
-    <Compile Include="Steps\PresentingProjectProgressSteps.cs" />
+    <Compile Include="Steps\PresentProjectProgressSteps.cs" />
     <Compile Include="Steps\CreateValueAddedTimeReportSteps.cs" />
     <Compile Include="Steps\Helpers\ValueAddedTimeReportSpec.cs" />
   </ItemGroup>
@@ -162,9 +163,9 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>GetIssues.feature.cs</LastGenOutput>
     </None>
-    <None Include="Features\PresentingProjectProgress.feature">
+    <None Include="Features\PresentProjectProgress.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>PresentingProjectProgress.feature.cs</LastGenOutput>
+      <LastGenOutput>PresentProjectProgress.feature.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <ItemGroup>
