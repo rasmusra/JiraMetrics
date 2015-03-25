@@ -1,4 +1,4 @@
-﻿namespace Olifant.JiraMetrics.Lib.Metrics.BurnUpGraph
+﻿namespace Olifant.JiraMetrics.Lib.Metrics.BurnUp
 {
     public class BurnUpValue
     {

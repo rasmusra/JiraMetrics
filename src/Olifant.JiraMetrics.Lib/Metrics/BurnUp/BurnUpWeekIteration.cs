@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using System.Globalization;
 
-namespace Olifant.JiraMetrics.Lib.Metrics.BurnUpGraph
+namespace Olifant.JiraMetrics.Lib.Metrics.BurnUp
 {
     [DebuggerDisplay("{WeekLabel}")]
     public class BurnUpWeekIteration : IComparable<BurnUpWeekIteration>

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using FluentAssertions;
 
 using Olifant.JiraMetrics.Lib.Metrics;
-using Olifant.JiraMetrics.Lib.Metrics.BurnUpGraph;
+using Olifant.JiraMetrics.Lib.Metrics.BurnUp;
 using Olifant.JiraMetrics.Lib.Metrics.Filters;
 using Olifant.JiraMetrics.Lib.Metrics.Model;
 using Olifant.JiraMetrics.Lib.Metrics.TextReport;
@@ -52,7 +52,7 @@ namespace Olifant.JiraMetrics.Test.Unit
             };
 
             //act
-            var burnUpData = BurnUpGraphManager.SummonData(issueReportModels);
+            var burnUpData = BurnUpGraph.SummonData(issueReportModels);
 
             // assert
             burnUpData.Keys.Select(k => k.WeekLabel).Should().ContainInOrder(new[] { "y14w16", "y14w17", "y14w18" });
@@ -70,7 +70,7 @@ namespace Olifant.JiraMetrics.Test.Unit
             };
 
             //act
-            var burnUpData = BurnUpGraphManager.SummonData(issueReportModels);
+            var burnUpData = BurnUpGraph.SummonData(issueReportModels);
             var points = burnUpData.Values.Select(v => v.StoryPoints);
 
             // assert

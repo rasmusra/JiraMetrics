@@ -3,9 +3,9 @@ using System.Linq;
 
 using Olifant.JiraMetrics.Lib.Metrics.Model;
 
-namespace Olifant.JiraMetrics.Lib.Metrics.BurnUpGraph
+namespace Olifant.JiraMetrics.Lib.Metrics.BurnUp
 {
-    public class BurnUpGraphManager
+    public class BurnUpGraph
     {
         public static Dictionary<BurnUpWeekIteration, BurnUpValue> SummonData(IList<IIssueReportModel> issueReportModels)
         {

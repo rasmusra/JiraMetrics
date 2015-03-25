@@ -12,7 +12,7 @@ using DotNet.Highcharts.Options;
 using Olifant.JiraMetrics.Lib;
 using Olifant.JiraMetrics.Lib.Jira;
 using Olifant.JiraMetrics.Lib.Metrics;
-using Olifant.JiraMetrics.Lib.Metrics.BurnUpGraph;
+using Olifant.JiraMetrics.Lib.Metrics.BurnUp;
 using Olifant.JiraMetrics.Lib.Metrics.Filters;
 using Olifant.JiraMetrics.Lib.Metrics.Model;
 using Olifant.JiraMetrics.Web.Models;
@@ -34,7 +34,7 @@ namespace Olifant.JiraMetrics.Web.Controllers
                 ? new List<IIssueReportModel>()
                 : GetIssues(jql, statuses);
 
-            var burnUpData = BurnUpGraphManager.SummonData(issues);
+            var burnUpData = BurnUpGraph.SummonData(issues);
 
             var xaxisValues = new List<string> { "start" };
             xaxisValues.AddRange(burnUpData.Keys.Select(k => k.WeekLabel));

@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using FluentAssertions;
 
-using Olifant.JiraMetrics.Lib.Metrics.BurnUpGraph;
+using Olifant.JiraMetrics.Lib.Metrics.BurnUp;
 
 using NUnit.Framework;
 
