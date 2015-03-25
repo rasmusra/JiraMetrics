@@ -3,7 +3,7 @@ using System.IO;
 
 using Olifant.JiraMetrics.Lib.Jira;
 
-namespace Olifant.JiraMetrics.Test.Fakes
+namespace Olifant.JiraMetrics.Test.Utilities
 {
     public class FakeJiraRestClient : IJiraRestClient
     {

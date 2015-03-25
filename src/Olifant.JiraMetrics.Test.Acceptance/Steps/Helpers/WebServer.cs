@@ -6,7 +6,7 @@ namespace Olifant.JiraMetrics.Test.Acceptance.Steps.Helpers
     internal class WebServer
     {
         public const string Port = "8193";
-        private static readonly FileInfo FakeStructureMapConfigFileInfo = new FileInfo(@"..\..\..\Olifant.JiraMetrics.Test.Fakes\FakeStructureMap.xml");
+        private static readonly FileInfo FakeStructureMapConfigFileInfo = new FileInfo(@"..\..\..\Olifant.JiraMetrics.Test.Utilities\FakeStructureMap.xml");
         private static readonly FileInfo StructureMapConfig = new FileInfo(@"..\..\..\Olifant.JiraMetrics.Web\StructureMap.xml");
         private static readonly FileInfo StructureMapConfigBackup = new FileInfo(@"..\..\..\Olifant.JiraMetrics.Web\StructureMap.xml.backup");
 

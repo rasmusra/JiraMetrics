@@ -6,8 +6,7 @@ using FluentAssertions;
 using Olifant.JiraMetrics.Lib.Metrics;
 using Olifant.JiraMetrics.Lib.Metrics.Filters;
 using Olifant.JiraMetrics.Test.Acceptance.Steps.Helpers;
-using Olifant.JiraMetrics.Test.Fakes.Helpers;
-
+using Olifant.JiraMetrics.Test.Utilities.Helpers;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
 

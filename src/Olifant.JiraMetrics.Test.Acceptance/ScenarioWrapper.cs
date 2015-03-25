@@ -1,8 +1,7 @@
 ﻿using Olifant.JiraMetrics.Lib;
 using Olifant.JiraMetrics.Lib.Metrics;
 using Olifant.JiraMetrics.Lib.Metrics.Filters;
-using Olifant.JiraMetrics.Test.Fakes;
-
+using Olifant.JiraMetrics.Test.Utilities;
 using TechTalk.SpecFlow;
 
 namespace Olifant.JiraMetrics.Test.Acceptance

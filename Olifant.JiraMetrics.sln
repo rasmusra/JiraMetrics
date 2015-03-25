@@ -16,7 +16,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Olifant.JiraMetrics.WinApp"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Olifant.JiraMetrics.Web", "src\Olifant.JiraMetrics.Web\Olifant.JiraMetrics.Web.csproj", "{49DD404D-9B2A-472A-8FDA-5A9E90D00B8D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Olifant.JiraMetrics.Test.Fakes", "src\Olifant.JiraMetrics.Test.Fakes\Olifant.JiraMetrics.Test.Fakes.csproj", "{3610B81E-243D-4597-ADF2-0F0370D4CAFF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Olifant.JiraMetrics.Test.Utilities", "src\Olifant.JiraMetrics.Test.Utilities\Olifant.JiraMetrics.Test.Utilities.csproj", "{3610B81E-243D-4597-ADF2-0F0370D4CAFF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Olifant.JiraMetrics.Test.Acceptance", "src\Olifant.JiraMetrics.Test.Acceptance\Olifant.JiraMetrics.Test.Acceptance.csproj", "{8DBC9210-E796-41E8-9265-891C80DEBAA5}"
 EndProject

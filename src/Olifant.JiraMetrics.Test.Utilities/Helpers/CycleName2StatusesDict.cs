@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Olifant.JiraMetrics.Test.Fakes.Helpers
+namespace Olifant.JiraMetrics.Test.Utilities.Helpers
 {
     public class CycleName2StatusesDict : Dictionary<string, string[]>
     {

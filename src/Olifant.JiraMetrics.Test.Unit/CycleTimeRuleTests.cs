@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 
 using FluentAssertions;
 
-using Olifant.JiraMetrics.Lib.Jira.Model;
 using Olifant.JiraMetrics.Lib.Metrics;
-using Olifant.JiraMetrics.Test.Fakes.Helpers;
 
 using NUnit.Framework;
+using Olifant.JiraMetrics.Test.Utilities.Helpers;
 
 namespace Olifant.JiraMetrics.Test.Unit
 {

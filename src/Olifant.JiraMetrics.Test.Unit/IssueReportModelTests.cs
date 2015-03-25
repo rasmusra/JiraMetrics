@@ -6,13 +6,13 @@ using FluentAssertions;
 using Olifant.JiraMetrics.Lib.Jira.Model;
 using Olifant.JiraMetrics.Lib.Metrics;
 using Olifant.JiraMetrics.Lib.Metrics.Model;
-using Olifant.JiraMetrics.Test.Fakes;
-using Olifant.JiraMetrics.Test.Fakes.Helpers;
 using Olifant.JiraMetrics.Test.Unit.Fakes;
 
 using Newtonsoft.Json;
 
 using NUnit.Framework;
+using Olifant.JiraMetrics.Test.Utilities;
+using Olifant.JiraMetrics.Test.Utilities.Helpers;
 
 namespace Olifant.JiraMetrics.Test.Unit
 {

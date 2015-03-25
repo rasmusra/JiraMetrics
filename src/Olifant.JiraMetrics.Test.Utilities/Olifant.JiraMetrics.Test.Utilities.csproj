@@ -7,8 +7,8 @@
     <ProjectGuid>{3610B81E-243D-4597-ADF2-0F0370D4CAFF}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Olifant.JiraMetrics.Test.Fakes</RootNamespace>
-    <AssemblyName>Olifant.JiraMetrics.Test.Fakes</AssemblyName>
+    <RootNamespace>Olifant.JiraMetrics.Test.Utilities</RootNamespace>
+    <AssemblyName>Olifant.JiraMetrics.Test.Utilities</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

@@ -6,8 +6,7 @@ using System.Linq;
 using Olifant.JiraMetrics.Lib;
 using Olifant.JiraMetrics.Lib.Metrics.Filters;
 using Olifant.JiraMetrics.Test.Acceptance.Steps.Helpers;
-using Olifant.JiraMetrics.Test.Fakes;
-
+using Olifant.JiraMetrics.Test.Utilities;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
 

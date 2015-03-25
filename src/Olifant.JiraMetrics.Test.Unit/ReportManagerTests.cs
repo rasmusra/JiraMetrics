@@ -12,10 +12,10 @@ using Olifant.JiraMetrics.Lib.Metrics.BurnUp;
 using Olifant.JiraMetrics.Lib.Metrics.Filters;
 using Olifant.JiraMetrics.Lib.Metrics.Model;
 using Olifant.JiraMetrics.Lib.Metrics.TextReport;
-using Olifant.JiraMetrics.Test.Fakes;
 using Olifant.JiraMetrics.Test.Unit.Mocks;
 
 using NUnit.Framework;
+using Olifant.JiraMetrics.Test.Utilities;
 
 namespace Olifant.JiraMetrics.Test.Unit
 {

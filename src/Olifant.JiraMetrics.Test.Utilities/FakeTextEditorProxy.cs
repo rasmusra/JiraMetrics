@@ -4,7 +4,7 @@ using System.Linq;
 
 using Olifant.JiraMetrics.Lib.Metrics.TextReport;
 
-namespace Olifant.JiraMetrics.Test.Fakes
+namespace Olifant.JiraMetrics.Test.Utilities
 {
     public class FakeTextEditorProxy : ITextEditorProxy
     {
