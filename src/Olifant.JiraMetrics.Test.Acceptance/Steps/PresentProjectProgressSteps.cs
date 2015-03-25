@@ -2,8 +2,8 @@
 
 using FluentAssertions;
 
-using Olifant.JiraMetrics.Test.Acceptance.Steps.Helpers;
-
+using Olifant.JiraMetrics.Test.Acceptance.Steps.Specs;
+using Olifant.JiraMetrics.Test.Utilities.Helpers;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
 

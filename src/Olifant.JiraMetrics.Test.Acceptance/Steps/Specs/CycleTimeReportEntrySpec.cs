@@ -1,6 +1,6 @@
 using Olifant.JiraMetrics.Lib.Metrics.Model;
 
-namespace Olifant.JiraMetrics.Test.Acceptance.Steps.Helpers
+namespace Olifant.JiraMetrics.Test.Acceptance.Steps.Specs
 {
     public class CycleTimeReportEntrySpec
     {

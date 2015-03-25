@@ -1,13 +1,12 @@
 ﻿using System;
 using System.IO;
-using Olifant.JiraMetrics.Test.Utilities.Helpers;
 
-namespace Olifant.JiraMetrics.Test.Acceptance.Steps.Helpers
+namespace Olifant.JiraMetrics.Test.Utilities.Helpers
 {
-    internal class WebServer
+    public class WebServer
     {
         public const string Port = "8193";
-        private static readonly FileInfo FakeStructureMapConfigFileInfo = new FileInfo(@"..\..\..\Olifant.JiraMetrics.Test.Utilities\FakeStructureMap.xml");
+        private static readonly FileInfo FakeStructureMapConfigFileInfo = new FileInfo(@"..\..\Fakes\FakeStructureMap.xml");
         private static readonly FileInfo StructureMapConfig = new FileInfo(@"..\..\..\Olifant.JiraMetrics.Web\StructureMap.xml");
         private static readonly FileInfo StructureMapConfigBackup = new FileInfo(@"..\..\..\Olifant.JiraMetrics.Web\StructureMap.xml.backup");
 

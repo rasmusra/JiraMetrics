@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.IO;
-
 using Olifant.JiraMetrics.Lib.Jira;
 
-namespace Olifant.JiraMetrics.Test.Utilities
+namespace Olifant.JiraMetrics.Test.Utilities.Fakes
 {
     public class FakeJiraRestClient : IJiraRestClient
     {

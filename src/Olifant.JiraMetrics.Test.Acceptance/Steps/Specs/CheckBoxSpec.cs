@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 
-namespace Olifant.JiraMetrics.Test.Acceptance.Steps.Helpers
+namespace Olifant.JiraMetrics.Test.Acceptance.Steps.Specs
 {
     [DebuggerDisplay("{CheckboxName} = {IsTrue}")]
     public class CheckBoxSpec

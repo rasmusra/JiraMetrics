@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Configuration;
 
-using Olifant.JiraMetrics.Test.Acceptance.Steps.Helpers;
-
+using Olifant.JiraMetrics.Test.Utilities.Helpers;
 using OpenQA.Selenium.PhantomJS;
 
 using TechTalk.SpecFlow;

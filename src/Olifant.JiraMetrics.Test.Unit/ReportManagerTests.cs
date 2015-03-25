@@ -16,6 +16,7 @@ using Olifant.JiraMetrics.Test.Unit.Mocks;
 
 using NUnit.Framework;
 using Olifant.JiraMetrics.Test.Utilities;
+using Olifant.JiraMetrics.Test.Utilities.Fakes;
 
 namespace Olifant.JiraMetrics.Test.Unit
 {

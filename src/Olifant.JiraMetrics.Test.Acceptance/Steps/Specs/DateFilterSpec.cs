@@ -1,8 +1,7 @@
 ﻿using System;
-
 using Olifant.JiraMetrics.Lib.Metrics.Filters;
 
-namespace Olifant.JiraMetrics.Test.Acceptance.Steps.Helpers
+namespace Olifant.JiraMetrics.Test.Acceptance.Steps.Specs
 {
     internal class DateFilterSpec
     {

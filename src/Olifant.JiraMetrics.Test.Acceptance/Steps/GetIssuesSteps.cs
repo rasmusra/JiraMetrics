@@ -3,7 +3,7 @@
 using FluentAssertions;
 
 using Olifant.JiraMetrics.Test.Acceptance.Steps.Helpers;
-
+using Olifant.JiraMetrics.Test.Acceptance.Steps.Specs;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
 

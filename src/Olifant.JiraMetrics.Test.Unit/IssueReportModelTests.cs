@@ -12,6 +12,7 @@ using Newtonsoft.Json;
 
 using NUnit.Framework;
 using Olifant.JiraMetrics.Test.Utilities;
+using Olifant.JiraMetrics.Test.Utilities.Fakes;
 using Olifant.JiraMetrics.Test.Utilities.Helpers;
 
 namespace Olifant.JiraMetrics.Test.Unit

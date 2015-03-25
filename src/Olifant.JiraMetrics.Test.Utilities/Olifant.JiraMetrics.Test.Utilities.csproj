@@ -42,11 +42,12 @@
     <Compile Include="..\GlobalAssemblyInfo.cs">
       <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="FakeJiraRestClient.cs" />
-    <Compile Include="FakeTextEditorProxy.cs" />
+    <Compile Include="Fakes\FakeJiraRestClient.cs" />
+    <Compile Include="Fakes\FakeTextEditorProxy.cs" />
     <Compile Include="Helpers\JiraMetricsDbUtils.cs" />
     <Compile Include="Helpers\CycleName2StatusesDict.cs" />
     <Compile Include="Helpers\ProcessManager.cs" />
+    <Compile Include="Helpers\WebServer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -109,7 +110,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="FakeStructureMap.xml">
+    <Content Include="Fakes\FakeStructureMap.xml">
       <SubType>Designer</SubType>
     </Content>
   </ItemGroup>

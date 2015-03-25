@@ -1,4 +1,4 @@
-﻿namespace Olifant.JiraMetrics.Test.Acceptance.Steps.Helpers
+﻿namespace Olifant.JiraMetrics.Test.Acceptance.Steps.Specs
 {
     public class BurnUpGraphSpec
     {

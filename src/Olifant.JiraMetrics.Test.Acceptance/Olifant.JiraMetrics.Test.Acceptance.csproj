@@ -115,13 +115,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>PresentProjectProgress.feature</DependentUpon>
     </Compile>
-    <Compile Include="Steps\Helpers\BurnUpGraphSpec.cs" />
+    <Compile Include="Steps\Specs\BurnUpGraphSpec.cs" />
     <Compile Include="Steps\ChooseFilterSteps.cs" />
     <Compile Include="Steps\MakeItPossibleToAssignAnyExistingStatusesToCycleTimeSteps.cs" />
-    <Compile Include="Steps\Helpers\DateFilterSpec.cs" />
-    <Compile Include="Steps\Helpers\WebControlSpec.cs" />
-    <Compile Include="Steps\Helpers\CycleTimeReportEntrySpec.cs" />
-    <Compile Include="Steps\Helpers\CheckBoxSpec.cs" />
+    <Compile Include="Steps\Specs\DateFilterSpec.cs" />
+    <Compile Include="Steps\Specs\CycleTimeReportEntrySpec.cs" />
+    <Compile Include="Steps\Specs\CheckBoxSpec.cs" />
     <Compile Include="Steps\GetIssuesSteps.cs" />
     <Compile Include="Steps\GeneralSteps.cs" />
     <Compile Include="Properties\Annotations.cs">
@@ -129,11 +128,11 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ScenarioWrapper.cs" />
-    <Compile Include="Steps\Helpers\JqlQuerySpec.cs" />
-    <Compile Include="Steps\Helpers\WebServer.cs" />
+    <Compile Include="Steps\Specs\JqlQuerySpec.cs" />
+    <Compile Include="Steps\Specs\WebControlSpec.cs" />
     <Compile Include="Steps\PresentProjectProgressSteps.cs" />
     <Compile Include="Steps\CreateValueAddedTimeReportSteps.cs" />
-    <Compile Include="Steps\Helpers\ValueAddedTimeReportSpec.cs" />
+    <Compile Include="Steps\Specs\ValueAddedTimeReportSpec.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
