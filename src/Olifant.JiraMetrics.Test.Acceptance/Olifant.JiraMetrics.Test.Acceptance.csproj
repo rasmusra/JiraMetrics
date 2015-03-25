@@ -131,7 +131,6 @@
     <Compile Include="ScenarioWrapper.cs" />
     <Compile Include="Steps\Helpers\JqlQuerySpec.cs" />
     <Compile Include="Steps\Helpers\WebServer.cs" />
-    <Compile Include="Steps\Helpers\ProcessManager.cs" />
     <Compile Include="Steps\PresentProjectProgressSteps.cs" />
     <Compile Include="Steps\CreateValueAddedTimeReportSteps.cs" />
     <Compile Include="Steps\Helpers\ValueAddedTimeReportSpec.cs" />

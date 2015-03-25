@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using Olifant.JiraMetrics.Test.Utilities.Helpers;
 
 namespace Olifant.JiraMetrics.Test.Acceptance.Steps.Helpers
 {

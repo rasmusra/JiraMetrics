@@ -46,6 +46,7 @@
     <Compile Include="FakeTextEditorProxy.cs" />
     <Compile Include="Helpers\JiraMetricsDbUtils.cs" />
     <Compile Include="Helpers\CycleName2StatusesDict.cs" />
+    <Compile Include="Helpers\ProcessManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

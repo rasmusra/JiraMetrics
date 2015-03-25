@@ -1,22 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Olifant.JiraMetrics.Test.Acceptance.Steps.Helpers
+namespace Olifant.JiraMetrics.Test.Utilities.Helpers
 {
-    internal static class ProcessManager
+    public static class ProcessManager
     {
         private static readonly object LockObject = new object();
-        private static Process process;
+        private static Process _process;
 
-        internal static void Start(string cmd, string workingDir = ".")
+        public static void Start(string cmd, string workingDir = ".")
         {
             lock (LockObject)
             {
-                if (process != null)
+                if (_process != null)
                 {
                     return;
                 }
@@ -32,12 +29,12 @@ namespace Olifant.JiraMetrics.Test.Acceptance.Steps.Helpers
                                         CreateNoWindow = true
                                     };
 
-                process = new Process() { StartInfo = startInfo };
-                process.Start();
+                _process = new Process() { StartInfo = startInfo };
+                _process.Start();
 
-                if (process.HasExited)
+                if (_process.HasExited)
                 {
-                    var stdErr = process.StandardError.ReadToEnd();
+                    var stdErr = _process.StandardError.ReadToEnd();
 
                     if (stdErr.Length > 0)
                     {
@@ -49,7 +46,7 @@ namespace Olifant.JiraMetrics.Test.Acceptance.Steps.Helpers
                                 workingDir));
                     }
 
-                    if (process.ExitCode > 0)
+                    if (_process.ExitCode > 0)
                     {
                         throw new Exception(
                             string.Format(
