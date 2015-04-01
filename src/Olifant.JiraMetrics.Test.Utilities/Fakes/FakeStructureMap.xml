@@ -2,5 +2,5 @@
 <StructureMap MementoStyle="Attribute">
   <DefaultInstance
     PluginType="Olifant.JiraMetrics.Lib.Jira.IJiraRestClient, Olifant.JiraMetrics.Lib"
-    PluggedType="Olifant.JiraMetrics.Test.Fakes.FakeJiraRestClient, Olifant.JiraMetrics.Test.Fakes"/>
+    PluggedType="Olifant.JiraMetrics.Test.Utilities.Fakes.FakeJiraRestClient, Olifant.JiraMetrics.Test.Utilities"/>
 </StructureMap>

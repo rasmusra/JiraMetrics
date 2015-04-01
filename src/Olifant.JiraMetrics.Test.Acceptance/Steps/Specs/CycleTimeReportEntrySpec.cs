@@ -22,6 +22,12 @@ namespace Olifant.JiraMetrics.Test.Acceptance.Steps.Specs
             set;
         }
 
+        public string IssueType
+        {
+            get;
+            set;
+        }
+
         public string ScenarioDescription
         {
             get;
@@ -54,7 +60,7 @@ namespace Olifant.JiraMetrics.Test.Acceptance.Steps.Specs
 
         public override string ToString()
         {
-            var result = string.Format("{0}{4}{1}{4}{2}{4}{3}{4}{5}{4}{6}{4}{7}", Key, Summary, StartedDate, ClosedDate, IssueReportModel.Separator, CycleTime, StoryPoints, OriginalEstimate);
+            var result = string.Format("{0}{4}{8}{4}{1}{4}{2}{4}{3}{4}{5}{4}{6}{4}{7}", Key, IssueType, Summary, StartedDate, ClosedDate, IssueReportModel.Separator, CycleTime, StoryPoints, OriginalEstimate);
 
             return result;
         }

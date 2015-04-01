@@ -13,6 +13,9 @@ namespace Olifant.JiraMetrics.Lib.Jira.Model
         [JsonProperty("customfield_10093")]
         public decimal? StoryPoints { get; set; }
 
+        [JsonProperty("customfield_10161")]
+        public ChangeRequestType ChangeRequestType { get; set; }
+
         [JsonProperty("status")]
         public Status Status { get; set; }
 
@@ -24,6 +27,9 @@ namespace Olifant.JiraMetrics.Lib.Jira.Model
 
         [JsonProperty("timeoriginalestimate")]
         public int? EstimateInSeconds { get; set; }
+
+        [JsonProperty("resolution")]
+        public Resolution Resolution { get; set; }
 
         public string EstimateInHours 
         {

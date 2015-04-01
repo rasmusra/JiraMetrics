@@ -54,6 +54,8 @@
     <Compile Include="Jira\JiraCredentials.cs" />
     <Compile Include="Jira\JqlChunkHelper.cs" />
     <Compile Include="Jira\Model\Changelog.cs" />
+    <Compile Include="Jira\Model\ChangeRequestType.cs" />
+    <Compile Include="Jira\Model\Resolution.cs" />
     <Compile Include="Jira\Model\IssueType.cs" />
     <Compile Include="Jira\Model\Fields.cs" />
     <Compile Include="Jira\Model\History.cs" />

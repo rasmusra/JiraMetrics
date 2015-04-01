@@ -11,7 +11,6 @@ using Olifant.JiraMetrics.Test.Unit.Fakes;
 using Newtonsoft.Json;
 
 using NUnit.Framework;
-using Olifant.JiraMetrics.Test.Utilities;
 using Olifant.JiraMetrics.Test.Utilities.Fakes;
 using Olifant.JiraMetrics.Test.Utilities.Helpers;
 
@@ -70,6 +69,23 @@ namespace Olifant.JiraMetrics.Test.Unit
             var target = new IssueReportModel(null, cycleTime, false);
 
             target.CycleTime.ShouldBeEquivalentTo(expectedDateDiff);
+        }
+
+        [TestCase("A Change request", "DISCO-620", "Change Request - Technical")]
+        [TestCase("A Change request", "DISCO-838", "Change Request")]
+        [TestCase("A technical change request", "OFU-1462", "Change Request - Functional")]
+        [TestCase("A fixed defect", "DISCO-665", "Defect")]
+        [TestCase("A defect not fixed", "SCSC-974", "Defect - Not a defect")]
+        public void ReportsTypeOfIssue(string scenarioDescription, string jiraKey, string expectedType)
+        {
+            // arrange
+            var issue = ReadFirstIssue(jiraKey, CycleName2StatusesDict.Lookup("Dev"));
+
+            // act
+            var actual = issue.IssueType;
+
+            // assert
+            actual.ShouldBeEquivalentTo(expectedType);
         }
 
         private static IIssueReportModel ReadFirstIssue(string jiraKey, string[] statuses, string startedLabel = "")

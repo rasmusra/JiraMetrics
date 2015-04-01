@@ -30,6 +30,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="MongoDB.Bson">
+      <HintPath>..\..\packages\mongocsharpdriver.1.10.0\lib\net35\MongoDB.Bson.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Driver">
+      <HintPath>..\..\packages\mongocsharpdriver.1.10.0\lib\net35\MongoDB.Driver.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -44,13 +50,14 @@
     </Compile>
     <Compile Include="Fakes\FakeJiraRestClient.cs" />
     <Compile Include="Fakes\FakeTextEditorProxy.cs" />
-    <Compile Include="Helpers\JiraMetricsDbUtils.cs" />
+    <Compile Include="Helpers\MongoDbUtils.cs" />
     <Compile Include="Helpers\CycleName2StatusesDict.cs" />
     <Compile Include="Helpers\ProcessManager.cs" />
     <Compile Include="Helpers\WebServer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="packages.config" />
     <None Include="Stubs\key in %28SCSC-1000,DISCO-789,DISCO-846,DISCO-937%29.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

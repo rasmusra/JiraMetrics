@@ -63,6 +63,26 @@ namespace Olifant.JiraMetrics.Lib.Metrics.Model
             }
         }
 
+        public string IssueType
+        {
+            get
+            {
+                string issueType = issue.Fields.IssueType.Name;
+
+                if (issue.Fields.ChangeRequestType != null)
+                {
+                    issueType = string.Format("{0} - {1}", issueType, issue.Fields.ChangeRequestType.Value);
+                }
+
+                if (issue.Fields.Resolution != null && issue.Fields.Resolution.Name != "Fixed")
+                {
+                    issueType = string.Format("{0} - {1}", issueType, issue.Fields.Resolution.Name);
+                }
+
+                return issueType;
+            }
+        }
+
         private static int CountWeekendDays(double days, DateTime startDateTime, DateTime doneDateTime)
         {
             var noofWholeWeeks = (int)Math.Floor(days / 7);
@@ -111,8 +131,9 @@ namespace Olifant.JiraMetrics.Lib.Metrics.Model
         {
             var result = string.Format(
                 CultureInfo,
-                "{0}{4}{1}{4}{2:yyyy-MM-dd HH:mm:ss}{4}{3:yyyy-MM-dd HH:mm:ss}{4}{5:0.00}{4}{6}{4}{7}", 
-                issue.Key, 
+                "{0}{4}{8}{4}{1}{4}{2:yyyy-MM-dd HH:mm:ss}{4}{3:yyyy-MM-dd HH:mm:ss}{4}{5:0.00}{4}{6}{4}{7}", 
+                issue.Key,
+                IssueType,
                 issue.Fields.Summary, 
                 StartDateTime, 
                 DoneDateTime, 

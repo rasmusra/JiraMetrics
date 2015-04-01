@@ -1,7 +1,8 @@
 ﻿using System.Linq;
 
 using FluentAssertions;
-
+using MongoDB.Driver;
+using Olifant.JiraMetrics.Lib.Jira.Model;
 using Olifant.JiraMetrics.Test.Acceptance.Steps.Specs;
 using Olifant.JiraMetrics.Test.Utilities.Helpers;
 using TechTalk.SpecFlow;
@@ -30,6 +31,14 @@ namespace Olifant.JiraMetrics.Test.Acceptance.Steps
         {
             var url = string.Format("http://localhost:{0}", WebServer.Port);
             FeatureWrapper.PhantomJsDriver.Navigate().GoToUrl(url);
+        }
+
+        [Given(@"there exists a Jira project called '(.*)' with (.*) issues")]
+        public void SetupMongo(string projectName, int noofIssues)
+        {
+            var issues = new MongoHelper<Issue>();
+            issues.Collection.Insert(new Issue());
+            var issuesList = issues.Collection.FindAll().ToList();
         }
 
         [Then(@"I should see a burn-up graph")]

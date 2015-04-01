@@ -7,5 +7,6 @@ namespace Olifant.JiraMetrics.Lib.Metrics.Model
         string DoneDateTime { get; }
 
         string StoryPoints { get; }
+        string IssueType { get; }
     }
 }

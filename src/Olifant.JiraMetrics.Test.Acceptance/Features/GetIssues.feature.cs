@@ -118,13 +118,13 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Different start and end date combinations")]
-        [NUnit.Framework.TestCaseAttribute("Started, but without the started-flag", "OFU-676", "Re-filtering page leaves you on same \"page number\" as previously - should go to f" +
+        [NUnit.Framework.TestCaseAttribute("Started, but without the started-flag", "OFU-676", "Defect", "Re-filtering page leaves you on same \"page number\" as previously - should go to f" +
             "irst page", "2013-02-25 09:41:34", "2013-02-27 16:49:34", "2,30", "0,5", null)]
-        [NUnit.Framework.TestCaseAttribute("Started, with some time in arch design", "OFU-2377", "UI fixes", "2014-09-25 08:30:53", "2014-10-08 09:24:16", "13,04", "1,5", null)]
-        [NUnit.Framework.TestCaseAttribute("Moved to TCC when done", "OFU-1462", "Update date filter functionality and look in Order list page", "2013-08-16 16:02:06", "2013-08-23 04:25:53", "6,52", "1,0", null)]
-        [NUnit.Framework.TestCaseAttribute("Directly moved from open to testing", "OFU-2193", "Sprint test- Pending preadvice not displayed on Pending tab", "2014-06-09 13:42:37", "2014-06-10 07:49:41", "0,75", "0,0", null)]
-        [NUnit.Framework.TestCaseAttribute("Staerted before the \"started\" label was added", "OFU-2290", "Incorrect position of the Advanced Filter header", "2014-08-27 09:08:33", "2014-12-18 07:45:20", "112,94", "0,5", null)]
-        public virtual void DifferentStartAndEndDateCombinations(string scenarioDescription, string key, string summary, string startedDate, string closedDate, string cycleTime, string storyPoints, string[] exampleTags)
+        [NUnit.Framework.TestCaseAttribute("Started, with some time in arch design", "OFU-2377", "Defect", "UI fixes", "2014-09-25 08:30:53", "2014-10-08 09:24:16", "13,04", "1,5", null)]
+        [NUnit.Framework.TestCaseAttribute("Moved to TCC when done", "OFU-1462", "Defect", "Update date filter functionality and look in Order list page", "2013-08-16 16:02:06", "2013-08-23 04:25:53", "6,52", "1,0", null)]
+        [NUnit.Framework.TestCaseAttribute("Directly moved from open to testing", "OFU-2193", "Defect", "Sprint test- Pending preadvice not displayed on Pending tab", "2014-06-09 13:42:37", "2014-06-10 07:49:41", "0,75", "0,0", null)]
+        [NUnit.Framework.TestCaseAttribute("Started before the \"started\" label was added", "OFU-2290", "Defect", "Incorrect position of the Advanced Filter header", "2014-08-27 09:08:33", "2014-12-18 07:45:20", "112,94", "0,5", null)]
+        public virtual void DifferentStartAndEndDateCombinations(string scenarioDescription, string key, string issueType, string summary, string startedDate, string closedDate, string cycleTime, string storyPoints, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Different start and end date combinations", exampleTags);
 #line 21
@@ -140,6 +140,7 @@ this.ScenarioSetup(scenarioInfo);
 #line hidden
             TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
                         "Key",
+                        "Issue type",
                         "Summary",
                         "Started date",
                         "Closed date",
@@ -148,6 +149,7 @@ this.ScenarioSetup(scenarioInfo);
                         "Original estimate"});
             table2.AddRow(new string[] {
                         string.Format("{0}", key),
+                        string.Format("{0}", issueType),
                         string.Format("{0}", summary),
                         string.Format("{0}", startedDate),
                         string.Format("{0}", closedDate),
