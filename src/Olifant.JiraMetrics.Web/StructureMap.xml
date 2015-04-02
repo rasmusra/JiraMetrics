@@ -2,5 +2,6 @@
 <StructureMap MementoStyle="Attribute">
   <DefaultInstance
     PluginType="Olifant.JiraMetrics.Lib.Jira.IJiraRestClient, Olifant.JiraMetrics.Lib"
-    PluggedType="Olifant.JiraMetrics.Test.Utilities.FakeJiraRestClient, Olifant.JiraMetrics.Test.Utilities"/>
+    PluggedType="Olifant.JiraMetrics.Lib.Jira.ChunkedJiraRestClient, Olifant.JiraMetrics.Lib"
+    chunkSizeInDays="14"/>
 </StructureMap>
