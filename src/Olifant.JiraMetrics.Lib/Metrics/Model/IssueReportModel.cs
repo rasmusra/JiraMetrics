@@ -131,13 +131,13 @@ namespace Olifant.JiraMetrics.Lib.Metrics.Model
         {
             var result = string.Format(
                 CultureInfo,
-                "{0}{4}{8}{4}{1}{4}{2:yyyy-MM-dd HH:mm:ss}{4}{3:yyyy-MM-dd HH:mm:ss}{4}{5:0.00}{4}{6}{4}{7}", 
+                "{1}{0}{2}{0}{3}{0}{4:yyyy-MM-dd HH:mm:ss}{0}{5:yyyy-MM-dd HH:mm:ss}{0}{6:0.00}{0}{7}{0}{8}",
+                Separator,
                 issue.Key,
                 IssueType,
                 issue.Fields.Summary, 
                 StartDateTime, 
                 DoneDateTime, 
-                Separator, 
                 CycleTime,
                 StoryPoints,
                 issue.Fields.EstimateInHours);

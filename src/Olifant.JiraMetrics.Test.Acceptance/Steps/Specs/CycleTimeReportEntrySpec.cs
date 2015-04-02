@@ -60,7 +60,15 @@ namespace Olifant.JiraMetrics.Test.Acceptance.Steps.Specs
 
         public override string ToString()
         {
-            var result = string.Format("{0}{4}{8}{4}{1}{4}{2}{4}{3}{4}{5}{4}{6}{4}{7}", Key, IssueType, Summary, StartedDate, ClosedDate, IssueReportModel.Separator, CycleTime, StoryPoints, OriginalEstimate);
+            var result = string.Join(IssueReportModel.Separator.ToString(), 
+                Key, 
+                IssueType, 
+                Summary, 
+                StartedDate, 
+                ClosedDate, 
+                CycleTime, 
+                StoryPoints, 
+                OriginalEstimate);
 
             return result;
         }

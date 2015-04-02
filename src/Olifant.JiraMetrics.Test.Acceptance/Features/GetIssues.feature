@@ -11,9 +11,9 @@ Scenario: Get all defects from DISCO
 	When I click the "Cycle time report" button
 	Then I should be presented all defects in a text file
 	And I should be able to see the following cycle times in the report:
-	| Scenario description                   | Key       | Summary                                              | Started date        | Closed date         | Cycle time | Story Points | Original estimate |
-	| Started when defect was created        | DISCO-766 | Removed articles on manufacturing option not working | 2014-09-12 13:46:36 | 2014-09-16 13:53:42 | 4,00       | 2,0          |                   |
-	| Started a few days after creation date | DISCO-767 | SIT - Notice error exception in PMT                  | 2014-09-16 15:35:12 | 2014-09-18 11:04:26 | 1,81       | 0,5          |                   |
+	| Scenario description                   | Key       | Issue type | Summary                                              | Started date        | Closed date         | Cycle time | Story Points | Original estimate |
+	| Started when defect was created        | DISCO-766 | Defect     | Removed articles on manufacturing option not working | 2014-09-12 13:46:36 | 2014-09-16 13:53:42 | 4,00       | 2,0          |                   |
+	| Started a few days after creation date | DISCO-767 | Defect     | SIT - Notice error exception in PMT                  | 2014-09-16 15:35:12 | 2014-09-18 11:04:26 | 1,81       | 0,5          |                   |
 # More than one started date             
 # Closed but reopened
  
@@ -28,12 +28,12 @@ Scenario Outline: Different start and end date combinations
 	| <Key> | <Issue type> | <Summary> | <Started date> | <Closed date> | <Cycle Time> | <Story Points> |                   |
 
 	Examples:
-	| Scenario description                         | Key      | Issue type | Summary                                                                                    | Started date        | Closed date         | Cycle Time | Story Points |
-	| Started, but without the started-flag        | OFU-676  | Defect     | Re-filtering page leaves you on same "page number" as previously - should go to first page | 2013-02-25 09:41:34 | 2013-02-27 16:49:34 | 2,30       | 0,5          |
-	| Started, with some time in arch design       | OFU-2377 | Defect     | UI fixes                                                                                   | 2014-09-25 08:30:53 | 2014-10-08 09:24:16 | 13,04      | 1,5          |
-	| Moved to TCC when done                       | OFU-1462 | Defect     | Update date filter functionality and look in Order list page                               | 2013-08-16 16:02:06 | 2013-08-23 04:25:53 | 6,52       | 1,0          |
-	| Directly moved from open to testing          | OFU-2193 | Defect     | Sprint test- Pending preadvice not displayed on Pending tab                                | 2014-06-09 13:42:37 | 2014-06-10 07:49:41 | 0,75       | 0,0          |
-	| Started before the "started" label was added | OFU-2290 | Defect     | Incorrect position of the Advanced Filter header                                           | 2014-08-27 09:08:33 | 2014-12-18 07:45:20 | 112,94     | 0,5          |
+	| Scenario description                         | Key      | Issue type                  | Summary                                                                                    | Started date        | Closed date         | Cycle Time | Story Points |
+	| Started, but without the started-flag        | OFU-676  | Defect                      | Re-filtering page leaves you on same "page number" as previously - should go to first page | 2013-02-25 09:41:34 | 2013-02-27 16:49:34 | 2,30       | 0,5          |
+	| Started, with some time in arch design       | OFU-2377 | Defect                      | UI fixes                                                                                   | 2014-09-25 08:30:53 | 2014-10-08 09:24:16 | 13,04      | 1,5          |
+	| Moved to TCC when done                       | OFU-1462 | Change Request - Functional | Update date filter functionality and look in Order list page                               | 2013-08-16 16:02:06 | 2013-08-23 04:25:53 | 6,52       | 1,0          |
+	| Directly moved from open to testing          | OFU-2193 | Defect                      | Sprint test- Pending preadvice not displayed on Pending tab                                | 2014-06-09 13:42:37 | 2014-06-10 07:49:41 | 0,75       | 0,0          |
+	| Started before the "started" label was added | OFU-2290 | Defect Sub-Task             | Incorrect position of the Advanced Filter header                                           | 2014-08-27 09:08:33 | 2014-12-18 07:45:20 | 112,94     | 0,5          |
 
 
 Scenario Outline: Issues that should be filtered out 
