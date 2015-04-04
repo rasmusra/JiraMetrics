@@ -20,8 +20,8 @@ Scenario: Different start and end date combinations
 	| 2014-07-01 | 2014-10-31 |
 	When I click the "Cycle time report" button
 	Then I should be able to see the following cycle times in the report: 
-	| Key      | Summary  | Started date        | Closed date         | Cycle Time | Story Points | Original estimate |
-	| OFU-2377 | UI fixes | 2014-10-03 10:22:31 | 2014-10-08 09:24:16 | 4,96       | 1,5          |                   |
+	| Key      | Issue type | Summary  | Started date        | Closed date         | Cycle Time | Story Points | Original estimate |
+	| OFU-2377 | Defect     | UI fixes | 2014-10-03 10:22:31 | 2014-10-08 09:24:16 | 4,96       | 1,5          |                   |
 	But I should not see "OFU-1462" in the report
 
 

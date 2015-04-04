@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Olifant.JiraMetrics.Lib.Jira.Model;
 
 namespace Olifant.JiraMetrics.Test.Utilities.Helpers
 {
@@ -27,7 +28,7 @@ namespace Olifant.JiraMetrics.Test.Utilities.Helpers
                                        };
         }
 
-        public static string[] Lookup(string index)
+        public static Status[] Lookup(string index)
         {
             index = index.ToLower();
 
@@ -36,7 +37,7 @@ namespace Olifant.JiraMetrics.Test.Utilities.Helpers
                 throw new NotImplementedException(index);
             }
 
-            return Instance[index];
+            return Status.CreateStatuses(Instance[index]);
         }
     }
 }

@@ -88,7 +88,7 @@ namespace Olifant.JiraMetrics.Test.Unit
             actual.ShouldBeEquivalentTo(expectedType);
         }
 
-        private static IIssueReportModel ReadFirstIssue(string jiraKey, string[] statuses, string startedLabel = "")
+        private static IIssueReportModel ReadFirstIssue(string jiraKey, Status[] statuses, string startedLabel = "")
         {
             var query = string.Format("key={0}", jiraKey);
             var json = new FakeJiraRestClient().GetJsonChunks(query);

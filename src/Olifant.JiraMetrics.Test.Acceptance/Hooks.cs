@@ -14,7 +14,8 @@ namespace Olifant.JiraMetrics.Test.Acceptance
         [BeforeTestRun]
         public static void SetupFakes()
         {
-            WebServer.SetupFakes();
+            // TOOD: put in config, or something...
+            WebServer.SetupFakes(@"..\..\FakeStructureMap.xml");
         }
 
         [AfterTestRun]

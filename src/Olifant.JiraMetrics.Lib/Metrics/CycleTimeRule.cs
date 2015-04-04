@@ -11,26 +11,26 @@ namespace Olifant.JiraMetrics.Lib.Metrics
     {
         private readonly string startedLabel;
 
-        public CycleTimeRule(string[] statuses)
-            : this(statuses, new string[] { }, string.Empty)
+        public CycleTimeRule(Status[] statuses)
+            : this(statuses, new Status[] { }, string.Empty)
         {
         }
 
-        public CycleTimeRule(string[] statuses, string startedLabel)
-            : this(statuses, new string[] { }, startedLabel)
+        public CycleTimeRule(Status[] statuses, string startedLabel)
+            : this(statuses, new Status[] { }, startedLabel)
         {
         }
 
-        public CycleTimeRule(string[] statuses, string[] preCycleStatuses)
+        public CycleTimeRule(Status[] statuses, Status[] preCycleStatuses)
             : this(statuses, preCycleStatuses, string.Empty)
         {
         }
 
-        public CycleTimeRule(string[] statuses, string[] preCycleStatuses, string startedLabel)
+        public CycleTimeRule(Status[] statuses, Status[] preCycleStatuses, string startedLabel)
         {
             this.startedLabel = startedLabel;
-            this.PreCycleStatuses = Status.CreateStatuses(preCycleStatuses);
-            this.Statuses = Status.CreateStatuses(statuses);
+            this.PreCycleStatuses = preCycleStatuses;
+            this.Statuses = statuses;
         }
 
         public Status[] Statuses { get; private set; } 

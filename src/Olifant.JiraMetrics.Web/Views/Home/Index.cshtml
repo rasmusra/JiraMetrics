@@ -1,10 +1,25 @@
 ﻿@using Olifant.JiraMetrics.Web.Models
 @model DotNet.Highcharts.Highcharts
 
-@using (Html.BeginForm("Index", "Home"))
+@using (Html.BeginForm("Index", "Home", FormMethod.Post, new { id = "generate_graph" }))
 {
+    <script type="text/javascript">
+        $(function() {
+            var foo = $('#CycleStatusesListbox option').map(function() { return $(this).val(); }).get();
+
+            $('#Search').click(function() {
+                alert(foo);
+                var input = $("<input>")
+                    .attr("type", "hidden")
+                    .attr("name", "statuses")
+                    .val(foo);
+                $('#Search').append($(input));
+            });
+        });
+        </script>
+    
     @Html.TextBox("jql")
-    <input type="submit" value="Search" id="generate_graph" />
+    <input id="Search" type="submit" value="Search"  />
 }
 
 @(Model)

@@ -114,6 +114,7 @@ this.ScenarioSetup(scenarioInfo);
 #line hidden
             TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
                         "Key",
+                        "Issue type",
                         "Summary",
                         "Started date",
                         "Closed date",
@@ -122,6 +123,7 @@ this.ScenarioSetup(scenarioInfo);
                         "Original estimate"});
             table3.AddRow(new string[] {
                         "OFU-2377",
+                        "Defect",
                         "UI fixes",
                         "2014-10-03 10:22:31",
                         "2014-10-08 09:24:16",

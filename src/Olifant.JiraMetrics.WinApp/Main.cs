@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using Olifant.JiraMetrics.WinApp;
 using Olifant.JiraMetrics.Lib;
 using Olifant.JiraMetrics.Lib.Jira;
+using Olifant.JiraMetrics.Lib.Jira.Model;
 using Olifant.JiraMetrics.Lib.Metrics;
 using Olifant.JiraMetrics.Lib.Metrics.Filters;
 using Olifant.JiraMetrics.Lib.Metrics.TextReport;
@@ -73,9 +74,12 @@ namespace Olifant.JiraMetrics.WinApp
 
             try
             {
+                var statuses = Status.CreateStatuses(this.cycleListBox.Items.Cast<string>().ToArray());
+                var preCycleStatuses = Status.CreateStatuses(this.precycleListBox.Items.Cast<string>().ToArray());
+
                 var cycleTimeRule = new CycleTimeRule(
-                    this.cycleListBox.Items.Cast<string>().ToArray(),
-                    this.precycleListBox.Items.Cast<string>().ToArray(),
+                    statuses,
+                    preCycleStatuses,
                     "started");
 
                 controller.GenerateCycleTimeReport(

@@ -15,6 +15,7 @@ using Olifant.JiraMetrics.Lib.Metrics.TextReport;
 using Olifant.JiraMetrics.Test.Unit.Mocks;
 
 using NUnit.Framework;
+using Olifant.JiraMetrics.Lib.Jira.Model;
 using Olifant.JiraMetrics.Test.Utilities;
 using Olifant.JiraMetrics.Test.Utilities.Fakes;
 
@@ -33,7 +34,7 @@ namespace Olifant.JiraMetrics.Test.Unit
             // act
             target.GenerateCycleTimeReport(
                 new List<IssueReportModel>(),
-                new CycleTimeRule(new[] { "Implement", "Implementing", "Review" }),
+                new CycleTimeRule(Status.CreateStatuses(new[] { "Implement", "Implementing", "Review" })),
                 GivenJql,
                 new List<IIssueFilter>());
 

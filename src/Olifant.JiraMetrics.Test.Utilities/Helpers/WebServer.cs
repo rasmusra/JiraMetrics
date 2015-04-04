@@ -6,9 +6,8 @@ namespace Olifant.JiraMetrics.Test.Utilities.Helpers
     public class WebServer
     {
         public const string Port = "8193";
-        private static readonly FileInfo FakeStructureMapConfig = new FileInfo(@"..\..\..\Olifant.JiraMetrics.Test.Utilities\Fakes\FakeStructureMap.xml");
-        private static readonly FileInfo StructureMapConfig = new FileInfo(@"..\..\..\Olifant.JiraMetrics.Web\StructureMap.xml");
-        private static readonly FileInfo BackupOfStructureMapConfig = new FileInfo(@"..\..\..\Olifant.JiraMetrics.Web\StructureMap.xml.backup");
+        private static readonly FileInfo StructureMapConfigFileInfo = new FileInfo(@"..\..\..\Olifant.JiraMetrics.Web\StructureMap.xml");
+        private static readonly FileInfo BackupOfStructureMapConfigFileInfo = new FileInfo(@"..\..\..\Olifant.JiraMetrics.Web\StructureMap.xml.backup");
 
 
         private static string ProgramFilesPath
@@ -40,29 +39,30 @@ namespace Olifant.JiraMetrics.Test.Utilities.Helpers
             ProcessManager.Start(cmd);
         }
 
-        public static void SetupFakes()
+        public static void SetupFakes(string fakeStructureMapPath)
         {
-            var realConfig = File.ReadAllText(StructureMapConfig.FullName);
-            var fakeConfig = File.ReadAllText(FakeStructureMapConfig.FullName);
+            var fakeStructureMapConfigFileInfo = new FileInfo(fakeStructureMapPath);
+            var realConfig = File.ReadAllText(StructureMapConfigFileInfo.FullName);
+            var fakeConfig = File.ReadAllText(fakeStructureMapConfigFileInfo.FullName);
 
             // only copy config-file to backup-file if config-file differs from fake config
             if (realConfig != fakeConfig)
             {
-                BackupOfStructureMapConfig.Delete();
-                StructureMapConfig.CopyTo(BackupOfStructureMapConfig.FullName);
-                FakeStructureMapConfig.CopyTo(StructureMapConfig.FullName, true);
+                BackupOfStructureMapConfigFileInfo.Delete();
+                StructureMapConfigFileInfo.CopyTo(BackupOfStructureMapConfigFileInfo.FullName);
+                fakeStructureMapConfigFileInfo.CopyTo(StructureMapConfigFileInfo.FullName, true);
             }
         }
 
         public static void RemoveFakes()
         {
             // if no backup exists we cannot restore anything, exit silently
-            if (!BackupOfStructureMapConfig.Exists)
+            if (!BackupOfStructureMapConfigFileInfo.Exists)
             {
                 return;
             }
 
-            BackupOfStructureMapConfig.CopyTo(StructureMapConfig.FullName, true);
+            BackupOfStructureMapConfigFileInfo.CopyTo(StructureMapConfigFileInfo.FullName, true);
         }
     }
 

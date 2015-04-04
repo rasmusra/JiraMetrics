@@ -5,6 +5,7 @@ using FluentAssertions;
 using Olifant.JiraMetrics.Lib.Metrics;
 
 using NUnit.Framework;
+using Olifant.JiraMetrics.Lib.Jira.Model;
 using Olifant.JiraMetrics.Test.Utilities.Helpers;
 
 namespace Olifant.JiraMetrics.Test.Unit
@@ -14,14 +15,16 @@ namespace Olifant.JiraMetrics.Test.Unit
         [TestCase("Requirement Analysis", "Test")]
         public void MaintainsStatuses(params string[] givenStatuses)
         {
-            var target = new CycleTimeRule(givenStatuses);
+            var statuses = Status.CreateStatuses(givenStatuses);
+            var target = new CycleTimeRule(statuses);
             target.Statuses.Select(s => s.Name).ShouldAllBeEquivalentTo(givenStatuses);
         }
 
         [TestCase("Some Pr-ccycle status", "Implementation")]
         public void MaintainsPreCycleStatuses(params string[] givenPreCycleStatuses)
         {
-            var target = new CycleTimeRule(new string[] { }, givenPreCycleStatuses);
+            var preCycleStatuses = Status.CreateStatuses(givenPreCycleStatuses);
+            var target = new CycleTimeRule(new Status[] { }, preCycleStatuses);
             target.PreCycleStatuses.Select(s => s.Name).ShouldAllBeEquivalentTo(givenPreCycleStatuses);
         }
 

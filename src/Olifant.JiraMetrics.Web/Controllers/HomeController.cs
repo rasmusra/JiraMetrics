@@ -11,6 +11,7 @@ using DotNet.Highcharts.Options;
 
 using Olifant.JiraMetrics.Lib;
 using Olifant.JiraMetrics.Lib.Jira;
+using Olifant.JiraMetrics.Lib.Jira.Model;
 using Olifant.JiraMetrics.Lib.Metrics;
 using Olifant.JiraMetrics.Lib.Metrics.BurnUp;
 using Olifant.JiraMetrics.Lib.Metrics.Filters;
@@ -28,11 +29,11 @@ namespace Olifant.JiraMetrics.Web.Controllers
             this.jiraClient = jiraClient;
         }
 
-        public ActionResult Index(string jql, string[] statuses)
+        public ActionResult Index(string jql, string statuses)
         {
             var issues = String.IsNullOrEmpty(jql)
                 ? new List<IIssueReportModel>()
-                : GetIssues(jql, statuses);
+                : GetIssues(jql, Status.CreateStatuses(statuses));
 
             var burnUpData = BurnUpGraph.SummonData(issues);
 
@@ -98,12 +99,12 @@ namespace Olifant.JiraMetrics.Web.Controllers
             return PartialView(cyclesViewModel);
         }
 
-        private IList<IIssueReportModel> GetIssues(string jql, string[] cycleStatuses)
+        private IList<IIssueReportModel> GetIssues(string jql, Status[] cycleStatuses)
         {
             var jiraCyclesFacade = new JiraMetricsFacade(this.jiraClient);
             var filters = new List<IIssueFilter> { new WorkDoneFilter() };
-            // TODO: add statuses from UI instead of hardcoded
-            var result = jiraCyclesFacade.GetIssues(jql, new CycleTimeRule(cycleStatuses), filters);
+            var cycleTimeRule = new CycleTimeRule(cycleStatuses);
+            var result = jiraCyclesFacade.GetIssues(jql, cycleTimeRule, filters);
             return result;
         }
     }

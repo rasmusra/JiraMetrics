@@ -12,7 +12,7 @@ namespace Olifant.JiraMetrics.Test.Unit.Fakes
         private readonly DateTime doneDateTime;
 
         public FakeCycleTimeRule(string startDateTime, string doneDateTime)
-            : base(new string[] { }, new string[] { }, string.Empty)
+            : base(new Status[] { }, new Status[] { }, string.Empty)
         {
             this.startDateTime = DateTime.Parse(startDateTime);
             this.doneDateTime = DateTime.Parse(doneDateTime);
