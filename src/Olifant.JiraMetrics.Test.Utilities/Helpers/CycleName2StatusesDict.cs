@@ -37,7 +37,7 @@ namespace Olifant.JiraMetrics.Test.Utilities.Helpers
                 throw new NotImplementedException(index);
             }
 
-            return Status.CreateStatuses(Instance[index]);
+            return Status.Create(Instance[index]);
         }
     }
 }

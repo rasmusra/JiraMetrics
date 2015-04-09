@@ -5,14 +5,13 @@
 {
     <script type="text/javascript">
         $(function() {
-            var foo = $('#CycleStatusesListbox option').map(function() { return $(this).val(); }).get();
+            var statuses = $('#CycleStatusesListbox option').map(function() { return $(this).val(); }).get();
 
             $('#Search').click(function() {
-                alert(foo);
                 var input = $("<input>")
                     .attr("type", "hidden")
                     .attr("name", "statuses")
-                    .val(foo);
+                    .val(statuses);
                 $('#Search').append($(input));
             });
         });

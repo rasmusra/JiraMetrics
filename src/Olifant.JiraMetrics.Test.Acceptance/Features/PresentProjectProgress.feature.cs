@@ -122,7 +122,7 @@ this.FeatureBackground();
 #line 28
  testRunner.And("I navigate to burn-up page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 29
- testRunner.When("I search for issues with jql query \'key=DISCO-838\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("I search for issues with jql query \'key=OFU-1462\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
             TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
                         "Start X",
@@ -130,10 +130,10 @@ this.FeatureBackground();
                         "Start Y",
                         "End Y"});
             table1.AddRow(new string[] {
-                        "2014-07-01",
-                        "2014-12-01",
+                        "start",
+                        "y13w34",
                         "0",
-                        "163 (not determined yet)"});
+                        "1.25"});
 #line 30
  testRunner.Then("I should see a burn-up graph with values:", ((string)(null)), table1, "Then ");
 #line hidden

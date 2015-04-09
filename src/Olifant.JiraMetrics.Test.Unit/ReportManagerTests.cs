@@ -34,7 +34,7 @@ namespace Olifant.JiraMetrics.Test.Unit
             // act
             target.GenerateCycleTimeReport(
                 new List<IssueReportModel>(),
-                new CycleTimeRule(Status.CreateStatuses(new[] { "Implement", "Implementing", "Review" })),
+                new CycleTimeRule(Status.Create(new[] { "Implement", "Implementing", "Review" })),
                 GivenJql,
                 new List<IIssueFilter>());
 

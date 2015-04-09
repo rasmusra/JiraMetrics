@@ -26,14 +26,34 @@ namespace Olifant.JiraMetrics.Lib.Jira.Model
             }    
         }
 
-        public static Status[] CreateStatuses(params string[] statusNames)
+        public static Status[] Create(params string[] statusNames)
         {
-            return statusNames.Select(name => new Status { Name = name }).ToArray();
+            return statusNames==null
+            ? new Status[]{}
+            : statusNames.Select(name => new Status { Name = name }).ToArray();
+        }
+
+        /// <summary>
+        /// Deserialize a comma separated list of statuses
+        /// </summary>
+        /// <param name="statuses"></param>
+        /// <returns></returns>
+        public static Status[] Deserialize(string statuses)
+        {
+            if (string.IsNullOrEmpty(statuses))
+                return new Status[]{};
+
+            var deserializedStatuses = statuses
+                .Split(',')
+                .Select(s => s.Trim())
+                .Select(name => new Status { Name = name })
+                .ToArray();
+            return deserializedStatuses;
         }
 
         public override bool Equals(object other)
         {
-            return string.Equals(this.Name, ((Status)other).Name, StringComparison.OrdinalIgnoreCase);
+            return String.Equals(this.Name, ((Status)other).Name, StringComparison.OrdinalIgnoreCase);
         }
 
         public override int GetHashCode()

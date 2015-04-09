@@ -65,10 +65,10 @@ namespace Olifant.JiraMetrics.Test.Unit
         public void CyckeTimeIgnoresWeekends(string description, string startDate, string endDate, decimal expectedDateDiff)
         {
             var cycleTime = new FakeCycleTimeRule(startDate, endDate);
-            
             var target = new IssueReportModel(null, cycleTime, false);
 
-            target.CycleTime.ShouldBeEquivalentTo(expectedDateDiff);
+            target.CycleTime
+                .ShouldBeEquivalentTo(expectedDateDiff);
         }
 
         [TestCase("A Change request", "DISCO-620", "Change Request - Technical")]

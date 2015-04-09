@@ -26,10 +26,10 @@ Scenario: View burn-up
 Scenario: Plot burn-up
 	Given I am logged in as "Andreas"
 	And I navigate to burn-up page
-	When I search for issues with jql query 'key=DISCO-838' 
+	When I search for issues with jql query 'key=OFU-1462' 
 	Then I should see a burn-up graph with values:
-	| Start X    | End X      | Start Y | End Y                    |
-	| 2014-07-01 | 2014-12-01 | 0       | 163 (not determined yet) |
+	| Start X | End X  | Start Y | End Y |
+	| start   | y13w34 | 0       | 1.25  |
 
 Scenario: Plot graph of 1000 Jira issues on web page in 5 secs
 	Given I am logged in as "Andreas"

@@ -74,8 +74,8 @@ namespace Olifant.JiraMetrics.WinApp
 
             try
             {
-                var statuses = Status.CreateStatuses(this.cycleListBox.Items.Cast<string>().ToArray());
-                var preCycleStatuses = Status.CreateStatuses(this.precycleListBox.Items.Cast<string>().ToArray());
+                var statuses = Status.Create(this.cycleListBox.Items.Cast<string>().ToArray());
+                var preCycleStatuses = Status.Create(this.precycleListBox.Items.Cast<string>().ToArray());
 
                 var cycleTimeRule = new CycleTimeRule(
                     statuses,

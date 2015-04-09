@@ -31,9 +31,11 @@ namespace Olifant.JiraMetrics.Web.Controllers
 
         public ActionResult Index(string jql, string statuses)
         {
+            var deserializedStatuses = Status.Deserialize(statuses);
+
             var issues = String.IsNullOrEmpty(jql)
                 ? new List<IIssueReportModel>()
-                : GetIssues(jql, Status.CreateStatuses(statuses));
+                : GetIssues(jql, deserializedStatuses);
 
             var burnUpData = BurnUpGraph.SummonData(issues);
 

@@ -15,7 +15,7 @@ namespace Olifant.JiraMetrics.Test.Unit
         [TestCase("Requirement Analysis", "Test")]
         public void MaintainsStatuses(params string[] givenStatuses)
         {
-            var statuses = Status.CreateStatuses(givenStatuses);
+            var statuses = Status.Create(givenStatuses);
             var target = new CycleTimeRule(statuses);
             target.Statuses.Select(s => s.Name).ShouldAllBeEquivalentTo(givenStatuses);
         }
@@ -23,7 +23,7 @@ namespace Olifant.JiraMetrics.Test.Unit
         [TestCase("Some Pr-ccycle status", "Implementation")]
         public void MaintainsPreCycleStatuses(params string[] givenPreCycleStatuses)
         {
-            var preCycleStatuses = Status.CreateStatuses(givenPreCycleStatuses);
+            var preCycleStatuses = Status.Create(givenPreCycleStatuses);
             var target = new CycleTimeRule(new Status[] { }, preCycleStatuses);
             target.PreCycleStatuses.Select(s => s.Name).ShouldAllBeEquivalentTo(givenPreCycleStatuses);
         }

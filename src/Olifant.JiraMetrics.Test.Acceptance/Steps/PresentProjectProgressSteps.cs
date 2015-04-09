@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 
 using FluentAssertions;
+using JQSelenium;
 using MongoDB.Driver;
 using Olifant.JiraMetrics.Lib.Jira.Model;
 using Olifant.JiraMetrics.Test.Acceptance.Steps.Specs;
@@ -44,6 +45,11 @@ namespace Olifant.JiraMetrics.Test.Acceptance.Steps
         [Then(@"I should see a burn-up graph")]
         public void VerifyDefaultGraph()
         {
+            // TODO: wait for page instead.
+            //             var wait = new WebDriverWait(FeatureWrapper.PhantomJsDriver, TimeSpan.FromSeconds(60));
+            //             var chartDiv = wait.Until(x => x.FindElement(By.Id("chart_container")));
+            System.Threading.Thread.Sleep(500);
+
             var chartDiv = FeatureWrapper.PhantomJsDriver.FindElementById("chart_container");
             chartDiv.Text.Should().Contain("Week");
             chartDiv.Text.Should().Contain("Burnup");
@@ -53,9 +59,11 @@ namespace Olifant.JiraMetrics.Test.Acceptance.Steps
         [When(@"I search for issues with jql query '(.*)'")]
         public void WhenISearchForIssuesWithJqlQuery(string jql)
         {
-            var inputField = FeatureWrapper.PhantomJsDriver.FindElementById("jql");
-            inputField.SendKeys(jql);
-            inputField.Submit();
+            var jqlTextField = FeatureWrapper.PhantomJsDriver.FindElementById("jql");
+            jqlTextField.SendKeys(jql);
+            var jquery = new JQuery(FeatureWrapper.PhantomJsDriver);
+            
+            jquery.Find("#Search").Click();
         }
 
         [Then(@"I should see a burn-up graph with values:")]
