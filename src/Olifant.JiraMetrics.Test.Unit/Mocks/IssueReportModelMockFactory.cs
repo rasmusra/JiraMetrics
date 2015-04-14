@@ -6,7 +6,7 @@ using Moq;
 
 namespace Olifant.JiraMetrics.Test.Unit.Mocks
 {
-    public class IssueReportModelMock
+    public class IssueReportModelMockFactory
     {
         public static IIssueReportModel Create(string storyPoints, string doneDate)
         {

@@ -10,34 +10,35 @@ Background:
 	Given a team member named "Andreas"
 	And a project lead named "Sixten"
 	And a stakeholder named "Berit"
-	And a system named "OrderTracking"
-	And a project named "OFU3"
-	And a project site named "OrderTracking on Epic"
+	And a system named "JiraMetrics"
+	And a project named "JiraMetrics"
 
 
 Scenario: View burn-up
 	Given I am logged in as "Andreas"
 	When I navigate to burn-up page
-	Then I should see a burn-up graph
+	Then I should see a burn-up graph within 2 seconds
 	And I should see an empty search field
 	But the statuses should be hidden
 
 
-Scenario: Plot burn-up
+Scenario: Plot issues from query in burn-up
 	Given I am logged in as "Andreas"
 	And I navigate to burn-up page
 	When I search for issues with jql query 'key=OFU-1462' 
-	Then I should see a burn-up graph with values:
+	Then I should see a burn-up graph within 2 seconds
+	And I should see the following values in the graph:
 	| Start X | End X  | Start Y | End Y |
 	| start   | y13w34 | 0       | 1.25  |
 
+@reset_after_scenario
 Scenario: Plot graph of 1000 Jira issues on web page in 5 secs
 	Given I am logged in as "Andreas"
 	And I navigate to burn-up page
-	And there exists a Jira project called 'Huge project' with 1000 issues
-	When I query "project = 'Huge project'"
-	Then I should be presented a histogram of issues
-	And I should not need to wait more than 5 seconds
+	And there exists a Jira project called 'Huge project' with 1000 issues where each has story point of 13
+	When I query "project = 'Huge project'"	
+	Then I should see a burn-up graph within 50 seconds
+	And the accumulated story points of all issues should be 13000
 
 	@ignore
 Scenario: Filter burn-up on dates

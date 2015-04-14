@@ -1,15 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
-using System.Runtime.Remoting.Services;
-using System.Web;
 using System.Web.Mvc;
 
 using DotNet.Highcharts.Enums;
 using DotNet.Highcharts.Helpers;
 using DotNet.Highcharts.Options;
-
-using Olifant.JiraMetrics.Lib;
+using Olifant.JiraMetrics.Lib.Data;
 using Olifant.JiraMetrics.Lib.Jira;
 using Olifant.JiraMetrics.Lib.Jira.Model;
 using Olifant.JiraMetrics.Lib.Metrics;
@@ -103,11 +101,29 @@ namespace Olifant.JiraMetrics.Web.Controllers
 
         private IList<IIssueReportModel> GetIssues(string jql, Status[] cycleStatuses)
         {
-            var jiraCyclesFacade = new JiraMetricsFacade(this.jiraClient);
             var filters = new List<IIssueFilter> { new WorkDoneFilter() };
             var cycleTimeRule = new CycleTimeRule(cycleStatuses);
-            var result = jiraCyclesFacade.GetIssues(jql, cycleTimeRule, filters);
-            return result;
+            var mongoAccess = new MongoAccess(ConfigurationManager.AppSettings["ConnectionString"]);
+
+            // TODO: convert jql :-)
+            var issues = mongoAccess.GetCollection<Issue>().FindAll().ToList();
+            
+            var reportItemModels = IssueReportModelFactory.Create(issues, cycleTimeRule);
+
+            filters.ForEach(
+                f => reportItemModels = reportItemModels.Where(
+                    ri =>
+                    {
+                        var isOk = f.IsOk(ri);
+                        return isOk;
+                    }).ToList());
+
+            return reportItemModels;
+        }
+
+        private string Convert(string jql)
+        {
+            return null;
         }
     }
 }

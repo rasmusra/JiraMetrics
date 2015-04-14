@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Configuration;
-
+using JQSelenium;
 using Olifant.JiraMetrics.Test.Utilities.Helpers;
 using OpenQA.Selenium.PhantomJS;
-
+using Olifant.JiraMetrics.Lib.Jira.Model;
 using TechTalk.SpecFlow;
 
 namespace Olifant.JiraMetrics.Test.Acceptance
@@ -12,10 +12,13 @@ namespace Olifant.JiraMetrics.Test.Acceptance
     public class Hooks
     {
         [BeforeTestRun]
-        public static void SetupFakes()
+        public static void SetupStubsAndFakes()
         {
-            // TOOD: put in config, or something...
-            WebServer.SetupFakes(@"..\..\FakeStructureMap.xml");
+            WebServer.SetupFakes("FakeStructureMap.xml");
+            MongoWrapper.Init(ConfigurationManager.AppSettings["ConnectionString"]);
+            MongoWrapper.Instance.Reset();
+            var issues = IssueStubFactory.CreateFromFiles();
+            MongoWrapper.Instance.GetCollection<Issue>().InsertBatch(issues);
         }
 
         [AfterTestRun]
@@ -35,8 +38,8 @@ namespace Olifant.JiraMetrics.Test.Acceptance
             if (FeatureWrapper.PhantomJsDriver == null)
             {
                 var phantomDir = ConfigurationManager.AppSettings["PhantomJsDirectory"];
-                Console.WriteLine(phantomDir);
                 FeatureWrapper.PhantomJsDriver = new PhantomJSDriver(phantomDir);
+                FeatureWrapper.JQuery = new JQuery(FeatureWrapper.PhantomJsDriver);
             }
         }
 
@@ -59,6 +62,12 @@ namespace Olifant.JiraMetrics.Test.Acceptance
         public static void MakeScenarioLogReadableAfter()
         {
             Console.WriteLine();
+        }
+
+        [AfterScenario("reset_after_scenario")]
+        public static void ResetAfterScenario()
+        {
+            MongoWrapper.Instance.Reset();
         }
 
         public static void TearDownChrome()

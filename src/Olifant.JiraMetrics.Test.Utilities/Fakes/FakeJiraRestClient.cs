@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using Olifant.JiraMetrics.Lib.Jira;
 
 namespace Olifant.JiraMetrics.Test.Utilities.Fakes
@@ -33,9 +34,16 @@ namespace Olifant.JiraMetrics.Test.Utilities.Fakes
             return File.ReadAllText(Path.Combine("Stubs", "statuses.json"));
         }
 
-        private static string ReadJsonFile(string filename)
+        public static string ReadJsonFile(string filename)
         {
             return File.ReadAllText(Path.Combine("Stubs", string.Format("{0}.json", filename)));
+        }
+
+        public static IList<string> ReadAllJsonFiles()
+        {
+            var stubs = Directory.GetFiles("Stubs", "key*.json");
+            var jsonTexts = stubs.Select(File.ReadAllText).ToList();
+            return jsonTexts;
         }
     }
 }

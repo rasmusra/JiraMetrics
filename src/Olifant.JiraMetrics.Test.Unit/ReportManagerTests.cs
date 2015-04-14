@@ -48,9 +48,9 @@ namespace Olifant.JiraMetrics.Test.Unit
             // arrange
             var issueReportModels = new List<IIssueReportModel>() 
             { 
-                IssueReportModelMock.Create("3", "2014-04-15"), 
-                IssueReportModelMock.Create("2", "2014-04-14"), 
-                IssueReportModelMock.Create("5", "2014-04-29") 
+                IssueReportModelMockFactory.Create("3", "2014-04-15"), 
+                IssueReportModelMockFactory.Create("2", "2014-04-14"), 
+                IssueReportModelMockFactory.Create("5", "2014-04-29") 
             };
 
             //act
@@ -66,9 +66,9 @@ namespace Olifant.JiraMetrics.Test.Unit
             // arrange
             var issueReportModels = new List<IIssueReportModel>() 
             { 
-                IssueReportModelMock.Create("3", "2014-04-15"), 
-                IssueReportModelMock.Create("2", "2014-04-14"), 
-                IssueReportModelMock.Create("5", "2014-04-29") 
+                IssueReportModelMockFactory.Create("3", "2014-04-15"), 
+                IssueReportModelMockFactory.Create("2", "2014-04-14"), 
+                IssueReportModelMockFactory.Create("5", "2014-04-29") 
             };
 
             //act

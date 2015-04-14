@@ -41,9 +41,9 @@ namespace Olifant.JiraMetrics.Test.Acceptance.Steps
 
         private static void VerifyStatuses(List<string> expectedCycleStatuses, string webControlName)
         {
-            var actualStatuses = FeatureWrapper.PhantomJsDriver.FindElement(By.Name(webControlName));
-            expectedCycleStatuses.ForEach(expectedStatus =>
-                actualStatuses.Text.Should().Contain(expectedStatus));
+            var actualStatuses = FeatureWrapper.JQuery.Find("#" + webControlName);
+            expectedCycleStatuses.ForEach(expectedStatus => actualStatuses.Text()
+                .Should().Contain(expectedStatus));
         }
 
         [When(@"I move status ""(.*)"" in ""(.*)"" to ""(.*)""")]

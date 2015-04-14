@@ -77,11 +77,9 @@ namespace Olifant.JiraMetrics.Test.Acceptance.Features
 #line 12
  testRunner.And("a stakeholder named \"Berit\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 13
- testRunner.And("a system named \"OrderTracking\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("a system named \"JiraMetrics\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 14
- testRunner.And("a project named \"OFU3\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 15
- testRunner.And("a project site named \"OrderTracking on Epic\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("a project named \"JiraMetrics\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
         }
         
@@ -90,39 +88,41 @@ namespace Olifant.JiraMetrics.Test.Acceptance.Features
         public virtual void ViewBurn_Up()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("View burn-up", ((string[])(null)));
-#line 18
+#line 17
 this.ScenarioSetup(scenarioInfo);
 #line 9
 this.FeatureBackground();
-#line 19
+#line 18
  testRunner.Given("I am logged in as \"Andreas\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 20
+#line 19
  testRunner.When("I navigate to burn-up page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 20
+ testRunner.Then("I should see a burn-up graph within 2 seconds", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 21
- testRunner.Then("I should see a burn-up graph", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 22
  testRunner.And("I should see an empty search field", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 23
+#line 22
  testRunner.But("the statuses should be hidden", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "But ");
 #line hidden
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Plot burn-up")]
-        public virtual void PlotBurn_Up()
+        [NUnit.Framework.DescriptionAttribute("Plot issues from query in burn-up")]
+        public virtual void PlotIssuesFromQueryInBurn_Up()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Plot burn-up", ((string[])(null)));
-#line 26
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Plot issues from query in burn-up", ((string[])(null)));
+#line 25
 this.ScenarioSetup(scenarioInfo);
 #line 9
 this.FeatureBackground();
-#line 27
+#line 26
  testRunner.Given("I am logged in as \"Andreas\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 28
+#line 27
  testRunner.And("I navigate to burn-up page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 29
+#line 28
  testRunner.When("I search for issues with jql query \'key=OFU-1462\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 29
+ testRunner.Then("I should see a burn-up graph within 2 seconds", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
                         "Start X",
@@ -135,32 +135,35 @@ this.FeatureBackground();
                         "0",
                         "1.25"});
 #line 30
- testRunner.Then("I should see a burn-up graph with values:", ((string)(null)), table1, "Then ");
+ testRunner.And("I should see the following values in the graph:", ((string)(null)), table1, "And ");
 #line hidden
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Plot graph of 1000 Jira issues on web page in 5 secs")]
+        [NUnit.Framework.CategoryAttribute("reset_after_scenario")]
         public virtual void PlotGraphOf1000JiraIssuesOnWebPageIn5Secs()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Plot graph of 1000 Jira issues on web page in 5 secs", ((string[])(null)));
-#line 34
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Plot graph of 1000 Jira issues on web page in 5 secs", new string[] {
+                        "reset_after_scenario"});
+#line 35
 this.ScenarioSetup(scenarioInfo);
 #line 9
 this.FeatureBackground();
-#line 35
- testRunner.Given("I am logged in as \"Andreas\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 36
- testRunner.And("I navigate to burn-up page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Given("I am logged in as \"Andreas\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 37
- testRunner.And("there exists a Jira project called \'Huge project\' with 1000 issues", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("I navigate to burn-up page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 38
- testRunner.When("I query \"project = \'Huge project\'\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.And("there exists a Jira project called \'Huge project\' with 1000 issues where each has" +
+                    " story point of 13", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 39
- testRunner.Then("I should be presented a histogram of issues", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.When("I query \"project = \'Huge project\'\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 40
- testRunner.And("I should not need to wait more than 5 seconds", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Then("I should see a burn-up graph within 50 seconds", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 41
+ testRunner.And("the accumulated story points of all issues should be 13000", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -172,13 +175,13 @@ this.FeatureBackground();
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Filter burn-up on dates", new string[] {
                         "ignore"});
-#line 43
+#line 44
 this.ScenarioSetup(scenarioInfo);
 #line 9
 this.FeatureBackground();
-#line 44
- testRunner.Given("I am logged in as \"Andreas\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 45
+ testRunner.Given("I am logged in as \"Andreas\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 46
  testRunner.When("I navigate to burn-up page on the project site", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
             TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
@@ -187,9 +190,9 @@ this.FeatureBackground();
             table2.AddRow(new string[] {
                         "2014-07-01",
                         "2014-12-01"});
-#line 46
+#line 47
  testRunner.And("I enter the following start- and end-dates:", ((string)(null)), table2, "And ");
-#line 49
+#line 50
  testRunner.And("click button \"show graph\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
@@ -202,7 +205,7 @@ this.FeatureBackground();
                         "2014-12-01",
                         "0",
                         "163 (not determined yet)"});
-#line 50
+#line 51
  testRunner.Then("I should see a burn-up graph with values:", ((string)(null)), table3, "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -215,11 +218,11 @@ this.FeatureBackground();
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Email link to graph", new string[] {
                         "ignore"});
-#line 56
+#line 57
 this.ScenarioSetup(scenarioInfo);
 #line 9
 this.FeatureBackground();
-#line 57
+#line 58
  testRunner.Given("I am logged in as \"Andreas\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
             TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
@@ -232,11 +235,11 @@ this.FeatureBackground();
                         "2014-12-01",
                         "0",
                         "163 (not determined yet)"});
-#line 58
+#line 59
  testRunner.And("I see a burn-up graph with values:", ((string)(null)), table4, "And ");
-#line 61
- testRunner.And("I email the url of the graph to \"Sixten\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 62
+ testRunner.And("I email the url of the graph to \"Sixten\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 63
  testRunner.When("\"sixten\" clicks on the link", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
             TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
@@ -249,7 +252,7 @@ this.FeatureBackground();
                         "2014-12-01",
                         "0",
                         "163 (not determined yet)"});
-#line 63
+#line 64
  testRunner.Then("\"Sixten\" should see a burn-up graph on a web-page with values:", ((string)(null)), table5, "Then ");
 #line hidden
             TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
@@ -258,7 +261,7 @@ this.FeatureBackground();
             table6.AddRow(new string[] {
                         "2014-07-01",
                         "2014-12-01"});
-#line 66
+#line 67
  testRunner.And("\"Sixten\" should see the following start- and end-dates:", ((string)(null)), table6, "And ");
 #line hidden
             this.ScenarioCleanup();
@@ -271,19 +274,19 @@ this.FeatureBackground();
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Sixten filters for OFU3 on burn-up", new string[] {
                         "ignore"});
-#line 73
+#line 74
 this.ScenarioSetup(scenarioInfo);
 #line 9
 this.FeatureBackground();
-#line 74
- testRunner.Given("I am logged in as \"Sixten\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 75
- testRunner.When("I navigate to burn-up page on the project site", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.Given("I am logged in as \"Sixten\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 76
- testRunner.And("I enter \"OFU3\" in the \"Filter on labels\" textfield", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.When("I navigate to burn-up page on the project site", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 77
- testRunner.Then("I should see a burn-up graph with all iterations since OFU3-project started", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("I enter \"OFU3\" in the \"Filter on labels\" textfield", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 78
+ testRunner.Then("I should see a burn-up graph with all iterations since OFU3-project started", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 79
  testRunner.And("it should only present burn-up for OFU3", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();

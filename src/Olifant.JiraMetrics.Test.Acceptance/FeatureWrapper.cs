@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium.PhantomJS;
+﻿using JQSelenium;
+using OpenQA.Selenium.PhantomJS;
 
 using TechTalk.SpecFlow;
 
@@ -6,7 +7,6 @@ namespace Olifant.JiraMetrics.Test.Acceptance
 {
     internal static class FeatureWrapper
     {
-
         internal static PhantomJSDriver PhantomJsDriver
         {
             get
@@ -22,6 +22,24 @@ namespace Olifant.JiraMetrics.Test.Acceptance
             set
             {
                 FeatureContext.Current["PhantomJsDriver"] = value;
+            }
+        }
+
+        internal static JQuery JQuery
+        {
+            get
+            {
+                if (!FeatureContext.Current.ContainsKey("JQuery"))
+                {
+                    JQuery = null;
+                }
+
+                return (JQuery)FeatureContext.Current["JQuery"];
+            }
+
+            set
+            {
+                FeatureContext.Current["JQuery"] = value;
             }
         }
     }

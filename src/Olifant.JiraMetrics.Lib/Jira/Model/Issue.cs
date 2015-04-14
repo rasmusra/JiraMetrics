@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using MongoDB.Bson.Serialization.Attributes;
 
 namespace Olifant.JiraMetrics.Lib.Jira.Model
 {
@@ -8,6 +10,7 @@ namespace Olifant.JiraMetrics.Lib.Jira.Model
     public class Issue
     {
         [JsonProperty("key")]
+        [BsonId]
         public string Key { get; set; }
 
         [JsonProperty("fields")]
@@ -46,6 +49,22 @@ namespace Olifant.JiraMetrics.Lib.Jira.Model
             return
                 Fields.Labels.Any(
                     existingLabel => string.Equals(existingLabel, label, StringComparison.OrdinalIgnoreCase));
+        }
+
+        public IList<Issue> CloneMany(int noofClones)
+        {
+            var json = JsonConvert.SerializeObject(this);
+            var result = new List<Issue>(noofClones);
+
+            for (var i = 0; i < noofClones; i++)
+            {
+                var newKey = string.Format("{0}-{1}", Key, i);
+                var clonedJson = json.Replace(Key, newKey);
+                var clonedIssue = JsonConvert.DeserializeObject<Issue>(clonedJson);
+                result.Add(clonedIssue);
+            }
+
+            return result;
         }
     }
 }

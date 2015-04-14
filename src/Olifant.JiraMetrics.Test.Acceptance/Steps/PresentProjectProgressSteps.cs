@@ -1,8 +1,7 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 
 using FluentAssertions;
-using JQSelenium;
-using MongoDB.Driver;
 using Olifant.JiraMetrics.Lib.Jira.Model;
 using Olifant.JiraMetrics.Test.Acceptance.Steps.Specs;
 using Olifant.JiraMetrics.Test.Utilities.Helpers;
@@ -34,59 +33,61 @@ namespace Olifant.JiraMetrics.Test.Acceptance.Steps
             FeatureWrapper.PhantomJsDriver.Navigate().GoToUrl(url);
         }
 
-        [Given(@"there exists a Jira project called '(.*)' with (.*) issues")]
-        public void SetupMongo(string projectName, int noofIssues)
+        [Given(@"there exists a Jira project called '(.*)' with (.*) issues where each has story point of (.*)")]
+        public void InsertIssuesIntoMongo(string projectName, int noofIssues, int storyPoint)
         {
-            var issues = new MongoHelper<Issue>();
-            issues.Collection.Insert(new Issue());
-            var issuesList = issues.Collection.FindAll().ToList();
+            var issuesCollection = MongoWrapper.Instance.GetCollection<Issue>();
+            var issues = IssueStubFactory.CreateMany("DISCO-620", noofIssues, storyPoint);
+
+            issuesCollection.InsertBatch(issues);
         }
 
-        [Then(@"I should see a burn-up graph")]
-        public void VerifyDefaultGraph()
+        [Then(@"I should see a burn-up graph within (.*) seconds")]
+        public void VerifyDefaultGraph(int timeoutInSeconds)
         {
-            // TODO: wait for page instead.
-            //             var wait = new WebDriverWait(FeatureWrapper.PhantomJsDriver, TimeSpan.FromSeconds(60));
-            //             var chartDiv = wait.Until(x => x.FindElement(By.Id("chart_container")));
-            System.Threading.Thread.Sleep(500);
-
-            var chartDiv = FeatureWrapper.PhantomJsDriver.FindElementById("chart_container");
-            chartDiv.Text.Should().Contain("Week");
-            chartDiv.Text.Should().Contain("Burnup");
-            chartDiv.Text.Should().Contain("start");
+            FeatureWrapper.PhantomJsDriver.Manage().Timeouts().SetPageLoadTimeout(TimeSpan.FromSeconds(timeoutInSeconds)); 
+            var chartDiv = FeatureWrapper.JQuery.Find("#chart_container");
+            chartDiv.Text().Should().Contain("Week");
+            chartDiv.Text().Should().Contain("Burnup");
+            chartDiv.Text().Should().Contain("start");
         }
 
         [When(@"I search for issues with jql query '(.*)'")]
+        [When(@"I query ""(.*)""")]
         public void WhenISearchForIssuesWithJqlQuery(string jql)
         {
-            var jqlTextField = FeatureWrapper.PhantomJsDriver.FindElementById("jql");
-            jqlTextField.SendKeys(jql);
-            var jquery = new JQuery(FeatureWrapper.PhantomJsDriver);
-            
-            jquery.Find("#Search").Click();
+            FeatureWrapper.PhantomJsDriver.FindElementById("jql").SendKeys(jql);
+            FeatureWrapper.JQuery.Find("#Search").Click();
         }
 
-        [Then(@"I should see a burn-up graph with values:")]
-        public void VerifyGraph(Table table)
+        [Then(@"I should see the following values in the graph:")]
+        public void VerifyGraphValues(Table table)
         {
+            var chartDiv = FeatureWrapper.JQuery.Find("#chart_container");
             var graphData = table.CreateSet<BurnUpGraphSpec>().ToList();
-            VerifyDefaultGraph();
-
-            var chartDiv = FeatureWrapper.PhantomJsDriver.FindElementById("chart_container");
             graphData.ForEach(data =>
             {
-                chartDiv.Text.Should().Contain(data.StartX);
-                chartDiv.Text.Should().Contain(data.EndX);
-                chartDiv.Text.Should().Contain(data.StartY);
-                chartDiv.Text.Should().Contain(data.EndY);
+                chartDiv.Text().Should().Contain(data.StartX);
+                chartDiv.Text().Should().Contain(data.EndX);
+                chartDiv.Text().Should().Contain(data.StartY);
+                chartDiv.Text().Should().Contain(data.EndY);
             });
         }
 
         [Then(@"I should see an empty search field")]
         public void VerifyEmptySearchField()
         {
-            var textField = FeatureWrapper.PhantomJsDriver.FindElementById("jql");
-            textField.Text.Should().BeEmpty();
+            FeatureWrapper.JQuery.Find("#jql").Text().
+                Should().BeEmpty();
+        }
+
+        [Then(@"the accumulated story points of all issues should be (.*)")]
+        public void VerifyGraphValues(int expectedStoryPoints)
+        {
+            var chartDiv = FeatureWrapper.JQuery.Find("#chart_container");
+            
+            chartDiv.Text()
+                .Should().Contain(expectedStoryPoints.ToString());
         }
     }
 }
