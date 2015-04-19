@@ -12,8 +12,9 @@ let featuresDir = buildArtifacts + @"/features"
 let featuresWithTestResultsDir = buildArtifacts + @"/featuresWithTestResults"
 let chrome = @"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe"
 let includeCategory = getBuildParamOrDefault "includeCategory" ""
-let mongod = @"C:\Program Files\MongoDB\Server\3.0\bin\mongod.exe"
-let mongoPort = "27113"
+let mongoPath = @"C:\Program Files\MongoDB\Server\3.0\bin"
+let mongoPort = getBuildParamOrDefault "port" "27113"
+let mongoDb = "JiraMetricsDb"
 let mongoDbPath = String.concat @"\" [__SOURCE_DIRECTORY__; "data" ; "db"]
 let mongoLogDir = String.concat @"\" [__SOURCE_DIRECTORY__; "data" ; "log" ]
 
@@ -82,12 +83,19 @@ FinalTarget "Publish" (fun _ ->
 Target "StartMongoDb" (fun _ ->
     CreateDir mongoDbPath
     CreateDir mongoLogDir
-    let logfile = String.concat @"\" [ mongoLogDir ; "JiraMetricsDB.log" ]
+    let logfile = String.concat @"\" [ mongoLogDir ; mongoDb + ".log" ]
+    let cmd = mongoPath + @"\mongod"
     let args = "--dbpath " + mongoDbPath + " --logpath " + logfile + " --port " + mongoPort
-    let errorCode = Shell.Exec(mongod, args)
+    trace (cmd + " " + args)
+    let errorCode = Shell.Exec(cmd, args)
     ()
 )
 
+Target "SetupMongoDb" (fun _ ->
+    let args = "-d " + mongoDb + " -c issue --file src\Olifant.JiraMetrics.Test.Utilities\Stubs\jirametricsdb_dump.json --upsert -h localhost:" + mongoPort
+    let errorCode = Shell.Exec(mongoPath + @"\mongoimport", args)
+    ()
+)
 
 // Dependencies
 "Clean"

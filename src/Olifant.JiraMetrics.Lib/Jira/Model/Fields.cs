@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using MongoDB.Bson.Serialization.Attributes;
+using Newtonsoft.Json;
 
 namespace Olifant.JiraMetrics.Lib.Jira.Model
 {
@@ -30,6 +31,9 @@ namespace Olifant.JiraMetrics.Lib.Jira.Model
 
         [JsonProperty("resolution")]
         public Resolution Resolution { get; set; }
+
+        [JsonProperty("project"), BsonElement("project")]
+        public Project Project { get; set; }
 
         public string EstimateInHours 
         {

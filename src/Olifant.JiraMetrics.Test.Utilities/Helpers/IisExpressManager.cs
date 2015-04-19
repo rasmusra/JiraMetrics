@@ -3,7 +3,7 @@ using System.IO;
 
 namespace Olifant.JiraMetrics.Test.Utilities.Helpers
 {
-    public class WebServer
+    public class IisExpressManager
     {
         public const string Port = "8193";
         private static readonly FileInfo StructureMapConfigFileInfo = new FileInfo(@"..\..\..\Olifant.JiraMetrics.Web\StructureMap.xml");
@@ -20,23 +20,20 @@ namespace Olifant.JiraMetrics.Test.Utilities.Helpers
             }
         }
 
-        private static string IisExe
+        public static void Start()
         {
-            get
-            {
-                return Path.Combine(ProgramFilesPath, "IIS Express", "iisexpress.exe");
-            }
+            var iisExe = Path.Combine(ProgramFilesPath, "IIS Express", "iisexpress.exe");
+            var iisArgs = string.Format("/path:\"{0}\" /port:{1}",
+                new DirectoryInfo(@"..\..\..\Olifant.JiraMetrics.Web").FullName, Port);
+
+            WinProcessWrapper.Start(
+                iisExe, 
+                iisArgs);
         }
 
-        public static void StartIis()
+        public static void Kill()
         {
-            var cmd = string.Format(
-                "\"{0}\" /path:\"{1}\" /port:{2}",
-                IisExe,
-                new DirectoryInfo(@"..\..\..\Olifant.JiraMetrics.Web").FullName,
-                Port);
-
-            ProcessManager.Start(cmd);
+            WinProcessWrapper.KillByName("iisexpress");
         }
 
         public static void SetupFakes(string fakeStructureMapPath)

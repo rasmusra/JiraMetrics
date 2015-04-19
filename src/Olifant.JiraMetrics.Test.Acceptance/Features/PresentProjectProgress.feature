@@ -1,4 +1,4 @@
-﻿@chrome
+﻿@web
 Feature: Present project progress
 	In order to get a grip on project risks 
 	As a stakeholder
@@ -14,31 +14,37 @@ Background:
 	And a project named "JiraMetrics"
 
 
+	@no_data_changes
 Scenario: View burn-up
 	Given I am logged in as "Andreas"
 	When I navigate to burn-up page
 	Then I should see a burn-up graph within 2 seconds
-	And I should see an empty search field
+	And I should see a dropdown with selectable projects:
+	| Project name |
+	| OFU          |
+	| Disco        |
+	| SCSC         |
 	But the statuses should be hidden
 
 
+	@no_data_changes
 Scenario: Plot issues from query in burn-up
 	Given I am logged in as "Andreas"
 	And I navigate to burn-up page
-	When I search for issues with jql query 'key=OFU-1462' 
+	When I query "Disco" 
 	Then I should see a burn-up graph within 2 seconds
 	And I should see the following values in the graph:
 	| Start X | End X  | Start Y | End Y |
-	| start   | y13w34 | 0       | 1.25  |
+	| start   | y14w51 | 0       | 12.5  |
 
-@reset_after_scenario
+	@reset_after_scenario
 Scenario: Plot graph of 1000 Jira issues on web page in 5 secs
 	Given I am logged in as "Andreas"
 	And I navigate to burn-up page
 	And there exists a Jira project called 'Huge project' with 1000 issues where each has story point of 13
-	When I query "project = 'Huge project'"	
-	Then I should see a burn-up graph within 50 seconds
-	And the accumulated story points of all issues should be 13000
+	When I query "Huge project"	
+	Then I should see a burn-up graph within 5 seconds
+	And the accumulated story points of all issues should be 13000.0
 
 	@ignore
 Scenario: Filter burn-up on dates
@@ -67,13 +73,3 @@ Scenario: Email link to graph
 	And "Sixten" should see the following start- and end-dates:
 	| Start date | End date   |
 	| 2014-07-01 | 2014-12-01 |
-
-
-	@ignore
-	# downprioritized for the time being
-Scenario: Sixten filters for OFU3 on burn-up
-	Given I am logged in as "Sixten"
-	When I navigate to burn-up page on the project site
-	And I enter "OFU3" in the "Filter on labels" textfield
-	Then I should see a burn-up graph with all iterations since OFU3-project started
-	And it should only present burn-up for OFU3

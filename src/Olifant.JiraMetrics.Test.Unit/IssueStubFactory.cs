@@ -6,11 +6,19 @@ namespace Olifant.JiraMetrics.Test.Unit
 {
     internal static class IssueStubFactory
     {
+        internal static Issue CreateIssue(string key)
+        {
+            var history = CreateStatusHistory("2013-01-01", "Open");
+            var issue = CreateIssue(history);
+            issue.Key = key;
+            return issue;
+        }
+
         internal static Issue CreateIssue(History givenHistory, string createdDate = "1900-01-01")
         {
             var issue = new Issue()
             {
-                ChangeLog = IssueStubFactory.CreateChangeLog(givenHistory),
+                ChangeLog = CreateChangeLog(givenHistory),
                 Fields = new Fields { Created = createdDate }
             };
             return issue;
@@ -18,7 +26,7 @@ namespace Olifant.JiraMetrics.Test.Unit
 
         internal static ChangeLog CreateChangeLog(History givenHistory)
         {
-            var changeLog = new ChangeLog { Histories = IssueStubFactory.CreateHistories(givenHistory) };
+            var changeLog = new ChangeLog { Histories = CreateHistories(givenHistory) };
             return changeLog;
         }
 

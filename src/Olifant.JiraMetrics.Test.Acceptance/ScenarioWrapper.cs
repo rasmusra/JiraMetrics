@@ -1,4 +1,5 @@
-﻿using Olifant.JiraMetrics.Lib;
+﻿using System;
+using Olifant.JiraMetrics.Lib;
 using Olifant.JiraMetrics.Lib.Metrics;
 using Olifant.JiraMetrics.Lib.Metrics.Filters;
 using Olifant.JiraMetrics.Test.Utilities.Fakes;
@@ -65,7 +66,7 @@ namespace Olifant.JiraMetrics.Test.Acceptance
         {
             get
             {
-                return ScenarioContext.Current.ContainsKey("Jql") ? (string)ScenarioContext.Current["Jql"] : string.Empty;
+                return ScenarioContext.Current.ContainsKey("Jql") ? (string)ScenarioContext.Current["Jql"] : String.Empty;
             }
 
             set
@@ -117,6 +118,36 @@ namespace Olifant.JiraMetrics.Test.Acceptance
             set
             {
                 ScenarioContext.Current["WorkDoneFilter"] = value;
+            }
+        }
+
+        public static int PageLoadTimeout
+        {
+            get
+            {
+                return (int)ScenarioContext.Current["PageLoadTimeout"];
+            }
+
+            set
+            {
+                ScenarioContext.Current["PageLoadTimeout"] = value;
+            }
+        }
+
+        public static bool DbNeedstoBeResetAfterScenario
+        {
+            get
+            {
+                if (!FeatureContext.Current.ContainsKey("DbNeedstoBeResetAfterScenario"))
+                {
+                    DbNeedstoBeResetAfterScenario = true;
+                }
+
+                return (bool)FeatureContext.Current["DbNeedstoBeResetAfterScenario"];
+            }
+            set
+            {
+                FeatureContext.Current["DbNeedstoBeResetAfterScenario"] = value;
             }
         }
     }

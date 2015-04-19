@@ -11,36 +11,19 @@ namespace Olifant.JiraMetrics.Test.Acceptance
     [Binding]
     public class Hooks
     {
-        [BeforeTestRun]
-        public static void SetupStubsAndFakes()
+        [BeforeFeature]
+        public static void SetUp()
         {
-            WebServer.SetupFakes("FakeStructureMap.xml");
-            MongoWrapper.Init(ConfigurationManager.AppSettings["ConnectionString"]);
-            MongoWrapper.Instance.Reset();
-            var issues = IssueStubFactory.CreateFromFiles();
-            MongoWrapper.Instance.GetCollection<Issue>().InsertBatch(issues);
-        }
+            Console.WriteLine("Hooks: Kill running processes...");
+            IisExpressManager.Kill();
+            WinProcessWrapper.KillByName("phantomjs");
 
-        [AfterTestRun]
-        [AfterFeature("chrome")]
-        public static void RemoveFakes()
-        {
-            WebServer.RemoveFakes();
-            TearDownChrome();
-        }
+            Console.WriteLine("Hooks: Setup db...");
+            MongoWrapper.Init(ConfigurationManager.AppSettings["ConnectionString"],
+                IssueStubFactory.CreateFromFiles());
 
-        [BeforeFeature("chrome")]
-        public static void SetupChrome()
-        {
-            Console.WriteLine("Starting iisexpress...");
-            WebServer.StartIis();
-
-            if (FeatureWrapper.PhantomJsDriver == null)
-            {
-                var phantomDir = ConfigurationManager.AppSettings["PhantomJsDirectory"];
-                FeatureWrapper.PhantomJsDriver = new PhantomJSDriver(phantomDir);
-                FeatureWrapper.JQuery = new JQuery(FeatureWrapper.PhantomJsDriver);
-            }
+            Console.WriteLine("Hooks: Setup web...");
+            IisExpressManager.SetupFakes("FakeStructureMap.xml");
         }
 
         [BeforeFeature]
@@ -51,6 +34,47 @@ namespace Olifant.JiraMetrics.Test.Acceptance
             Console.WriteLine(FeatureContext.Current.FeatureInfo.Description);
             Console.WriteLine();
         }
+
+        /// <summary>
+        /// Add tag @web to setup an iisexpress server during scenario
+        /// </summary>
+        #region web
+
+        [BeforeScenario("web")]
+        public static void SetupBrowser()
+        {
+            Console.WriteLine("Starting iisexpress...");
+            IisExpressManager.Start();
+
+            if (FeatureWrapper.PhantomJsDriver == null)
+            {
+                var phantomDir = ConfigurationManager.AppSettings["PhantomJsDirectory"];
+                FeatureWrapper.PhantomJsDriver = new PhantomJSDriver(phantomDir, new PhantomJSOptions(), TimeSpan.FromSeconds(60));
+                FeatureWrapper.JQuery = new JQuery(FeatureWrapper.PhantomJsDriver);
+            }
+        }
+
+        [AfterScenario("web")]
+        public static void TearDown()
+        {
+            Console.WriteLine("Hooks: Tear down web...");
+            IisExpressManager.RemoveFakes();
+            IisExpressManager.Kill();
+
+            try
+            {
+                FeatureWrapper.PhantomJsDriver.Quit();
+                FeatureWrapper.PhantomJsDriver.Dispose();
+                FeatureWrapper.PhantomJsDriver = null;
+                WinProcessWrapper.KillByName("phantomjs");
+            }
+            catch (Exception e)
+            {
+                Console.Write("Problems when tearing down phantomjs: " + e);
+            }
+        }
+
+        #endregion
 
         [BeforeScenario]
         public static void MakeScenarioLogReadableBefore()
@@ -64,23 +88,24 @@ namespace Olifant.JiraMetrics.Test.Acceptance
             Console.WriteLine();
         }
 
-        [AfterScenario("reset_after_scenario")]
-        public static void ResetAfterScenario()
+        /// <summary>
+        /// Add this tag to skip db-reset after scenario
+        /// </summary>
+        [BeforeScenario("no_data_changes")]
+        public static void RememberThatDbWillNotChange()
         {
-            MongoWrapper.Instance.Reset();
+            ScenarioWrapper.DbNeedstoBeResetAfterScenario = false;
         }
 
-        public static void TearDownChrome()
+        [AfterScenario]
+        public static void ResetChangedDataAfterScenario()
         {
-            try
+            if (ScenarioWrapper.DbNeedstoBeResetAfterScenario)
             {
-                FeatureWrapper.PhantomJsDriver.Quit();
-                FeatureWrapper.PhantomJsDriver.Dispose();
+                MongoWrapper.Instance.InitTestPopulation(IssueStubFactory.CreateFromFiles());
             }
-            catch (Exception e)
-            {
-                // ignore
-            }
+
+            ScenarioWrapper.DbNeedstoBeResetAfterScenario = true;
         }
     }
 }

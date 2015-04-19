@@ -1,27 +1,43 @@
 ﻿@using Olifant.JiraMetrics.Web.Models
-@model DotNet.Highcharts.Highcharts
+@model BurnUpViewModel
+
+<div id="projectsDiv">
+    @{ Html.RenderAction("Projects", "Home"); }
+</div>
 
 @using (Html.BeginForm("Index", "Home", FormMethod.Post, new { id = "generate_graph" }))
 {
     <script type="text/javascript">
         $(function() {
-            var statuses = $('#CycleStatusesListbox option').map(function() { return $(this).val(); }).get();
 
             $('#Search').click(function() {
+                var statuses = $('#CycleStatusesListbox option').map(function () { return $(this).val(); }).get();
+                var project = $('#ProjectList option:selected').text();
+
                 var input = $("<input>")
                     .attr("type", "hidden")
                     .attr("name", "statuses")
                     .val(statuses);
                 $('#Search').append($(input));
+
+                input = $("<input>")
+                    .attr("type", "hidden")
+                    .attr("name", "project")
+                    .val(project);
+                $('#Search').append($(input));
             });
         });
         </script>
-    
-    @Html.TextBox("jql")
+
     <input id="Search" type="submit" value="Search"  />
 }
 
-@(Model)
+<div id="searchDiv">
+</div>
+
+<div id="chartDiv">
+    @(Model.Chart)
+</div>
 
 <a id="toggleStatusVisibility" class="btn btn-success btn-sm glyphicon glyphicon-arrow-down"> Change those statuses!</a><br />
 

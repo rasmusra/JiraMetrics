@@ -1,4 +1,4 @@
-﻿@chrome
+﻿@web
 Feature: Make it possible to assign any existing statuses to cycle time 
 	For being able to work with cycle times
 	As a person involved in Jira project

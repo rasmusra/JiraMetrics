@@ -9,11 +9,10 @@ namespace Olifant.JiraMetrics.Lib.Jira.Model
 
     public class Issue
     {
-        [JsonProperty("key")]
-        [BsonId]
+        [JsonProperty("key"), BsonId]
         public string Key { get; set; }
 
-        [JsonProperty("fields")]
+        [JsonProperty("fields"), BsonElement("fields")]
         public Fields Fields { get; set; }
 
         [JsonProperty("changelog")]

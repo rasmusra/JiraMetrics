@@ -31,7 +31,7 @@ namespace Olifant.JiraMetrics.Lib.Metrics.BurnUp
                     .ToList();
 
                 var totalPointsInIteration = matchingIssues
-                    .Sum(i => decimal.Parse(i.StoryPoints));
+                    .Sum(i => i.StoryPoints);
 
                 accumulatedPoints += totalPointsInIteration;
                 result[iter] = new BurnUpValue(accumulatedPoints);

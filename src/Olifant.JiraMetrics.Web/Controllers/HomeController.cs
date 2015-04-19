@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 using System.Web.Mvc;
-
-using DotNet.Highcharts.Enums;
-using DotNet.Highcharts.Helpers;
-using DotNet.Highcharts.Options;
+using Microsoft.Ajax.Utilities;
+using MongoDB.Driver.Linq;
 using Olifant.JiraMetrics.Lib.Data;
 using Olifant.JiraMetrics.Lib.Jira;
 using Olifant.JiraMetrics.Lib.Jira.Model;
@@ -27,36 +25,30 @@ namespace Olifant.JiraMetrics.Web.Controllers
             this.jiraClient = jiraClient;
         }
 
-        public ActionResult Index(string jql, string statuses)
+        public ActionResult Index(string project, string statuses)
         {
             var deserializedStatuses = Status.Deserialize(statuses);
 
-            var issues = String.IsNullOrEmpty(jql)
+            var issues = String.IsNullOrEmpty(project)
                 ? new List<IIssueReportModel>()
-                : GetIssues(jql, deserializedStatuses);
+                : GetIssues(project, deserializedStatuses);
 
             var burnUpData = BurnUpGraph.SummonData(issues);
+            var burnUpModel = new BurnUpViewModel(burnUpData);
 
-            var xaxisValues = new List<string> { "start" };
-            xaxisValues.AddRange(burnUpData.Keys.Select(k => k.WeekLabel));
-            var xaxis = new XAxis { Categories = xaxisValues.ToArray(), Title = new XAxisTitle { Text = "Week" } };
+            return View(burnUpModel);
+        }
 
-            var yaxisValues = new List<object> { "0" };
-            yaxisValues.AddRange(burnUpData.Values.Select(v => v.StoryPoints).Cast<object>());
-            var seriesColumn = new Series { Data = new Data(yaxisValues.ToArray()), Type = ChartTypes.Column };
-            var seriesLine = new Series { Data = new Data(yaxisValues.ToArray()) };
-
-            var yaxis = new YAxis { Min = 0, Title = new YAxisTitle { Text = "Story Points" } };
-
-            var chart = new DotNet.Highcharts.Highcharts("chart")
-                .SetXAxis(xaxis)
-                .SetSeries(new[] { seriesLine, seriesColumn })
-                .SetYAxis(yaxis);
-
-            var title = new Title { Text = "Burnup" };
-            chart.SetTitle(title);
-
-            return View(chart);
+        [ChildActionOnly]
+        public PartialViewResult Projects()
+        {
+            var mongoAccess = new MongoAccess(ConfigurationManager.AppSettings["ConnectionString"]);
+            var projects = (from i in mongoAccess.GetCollection<Issue>().FindAll()
+                            select i.Fields.Project)
+                            .DistinctBy(p => p.Name)
+                            .ToList();
+            var vm = new ProjectViewModel(projects);
+            return PartialView(vm);
         }
 
         [ChildActionOnly]
@@ -99,31 +91,26 @@ namespace Olifant.JiraMetrics.Web.Controllers
             return PartialView(cyclesViewModel);
         }
 
-        private IList<IIssueReportModel> GetIssues(string jql, Status[] cycleStatuses)
+        private IList<IIssueReportModel> GetIssues(string project, Status[] cycleStatuses)
         {
             var filters = new List<IIssueFilter> { new WorkDoneFilter() };
             var cycleTimeRule = new CycleTimeRule(cycleStatuses);
-            var mongoAccess = new MongoAccess(ConfigurationManager.AppSettings["ConnectionString"]);
 
-            // TODO: convert jql :-)
-            var issues = mongoAccess.GetCollection<Issue>().FindAll().ToList();
-            
+            var mongoAccess = new MongoAccess(ConfigurationManager.AppSettings["ConnectionString"]);
+            var q = from issue in mongoAccess.GetCollection<Issue>().AsQueryable<Issue>()
+                    where issue.Fields.Project.Name == project 
+                    select issue;
+            var mongoQuery = ((MongoQueryable<Issue>)q).GetMongoQuery();
+   
+            var issues = mongoAccess.GetCollection<Issue>().Find(mongoQuery).ToList();
             var reportItemModels = IssueReportModelFactory.Create(issues, cycleTimeRule);
 
-            filters.ForEach(
-                f => reportItemModels = reportItemModels.Where(
-                    ri =>
-                    {
-                        var isOk = f.IsOk(ri);
-                        return isOk;
-                    }).ToList());
+            var result = reportItemModels
+                .Where(ri => filters.All(f => f.IsOk(ri)))
+                .OrderBy(ri => ri.IssueType)
+                .ToList();
 
-            return reportItemModels;
-        }
-
-        private string Convert(string jql)
-        {
-            return null;
+            return result;
         }
     }
 }

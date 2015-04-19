@@ -69,6 +69,7 @@
     <Compile Include="Jira\Model\HistoryItem.cs" />
     <Compile Include="Jira\Model\Issue.cs" />
     <Compile Include="Jira\Model\Issues.cs" />
+    <Compile Include="Jira\Model\Project.cs" />
     <Compile Include="Jira\Model\Status.cs" />
     <Compile Include="Metrics\Model\IIssueReportModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

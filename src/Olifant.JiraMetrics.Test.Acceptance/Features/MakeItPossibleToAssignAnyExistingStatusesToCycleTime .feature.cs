@@ -20,7 +20,7 @@ namespace Olifant.JiraMetrics.Test.Acceptance.Features
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("Make it possible to assign any existing statuses to cycle time")]
-    [NUnit.Framework.CategoryAttribute("chrome")]
+    [NUnit.Framework.CategoryAttribute("web")]
     public partial class MakeItPossibleToAssignAnyExistingStatusesToCycleTimeFeature
     {
         
@@ -35,7 +35,7 @@ namespace Olifant.JiraMetrics.Test.Acceptance.Features
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Make it possible to assign any existing statuses to cycle time", "For being able to work with cycle times\r\nAs a person involved in Jira project\r\nI " +
                     "need the exported cycle times presented in a report", ProgrammingLanguage.CSharp, new string[] {
-                        "chrome"});
+                        "web"});
             testRunner.OnFeatureStart(featureInfo);
         }
         

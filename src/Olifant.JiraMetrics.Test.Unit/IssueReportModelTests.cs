@@ -40,11 +40,12 @@ namespace Olifant.JiraMetrics.Test.Unit
             issue.StartDateTime.ShouldBeEquivalentTo(expected);
         }
 
-        [TestCase("CR is assigned 7 story points", "DISCO-620", "7,0")]
-        [TestCase("Defect is assigned 1 points", "DISCO-665", "1,0")]
-        [TestCase("CR is not assigned any points", "OFU-1462", "1,0")]
-        [TestCase("Defect is not assigned any points", "OFU-676", "0,5")]
-        public void ProvidesStoryPointsOfIssue(string scenarioDescription, string jiraKey, string expectedStoryPoints)
+        [TestCase("CR is assigned 7 story points", "DISCO-620", 7)]
+        [TestCase("Defect is assigned 1 points", "DISCO-665", 1)]
+        [TestCase("CR is not assigned any points", "OFU-1462", 1)]
+        [TestCase("Defect is not assigned any points", "OFU-676", 1)]
+        [TestCase("Defect is not assigned any points", "OFU-636", 0.5)]
+        public void ProvidesStoryPointsOfIssue(string scenarioDescription, string jiraKey, decimal expectedStoryPoints)
         {
             // arrange
             var issue = ReadFirstIssue(jiraKey, CycleName2StatusesDict.Lookup("Dev"));

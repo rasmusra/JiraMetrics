@@ -8,12 +8,12 @@ namespace Olifant.JiraMetrics.Test.Unit.Mocks
 {
     public class IssueReportModelMockFactory
     {
-        public static IIssueReportModel Create(string storyPoints, string doneDate)
+        public static IIssueReportModel Create(decimal storyPoints, string doneDate)
         {
             return Create(storyPoints, DateTime.MinValue.ToString(), doneDate);
         }
 
-        public static IIssueReportModel Create(string storyPoints, string startDate, string doneDate)
+        public static IIssueReportModel Create(decimal storyPoints, string startDate, string doneDate)
         {
             var mock = new Mock<IIssueReportModel>();
             mock.Setup(irm => irm.StoryPoints).Returns(storyPoints);

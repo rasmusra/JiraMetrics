@@ -60,8 +60,8 @@
     <Compile Include="Helpers\IssueStubFactory.cs" />
     <Compile Include="Helpers\MongoWrapper.cs" />
     <Compile Include="Helpers\CycleName2StatusesDict.cs" />
-    <Compile Include="Helpers\ProcessManager.cs" />
-    <Compile Include="Helpers\WebServer.cs" />
+    <Compile Include="Helpers\WinProcessWrapper.cs" />
+    <Compile Include="Helpers\IisExpressManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

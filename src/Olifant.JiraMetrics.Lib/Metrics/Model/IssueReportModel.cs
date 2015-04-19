@@ -51,12 +51,12 @@ namespace Olifant.JiraMetrics.Lib.Metrics.Model
 
         public decimal? CycleTime { get; private set; }
 
-        public string StoryPoints
+        public decimal StoryPoints
         {
             get
             {
                 var formattedStoryPoints = issue.Fields.StoryPoints.HasValue
-                                      ? issue.Fields.StoryPoints.Value.ToString("0.0", CultureInfo)
+                                      ? issue.Fields.StoryPoints.Value
                                       : GetDefaultStoryPoint(issue.Fields.IssueType.Name);
 
                 return formattedStoryPoints;
@@ -98,24 +98,18 @@ namespace Olifant.JiraMetrics.Lib.Metrics.Model
         }
 
         // TODO: where to put this logic?
-        private string GetDefaultStoryPoint(string issueType)
+        private decimal GetDefaultStoryPoint(string issueType)
         {
-            decimal point;
-
             switch (issueType.ToLower())
             {
                 case "defect":
                 case "defect sub-task":
-                    point = (decimal)0.5;
-                    break;
+                    return new decimal(0.5);
                 case "change request":
-                    point = 1;
-                    break;
+                    return 1;
                 default:
-                    return string.Empty;
+                    return 0;
             }
-
-            return point.ToString("0.0", CultureInfo);
         }
 
         private static CultureInfo CultureInfo
