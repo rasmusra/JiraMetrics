@@ -1,34 +1,9 @@
 ﻿@web
-Feature: Make it possible to assign any existing statuses to cycle time 
-	For being able to work with cycle times
+Feature: 6 - Make it possible to assign any existing statuses to cycle time 
+	To be able to work with cycle times
 	As a person involved in Jira project
 	I need the exported cycle times presented in a report
 
-
-Scenario: Show header in report
-	Given program is started
-	And I have entered the following query: "Key=DUMMYKEY"
-	And I have chosen the cycle period as:
-	| Cycle Periods          |
-	| Design Architecture    |
-	| Designing architecture |
-	And I have chosen the pre-cycle period as:
-	| Pre-cycle Periods      |
-	| Open                   |
-	| Reopen                 |
-	| Describe Requirement   |
-	| Describing Requirement |
-	| Requirement            |
-	| In Analysis            |
-	And I have stated the following labels as necessary for cycle:
-	| Cycle | Label   |
-	| Open  | started |
-	And I enter the Start date interval as:
-	| Min date   | Max date   |
-	| 2000-01-01 | 2020-12-01 |
-	And I "check" the checkbox "Exclude issues that are not done"
-	When I click the "Cycle time report" button
-	Then I should be able to see the following header in the report: "Cycle Time Report, cycle: [Design Architecture, Designing Architecture], jql: Key=DUMMYKEY, filters: [StartDateFilter(2000-01-01, 2020-12-01), WorkDoneFilter]" 
 
 Scenario: Present cycle statuses
 	Given I am logged in as "Andreas"
