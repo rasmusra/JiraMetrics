@@ -44,7 +44,6 @@ namespace Olifant.JiraMetrics.Test.Unit
         [TestCase("Defect is assigned 1 points", "DISCO-665", 1)]
         [TestCase("CR is not assigned any points", "OFU-1462", 1)]
         [TestCase("Defect is not assigned any points", "OFU-676", 1)]
-        [TestCase("Defect is not assigned any points", "OFU-636", 0.5)]
         public void ProvidesStoryPointsOfIssue(string scenarioDescription, string jiraKey, decimal expectedStoryPoints)
         {
             // arrange

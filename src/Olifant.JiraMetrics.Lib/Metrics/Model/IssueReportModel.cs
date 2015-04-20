@@ -104,7 +104,7 @@ namespace Olifant.JiraMetrics.Lib.Metrics.Model
             {
                 case "defect":
                 case "defect sub-task":
-                    return new decimal(0.5);
+                    return 1;
                 case "change request":
                     return 1;
                 default:

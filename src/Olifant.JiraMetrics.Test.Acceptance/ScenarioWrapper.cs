@@ -2,6 +2,7 @@
 using Olifant.JiraMetrics.Lib;
 using Olifant.JiraMetrics.Lib.Metrics;
 using Olifant.JiraMetrics.Lib.Metrics.Filters;
+using Olifant.JiraMetrics.Test.Acceptance.Pages;
 using Olifant.JiraMetrics.Test.Utilities.Fakes;
 using TechTalk.SpecFlow;
 
@@ -138,16 +139,33 @@ namespace Olifant.JiraMetrics.Test.Acceptance
         {
             get
             {
-                if (!FeatureContext.Current.ContainsKey("DbNeedstoBeResetAfterScenario"))
+                if (!ScenarioContext.Current.ContainsKey("DbNeedstoBeResetAfterScenario"))
                 {
                     DbNeedstoBeResetAfterScenario = true;
                 }
 
-                return (bool)FeatureContext.Current["DbNeedstoBeResetAfterScenario"];
+                return (bool)ScenarioContext.Current["DbNeedstoBeResetAfterScenario"];
             }
             set
             {
-                FeatureContext.Current["DbNeedstoBeResetAfterScenario"] = value;
+                ScenarioContext.Current["DbNeedstoBeResetAfterScenario"] = value;
+            }
+        }
+
+        public static BurnUpPage BurnUpPage
+        {
+            get
+            {
+                if (!ScenarioContext.Current.ContainsKey("BurnUpPage"))
+                {
+                    BurnUpPage = null;
+                }
+
+                return (BurnUpPage)ScenarioContext.Current["BurnUpPage"];
+            }
+            set
+            {
+                ScenarioContext.Current["BurnUpPage"] = value;
             }
         }
     }

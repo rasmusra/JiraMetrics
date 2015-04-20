@@ -106,6 +106,8 @@
     </Compile>
     <Compile Include="Hooks.cs" />
     <Compile Include="FeatureWrapper.cs" />
+    <Compile Include="PhantomJsWrapper.cs" />
+    <Compile Include="Pages\BasePage.cs" />
     <Compile Include="Properties\Annotations1.cs" />
     <Compile Include="SpecFlowNUnitExtension.cs" />
     <Compile Include="Features\ChooseFilter.feature.cs">
@@ -128,6 +130,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>PresentProjectProgress.feature</DependentUpon>
     </Compile>
+    <Compile Include="Pages\BurnUpPage.cs" />
     <Compile Include="Steps\Specs\BurnUpGraphSpec.cs" />
     <Compile Include="Steps\ChooseFilterSteps.cs" />
     <Compile Include="Steps\MakeItPossibleToAssignAnyExistingStatusesToCycleTimeSteps.cs" />
