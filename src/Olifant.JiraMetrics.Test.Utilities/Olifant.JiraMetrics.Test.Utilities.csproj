@@ -58,8 +58,8 @@
     <Compile Include="Fakes\FakeJiraRestClient.cs" />
     <Compile Include="Fakes\FakeTextEditorProxy.cs" />
     <Compile Include="Helpers\IssueStubFactory.cs" />
-    <Compile Include="Helpers\MongoWrapper.cs" />
     <Compile Include="Helpers\CycleName2StatusesDict.cs" />
+    <Compile Include="Helpers\MongoWrapper.cs" />
     <Compile Include="Helpers\WinProcessWrapper.cs" />
     <Compile Include="Helpers\IisExpressManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
