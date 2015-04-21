@@ -1,2 +1,2 @@
 @echo off
-packages\FAKE.3.17.3\tools\FAKE.exe build.fsx StartMongoDb
+fsi --exec build.fsx target=StartMongoDb
