@@ -87,6 +87,7 @@
     <None Include="Stubs\key=DISCO-838.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Stubs\key=OFU-676.json" />
     <None Include="Stubs\statuses.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -106,9 +107,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Stubs\key=OFU-2377.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Stubs\key=OFU-676.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Stubs\key=SCSC-974.json">
