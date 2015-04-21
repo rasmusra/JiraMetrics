@@ -1,6 +1,15 @@
     // include Fake lib
 #r @"tools\FAKE\tools\FakeLib.dll"
 open Fake
+open Fake.EnvironmentHelper
+
+let mutable target = "test"
+
+// Process command args as Fake utilities don't work from fsi invoke
+for arg in fsi.CommandLineArgs do
+     if arg.StartsWith("target=") then target <- arg.Split('=').GetValue(1) :?> string
+     else if arg.StartsWith("Target=") then target <- arg.Split('=').GetValue(1) :?> string
+     tracefn "target: %s" target
 
 // Properties
 let srcRoot = "src"
@@ -24,6 +33,17 @@ Target "Clean" (fun _ ->
     DeleteFiles outputDllFiles
     CleanDir buildArtifacts
 )
+//
+//Target "Restore packages" (fun _ -> 
+//     !! (srcRoot + @"\**\packages.config")
+//     |> (fun _ -> 
+//     RestorePackage (fun p ->
+//         { p with
+//             Sources = "http://nuget.org" :: p.Sources
+//             OutputPath = "packages"
+//             Retries = 4 })
+//             )
+// )
 
 Target "Publish specs" (fun _ ->
     let args = "-f src/Olifant.JiraMetrics.Test.Acceptance/Features" + @" -o " + featuresDir
@@ -104,4 +124,4 @@ Target "SetupMongoDb" (fun _ ->
 ==> "Test"
 
 // start build
-RunTargetOrDefault "Test"
+AdditionalSyntax.RunParameterTargetOrDefault "test" target
