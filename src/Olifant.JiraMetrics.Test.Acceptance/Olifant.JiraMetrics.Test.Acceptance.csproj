@@ -112,7 +112,6 @@
     <Compile Include="Hooks.cs" />
     <Compile Include="FeatureWrapper.cs" />
     <Compile Include="PhantomJsWrapper.cs" />
-    <Compile Include="Pages\BasePage.cs" />
     <Compile Include="Properties\Annotations1.cs" />
     <Compile Include="SpecFlowNUnitExtension.cs" />
     <Compile Include="Features\ChooseFilter.feature.cs">
