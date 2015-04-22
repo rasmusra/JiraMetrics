@@ -31,9 +31,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		build.bat = build.bat
 		build.fsx = build.fsx
+		ci_build.fsx = ci_build.fsx
 		core_build.fsx = core_build.fsx
 		GlobalAssemblyInfo.cs = GlobalAssemblyInfo.cs
-		jenkins_build.fsx = jenkins_build.fsx
 		setupMongoDb.bat = setupMongoDb.bat
 		startMongoDb.bat = startMongoDb.bat
 	EndProjectSection
@@ -149,7 +149,7 @@ Global
 		{DEE44FC7-CD01-470E-B75B-5ED8CB48C50A} = {A41B06A1-F0BC-412A-97A3-0F644432D616}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		VisualSVNWorkingCopyRoot = ..\..
 		SelectedEnterpriseLibraryConfigurationSetV5 = EntLibV5Src
+		VisualSVNWorkingCopyRoot = ..\..
 	EndGlobalSection
 EndGlobal
