@@ -6,6 +6,6 @@ if NOT EXIST "tools\FAKE*" (
 	ECHO "FAKE is installed!"
 )
 
-tools/FAKE/tools/FAKE.exe build.fsx
+%~dp0"tools\FAKE\tools\FAKE.exe" ci_build.fsx
 
 
