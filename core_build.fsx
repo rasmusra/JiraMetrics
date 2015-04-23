@@ -66,6 +66,7 @@ Target "Test" (fun _ ->
             StopOnError = false 
             OutputFile = testResultFile
             IncludeCategory = includeCategory
+            ToolPath = nunitPath
     })
 )
 
