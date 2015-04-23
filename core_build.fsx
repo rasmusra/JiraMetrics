@@ -17,6 +17,7 @@ let mongoPort = getBuildParamOrDefault "port" "27113"
 let mongoDb = "JiraMetricsDb"
 let mongoDbPath = String.concat @"\" [__SOURCE_DIRECTORY__; "data" ; "db"]
 let mongoLogDir = String.concat @"\" [__SOURCE_DIRECTORY__; "data" ; "log" ]
+let nunitPath = @"packages\NUnit.Runners.2.6.3\tools"
 
 // Targets  
 Target "Clean" (fun _ ->
