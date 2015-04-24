@@ -103,4 +103,3 @@ Target "SetupMongoDb" (fun _ ->
 "Clean"
 ==> "Publish specs"
 ==> "Build"
-==> "Test"
