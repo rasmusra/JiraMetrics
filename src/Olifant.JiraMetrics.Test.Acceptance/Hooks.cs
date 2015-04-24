@@ -40,7 +40,7 @@ namespace Olifant.JiraMetrics.Test.Acceptance
         /// </summary>
         #region web
 
-        [BeforeScenario("webb")]
+        [BeforeScenario("web")]
         public static void SetupBrowser()
         {
             Console.WriteLine("Starting iisexpress...");
@@ -54,7 +54,7 @@ namespace Olifant.JiraMetrics.Test.Acceptance
             }
         }
 
-        [AfterScenario("webb")]
+        [AfterScenario("web")]
         public static void TearDown()
         {
             Console.WriteLine("Hooks: Tear down web...");
