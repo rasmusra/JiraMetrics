@@ -58,7 +58,7 @@ Target "Test" (fun _ ->
     | "" -> ActivateFinalTarget "Publish"
     | _ -> ()
 
-    !! (srcRoot + @"\**\bin\Debug\*.Test.*.dll")
+    !! (srcRoot + @"\**\bin\Debug\*.Test.Unit.dll")
     --  (srcRoot + @"\**\bin\Debug\*.Fakes.dll")
     |> NUnit (fun p -> 
     {
@@ -102,4 +102,5 @@ Target "SetupMongoDb" (fun _ ->
 // Dependencies
 "Clean"
 ==> "Publish specs"
-
+==> "Build"
+==> "Test"
