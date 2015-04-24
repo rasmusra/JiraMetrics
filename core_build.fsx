@@ -102,4 +102,4 @@ Target "SetupMongoDb" (fun _ ->
 // Dependencies
 "Clean"
 ==> "Publish specs"
-==> "Build"
+
