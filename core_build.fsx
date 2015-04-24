@@ -12,6 +12,7 @@ let featuresDir = buildArtifacts + @"/features"
 let featuresWithTestResultsDir = buildArtifacts + @"/featuresWithTestResults"
 let chrome = @"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe"
 let includeCategory = getBuildParamOrDefault "includeCategory" ""
+let showPicklesReportInBrowser = getBuildParamOrDefault "showPicklesReportInBrowser" "yes"
 let mongoPath = @"C:\Program Files\MongoDB\Server\3.0\bin"
 let mongoPort = getBuildParamOrDefault "port" "27113"
 let mongoDb = "JiraMetricsDb"
@@ -54,11 +55,11 @@ Target "Build" (fun _ ->
 
 Target "Test" (fun _ ->
     
-    match includeCategory with
-    | "" -> ActivateFinalTarget "Publish"
+    match showPicklesReportInBrowser with
+    | "yes" -> ActivateFinalTarget "Publish"
     | _ -> ()
 
-    !! (srcRoot + @"\**\bin\Debug\*.Test.Unit.dll")
+    !! (srcRoot + @"\**\bin\Debug\*.Test.*.dll")
     --  (srcRoot + @"\**\bin\Debug\*.Fakes.dll")
     |> NUnit (fun p -> 
     {
