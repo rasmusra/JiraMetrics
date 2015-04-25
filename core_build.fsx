@@ -54,10 +54,8 @@ Target "Build" (fun _ ->
 )
 
 Target "Test" (fun _ ->
-    
-    match showPicklesReportInBrowser with
-    | "yes" -> ActivateFinalTarget "Publish"
-    | _ -> ()
+
+    ActivateFinalTarget "Publish"
 
     !! (srcRoot + @"\**\bin\Debug\*.Test.*.dll")
     --  (srcRoot + @"\**\bin\Debug\*.Fakes.dll")
@@ -73,12 +71,15 @@ Target "Test" (fun _ ->
 
 FinalTarget "Publish" (fun _ ->
     let args = "-f src/Olifant.JiraMetrics.Test.Acceptance/Features -lr " + testResultFile + @" -o " + featuresWithTestResultsDir
+
     Shell.Exec("packages/Pickles.CommandLine.1.0.0/tools/pickles.exe", args)
     |> ignore
 
     let log = String.concat @"\" [__SOURCE_DIRECTORY__; featuresWithTestResultsDir; "index.html"]
-    Shell.Exec(chrome, log)     
-    |> ignore
+    
+    match showPicklesReportInBrowser with
+    | "yes" -> Shell.Exec(chrome, log) |> ignore
+    | _ -> ()
 
     ()
 )
