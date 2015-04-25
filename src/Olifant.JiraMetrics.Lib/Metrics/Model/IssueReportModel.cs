@@ -125,7 +125,7 @@ namespace Olifant.JiraMetrics.Lib.Metrics.Model
         {
             var result = string.Format(
                 CultureInfo,
-                "{1}{0}{2}{0}{3}{0}{4:yyyy-MM-dd HH:mm:ss}{0}{5:yyyy-MM-dd HH:mm:ss}{0}{6:0.00}{0}{7}{0}{8}",
+                "{1}{0}{2}{0}{3}{0}{4:yyyy-MM-dd HH:mm:ss}{0}{5:yyyy-MM-dd HH:mm:ss}{0}{6:0.00}{0}{7:0.0}{0}{8}",
                 Separator,
                 issue.Key,
                 IssueType,
