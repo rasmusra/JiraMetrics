@@ -55,7 +55,7 @@ Target "Build" (fun _ ->
 
 Target "Test" (fun _ ->
 
-    ActivateFinalTarget "Publish"
+    ActivateFinalTarget "Publish test report"
 
     !! (srcRoot + @"\**\bin\Debug\*.Test.*.dll")
     --  (srcRoot + @"\**\bin\Debug\*.Fakes.dll")
@@ -69,7 +69,7 @@ Target "Test" (fun _ ->
     })
 )
 
-FinalTarget "Publish" (fun _ ->
+FinalTarget "Publish test report" (fun _ ->
     let args = "-f src/Olifant.JiraMetrics.Test.Acceptance/Features -lr " + testResultFile + @" -o " + featuresWithTestResultsDir
 
     Shell.Exec("packages/Pickles.CommandLine.1.0.0/tools/pickles.exe", args)
@@ -84,6 +84,7 @@ FinalTarget "Publish" (fun _ ->
     ()
 )
 
+// helps for starting up a mongo db, used in dev env 
 Target "StartMongoDb" (fun _ ->
     CreateDir mongoDbPath
     CreateDir mongoLogDir
@@ -95,6 +96,7 @@ Target "StartMongoDb" (fun _ ->
     ()
 )
 
+// populates mongo db with the test data dump file
 Target "SetupMongoDb" (fun _ ->
     let args = "-d " + mongoDb + " -c issue --file src\Olifant.JiraMetrics.Test.Utilities\Stubs\jirametricsdb_dump.json --upsert -h localhost:" + mongoPort
     let errorCode = Shell.Exec(mongoPath + @"\mongoimport", args)
@@ -103,6 +105,5 @@ Target "SetupMongoDb" (fun _ ->
 
 // Dependencies
 "Clean"
-==> "Publish specs"
 ==> "Build"
 ==> "Test"
