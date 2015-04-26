@@ -84,11 +84,11 @@ namespace Olifant.JiraMetrics.Test.Acceptance.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("View burn-up")]
+        [NUnit.Framework.DescriptionAttribute("1 - View burn-up")]
         [NUnit.Framework.CategoryAttribute("no_data_changes")]
-        public virtual void ViewBurn_Up()
+        public virtual void _1_ViewBurn_Up()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("View burn-up", new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("1 - View burn-up", new string[] {
                         "no_data_changes"});
 #line 18
 this.ScenarioSetup(scenarioInfo);
@@ -120,11 +120,11 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Plot issues from query in burn-up")]
+        [NUnit.Framework.DescriptionAttribute("2 - Plot issues from query in burn-up")]
         [NUnit.Framework.CategoryAttribute("no_data_changes")]
-        public virtual void PlotIssuesFromQueryInBurn_Up()
+        public virtual void _2_PlotIssuesFromQueryInBurn_Up()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Plot issues from query in burn-up", new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("2 - Plot issues from query in burn-up", new string[] {
                         "no_data_changes"});
 #line 32
 this.ScenarioSetup(scenarioInfo);
@@ -156,44 +156,330 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("3 - Load JiraMetrics with new issues from Jira")]
+        public virtual void _3_LoadJiraMetricsWithNewIssuesFromJira()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("3 - Load JiraMetrics with new issues from Jira", ((string[])(null)));
+#line 42
+this.ScenarioSetup(scenarioInfo);
+#line 9
+this.FeatureBackground();
+#line 43
+ testRunner.Given("I am logged in as \"Sixten\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+            TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
+                        "project",
+                        "issue"});
+            table3.AddRow(new string[] {
+                        "Disco",
+                        "DISCO-1462"});
+            table3.AddRow(new string[] {
+                        "OFU",
+                        "OFU-676"});
+#line 44
+ testRunner.And("the system contains the following issues:", ((string)(null)), table3, "And ");
+#line hidden
+            TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
+                        "project",
+                        "issue"});
+            table4.AddRow(new string[] {
+                        "Disco",
+                        "DISCO-2299"});
+            table4.AddRow(new string[] {
+                        "OFU",
+                        "OFU-2067"});
+#line 48
+ testRunner.And("Jira contains additional issues:", ((string)(null)), table4, "And ");
+#line 52
+ testRunner.When("I navigate to admin page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 53
+ testRunner.And("I choose to load JiraMetrics with project \"Disco\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
+                        "issue",
+                        "comment"});
+            table5.AddRow(new string[] {
+                        "DISCO-2299",
+                        "Added!"});
+#line 54
+ testRunner.Then("I should be presented a list of issues been added:", ((string)(null)), table5, "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("4 - Updating graph with new issues")]
+        public virtual void _4_UpdatingGraphWithNewIssues()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("4 - Updating graph with new issues", ((string[])(null)));
+#line 59
+this.ScenarioSetup(scenarioInfo);
+#line 9
+this.FeatureBackground();
+#line 60
+ testRunner.Given("I am logged in as \"Sixten\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+            TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
+                        "project",
+                        "issue"});
+            table6.AddRow(new string[] {
+                        "Disco",
+                        "DISCO-1462"});
+            table6.AddRow(new string[] {
+                        "OFU",
+                        "OFU-676"});
+#line 61
+ testRunner.And("the system contains the following issues:", ((string)(null)), table6, "And ");
+#line hidden
+            TechTalk.SpecFlow.Table table7 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Start X",
+                        "End X",
+                        "Start Y",
+                        "End Y"});
+            table7.AddRow(new string[] {
+                        "start",
+                        "y14w51",
+                        "0",
+                        "12.5"});
+#line 65
+ testRunner.And("I have the following values in the burn-up graph:", ((string)(null)), table7, "And ");
+#line hidden
+            TechTalk.SpecFlow.Table table8 = new TechTalk.SpecFlow.Table(new string[] {
+                        "project",
+                        "issue"});
+            table8.AddRow(new string[] {
+                        "Disco",
+                        "DISCO-2299"});
+#line 68
+ testRunner.When("the following issue is added to the system from Jira:", ((string)(null)), table8, "When ");
+#line hidden
+            TechTalk.SpecFlow.Table table9 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Start X",
+                        "End X",
+                        "Start Y",
+                        "End Y"});
+            table9.AddRow(new string[] {
+                        "start",
+                        "y14w51",
+                        "0",
+                        "12.5"});
+#line 71
+ testRunner.And("I should see the following values in the graph:", ((string)(null)), table9, "And ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("5 - Load JiraMetrics with changed issues from Jira")]
+        public virtual void _5_LoadJiraMetricsWithChangedIssuesFromJira()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("5 - Load JiraMetrics with changed issues from Jira", ((string[])(null)));
+#line 76
+this.ScenarioSetup(scenarioInfo);
+#line 9
+this.FeatureBackground();
+#line 77
+ testRunner.Given("I am logged in as \"Sixten\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+            TechTalk.SpecFlow.Table table10 = new TechTalk.SpecFlow.Table(new string[] {
+                        "project",
+                        "issue"});
+            table10.AddRow(new string[] {
+                        "Disco",
+                        "DISCO-1462"});
+            table10.AddRow(new string[] {
+                        "OFU",
+                        "OFU-676"});
+#line 78
+ testRunner.And("the system contains the following issues:", ((string)(null)), table10, "And ");
+#line hidden
+            TechTalk.SpecFlow.Table table11 = new TechTalk.SpecFlow.Table(new string[] {
+                        "project",
+                        "issue"});
+            table11.AddRow(new string[] {
+                        "Disco",
+                        "DISCO-2299"});
+            table11.AddRow(new string[] {
+                        "OFU",
+                        "OFU-2067"});
+#line 82
+ testRunner.And("Jira contains additional issues:", ((string)(null)), table11, "And ");
+#line 86
+ testRunner.When("I navigate to admin page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 87
+ testRunner.And("I choose to load JiraMetrics with project \"Disco\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            TechTalk.SpecFlow.Table table12 = new TechTalk.SpecFlow.Table(new string[] {
+                        "issue",
+                        "comment"});
+            table12.AddRow(new string[] {
+                        "DISCO-2299",
+                        "Updated!"});
+#line 88
+ testRunner.Then("I should be presented a list of updated issues:", ((string)(null)), table12, "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("6 - Updating graph with changed issues")]
+        public virtual void _6_UpdatingGraphWithChangedIssues()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("6 - Updating graph with changed issues", ((string[])(null)));
+#line 93
+this.ScenarioSetup(scenarioInfo);
+#line 9
+this.FeatureBackground();
+#line 94
+ testRunner.Given("I am logged in as \"Sixten\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+            TechTalk.SpecFlow.Table table13 = new TechTalk.SpecFlow.Table(new string[] {
+                        "project",
+                        "issue",
+                        "status",
+                        "Story Points"});
+            table13.AddRow(new string[] {
+                        "Disco",
+                        "DISCO-1462",
+                        "Closed",
+                        "3"});
+            table13.AddRow(new string[] {
+                        "Disco",
+                        "DISCO-2299",
+                        "Implementing",
+                        "4"});
+            table13.AddRow(new string[] {
+                        "OFU",
+                        "OFU-676",
+                        "Closed",
+                        "5"});
+#line 95
+ testRunner.And("the system contains the following issues:", ((string)(null)), table13, "And ");
+#line hidden
+            TechTalk.SpecFlow.Table table14 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Start X",
+                        "End X",
+                        "Start Y",
+                        "End Y"});
+            table14.AddRow(new string[] {
+                        "start",
+                        "y14w51",
+                        "0",
+                        "3"});
+#line 100
+ testRunner.And("I choose project \"Disco\" to get the following values in the burn-up graph:", ((string)(null)), table14, "And ");
+#line hidden
+            TechTalk.SpecFlow.Table table15 = new TechTalk.SpecFlow.Table(new string[] {
+                        "project",
+                        "issue",
+                        "status"});
+            table15.AddRow(new string[] {
+                        "Disco",
+                        "DISCO-2299",
+                        "Closed"});
+#line 103
+ testRunner.When("the following issue is updated to the system from Jira:", ((string)(null)), table15, "When ");
+#line hidden
+            TechTalk.SpecFlow.Table table16 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Start X",
+                        "End X",
+                        "Start Y",
+                        "End Y"});
+            table16.AddRow(new string[] {
+                        "start",
+                        "y14w51",
+                        "0",
+                        "7.0"});
+#line 106
+ testRunner.Then("I should be able to see the following values in the burn-up graph:", ((string)(null)), table16, "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("7 - Loading JiraMetrics when no new issues needs to be loaded")]
+        public virtual void _7_LoadingJiraMetricsWhenNoNewIssuesNeedsToBeLoaded()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("7 - Loading JiraMetrics when no new issues needs to be loaded", ((string[])(null)));
+#line 111
+this.ScenarioSetup(scenarioInfo);
+#line 9
+this.FeatureBackground();
+#line 112
+ testRunner.Given("I am logged in as \"Sixten\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+            TechTalk.SpecFlow.Table table17 = new TechTalk.SpecFlow.Table(new string[] {
+                        "project",
+                        "issue"});
+            table17.AddRow(new string[] {
+                        "Disco",
+                        "DISCO-1462"});
+            table17.AddRow(new string[] {
+                        "OFU",
+                        "OFU-676"});
+#line 113
+ testRunner.And("the system contains the following issues:", ((string)(null)), table17, "And ");
+#line hidden
+            TechTalk.SpecFlow.Table table18 = new TechTalk.SpecFlow.Table(new string[] {
+                        "project",
+                        "issue"});
+            table18.AddRow(new string[] {
+                        "Disco",
+                        "DISCO-1462"});
+            table18.AddRow(new string[] {
+                        "OFU",
+                        "OFU-2067"});
+#line 117
+ testRunner.And("Jira contains issues:", ((string)(null)), table18, "And ");
+#line 121
+ testRunner.When("I navigate to admin page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 122
+ testRunner.And("I choose to load JiraMetrics with project \"Disco\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 123
+ testRunner.Then("I should be presented a message \"All issues are up-to-date for project \"Disco\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Filter burn-up on dates")]
         [NUnit.Framework.IgnoreAttribute()]
         public virtual void FilterBurn_UpOnDates()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Filter burn-up on dates", new string[] {
                         "ignore"});
-#line 42
+#line 127
 this.ScenarioSetup(scenarioInfo);
 #line 9
 this.FeatureBackground();
-#line 43
+#line 128
  testRunner.Given("I am logged in as \"Andreas\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 44
+#line 129
  testRunner.When("I navigate to burn-up page on the project site", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-            TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
+            TechTalk.SpecFlow.Table table19 = new TechTalk.SpecFlow.Table(new string[] {
                         "Start date",
                         "End date"});
-            table3.AddRow(new string[] {
+            table19.AddRow(new string[] {
                         "2014-07-01",
                         "2014-12-01"});
-#line 45
- testRunner.And("I enter the following start- and end-dates:", ((string)(null)), table3, "And ");
-#line 48
+#line 130
+ testRunner.And("I enter the following start- and end-dates:", ((string)(null)), table19, "And ");
+#line 133
  testRunner.And("click button \"show graph\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-            TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
+            TechTalk.SpecFlow.Table table20 = new TechTalk.SpecFlow.Table(new string[] {
                         "Start X",
                         "End X",
                         "Start Y",
                         "End Y"});
-            table4.AddRow(new string[] {
+            table20.AddRow(new string[] {
                         "2014-07-01",
                         "2014-12-01",
                         "0",
                         "163 (not determined yet)"});
-#line 49
- testRunner.Then("I should see a burn-up graph with values:", ((string)(null)), table4, "Then ");
+#line 134
+ testRunner.Then("I should see a burn-up graph with values:", ((string)(null)), table20, "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -205,51 +491,51 @@ this.FeatureBackground();
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Email link to graph", new string[] {
                         "ignore"});
-#line 55
+#line 140
 this.ScenarioSetup(scenarioInfo);
 #line 9
 this.FeatureBackground();
-#line 56
+#line 141
  testRunner.Given("I am logged in as \"Andreas\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-            TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
+            TechTalk.SpecFlow.Table table21 = new TechTalk.SpecFlow.Table(new string[] {
                         "Start value at x-axis",
                         "End-value at x-axis",
                         "Start-value at y-axis",
                         "End-value at y-axis"});
-            table5.AddRow(new string[] {
+            table21.AddRow(new string[] {
                         "2014-07-01",
                         "2014-12-01",
                         "0",
                         "163 (not determined yet)"});
-#line 57
- testRunner.And("I see a burn-up graph with values:", ((string)(null)), table5, "And ");
-#line 60
+#line 142
+ testRunner.And("I see a burn-up graph with values:", ((string)(null)), table21, "And ");
+#line 145
  testRunner.And("I email the url of the graph to \"Sixten\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 61
+#line 146
  testRunner.When("\"sixten\" clicks on the link", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-            TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
+            TechTalk.SpecFlow.Table table22 = new TechTalk.SpecFlow.Table(new string[] {
                         "Start value at x-axis",
                         "End-value at x-axis",
                         "Start-value at y-axis",
                         "End-value at y-axis"});
-            table6.AddRow(new string[] {
+            table22.AddRow(new string[] {
                         "2014-07-01",
                         "2014-12-01",
                         "0",
                         "163 (not determined yet)"});
-#line 62
- testRunner.Then("\"Sixten\" should see a burn-up graph on a web-page with values:", ((string)(null)), table6, "Then ");
+#line 147
+ testRunner.Then("\"Sixten\" should see a burn-up graph on a web-page with values:", ((string)(null)), table22, "Then ");
 #line hidden
-            TechTalk.SpecFlow.Table table7 = new TechTalk.SpecFlow.Table(new string[] {
+            TechTalk.SpecFlow.Table table23 = new TechTalk.SpecFlow.Table(new string[] {
                         "Start date",
                         "End date"});
-            table7.AddRow(new string[] {
+            table23.AddRow(new string[] {
                         "2014-07-01",
                         "2014-12-01"});
-#line 65
- testRunner.And("\"Sixten\" should see the following start- and end-dates:", ((string)(null)), table7, "And ");
+#line 150
+ testRunner.And("\"Sixten\" should see the following start- and end-dates:", ((string)(null)), table23, "And ");
 #line hidden
             this.ScenarioCleanup();
         }

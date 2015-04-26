@@ -15,7 +15,7 @@ Background:
 
 
 	@no_data_changes
-Scenario: View burn-up
+Scenario: 1 - View burn-up
 	Given I am logged in as "Andreas"
 	When I navigate to burn-up page
 	And I wait, but not longer than 1 second
@@ -29,7 +29,7 @@ Scenario: View burn-up
 
 
 	@no_data_changes
-Scenario: Plot issues from query in burn-up
+Scenario: 2 - Plot issues from query in burn-up
 	Given I am logged in as "Andreas"
 	And I navigate to burn-up page
 	When I query "Disco" 
@@ -37,6 +37,91 @@ Scenario: Plot issues from query in burn-up
 	And I should see the following values in the graph:
 	| Start X | End X  | Start Y | End Y |
 	| start   | y14w51 | 0       | 12.5  |
+
+
+Scenario: 3 - Load JiraMetrics with new issues from Jira
+	Given I am logged in as "Sixten"
+	And the system contains the following issues:
+	| project | issue      |
+	| Disco   | DISCO-1462 |
+	| OFU     | OFU-676    |
+	And Jira contains additional issues:
+	| project | issue      |
+	| Disco   | DISCO-2299 |
+	| OFU     | OFU-2067   | 
+	When I navigate to admin page
+	And I choose to load JiraMetrics with project "Disco"
+	Then I should be presented a list of issues been added:
+	| issue      | comment |
+	| DISCO-2299 | Added!  | 
+
+
+Scenario: 4 - Updating graph with new issues
+	Given I am logged in as "Sixten"
+	And the system contains the following issues:
+	| project | issue      |
+	| Disco   | DISCO-1462 |
+	| OFU     | OFU-676    |
+	And I have the following values in the burn-up graph:
+	| Start X | End X  | Start Y | End Y |
+	| start   | y14w51 | 0       | 12.5  |
+	When the following issue is added to the system from Jira:
+	| project | issue      |
+	| Disco   | DISCO-2299 |
+	And I should see the following values in the graph:
+	| Start X | End X  | Start Y | End Y |
+	| start   | y14w51 | 0       | 12.5  |
+
+
+Scenario: 5 - Load JiraMetrics with changed issues from Jira
+	Given I am logged in as "Sixten"
+	And the system contains the following issues:
+	| project | issue      |
+	| Disco   | DISCO-1462 |
+	| OFU     | OFU-676    |
+	And Jira contains additional issues:
+	| project | issue      |
+	| Disco   | DISCO-2299 |
+	| OFU     | OFU-2067   | 
+	When I navigate to admin page
+	And I choose to load JiraMetrics with project "Disco"
+	Then I should be presented a list of updated issues:
+	| issue      | comment  |
+	| DISCO-2299 | Updated! | 
+
+
+Scenario: 6 - Updating graph with changed issues
+	Given I am logged in as "Sixten"
+	And the system contains the following issues:
+	| project | issue      | status       | Story Points |
+	| Disco   | DISCO-1462 | Closed       | 3            |
+	| Disco   | DISCO-2299 | Implementing | 4            |
+	| OFU     | OFU-676    | Closed       | 5            |
+	And I choose project "Disco" to get the following values in the burn-up graph:
+	| Start X | End X  | Start Y | End Y |
+	| start   | y14w51 | 0       | 3     |
+	When the following issue is updated to the system from Jira:
+	| project | issue      | status |
+	| Disco   | DISCO-2299 | Closed |
+	Then I should be able to see the following values in the burn-up graph:
+	| Start X | End X  | Start Y | End Y |
+	| start   | y14w51 | 0       | 7.0  |
+
+
+Scenario: 7 - Loading JiraMetrics when no new issues needs to be loaded
+	Given I am logged in as "Sixten"
+	And the system contains the following issues:
+	| project | issue      |
+	| Disco   | DISCO-1462 |
+	| OFU     | OFU-676    |
+	And Jira contains issues:
+	| project | issue      |
+	| Disco   | DISCO-1462 |
+	| OFU     | OFU-2067   | 
+	When I navigate to admin page
+	And I choose to load JiraMetrics with project "Disco"
+	Then I should be presented a message "All issues are up-to-date for project "Disco"
+
 
 	@ignore
 Scenario: Filter burn-up on dates
