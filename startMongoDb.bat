@@ -1,2 +1,2 @@
 @echo off
-fsi --exec build.fsx target=StartMongoDb
+fsi --exec build.fsx target:StartMongoDb
