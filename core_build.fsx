@@ -7,12 +7,13 @@ let srcRoot = "src"
 let outputDllFiles = !! "**/bin/**/*.dll"
 let projectFiles = !! "**/*.csproj"
 let buildArtifacts = "buildArtifacts"
-let testResultFile = buildArtifacts + @"/testResults.xml"
-let featuresDir = buildArtifacts + @"/features"
-let featuresWithTestResultsDir = buildArtifacts + @"/featuresWithTestResults"
+let testResultFile = "testResults.xml"
+let testReport = buildArtifacts + "/testReport.html"
+let featuresDir = buildArtifacts + "/features"
+let featuresWithTestResultsDir = buildArtifacts + "/featuresWithTestResults"
 let chrome = @"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe"
 let includeCategory = getBuildParamOrDefault "includeCategory" ""
-let showPicklesReportInBrowser = getBuildParamOrDefault "showPicklesReportInBrowser" "yes"
+let showResultInBrowser = getBuildParamOrDefault "showResultInBrowser" "yes"
 let mongoPath = @"C:\Program Files\MongoDB\Server\3.0\bin"
 let mongoPort = getBuildParamOrDefault "port" "27113"
 let mongoDb = "JiraMetricsDb"
@@ -54,11 +55,11 @@ Target "Build" (fun _ ->
 )
 
 Target "Test" (fun _ ->
-
     ActivateFinalTarget "Publish test report"
 
-    !! (srcRoot + @"\**\bin\Debug\*.Test.*.dll")
-    --  (srcRoot + @"\**\bin\Debug\*.Fakes.dll")
+    !! (srcRoot + @"\**\bin\Debug\*.Test.Unit.dll")
+    ++ (srcRoot + @"\**\bin\Debug\*.Test.Acceptance.dll")
+    -- (srcRoot + @"\**\bin\Debug\*.Fakes.dll")
     |> NUnit (fun p -> 
     {
         p with 
@@ -67,18 +68,16 @@ Target "Test" (fun _ ->
             IncludeCategory = includeCategory
             ToolPath = nunitPath
     })
+
 )
 
 FinalTarget "Publish test report" (fun _ ->
-    let args = "-f src/Olifant.JiraMetrics.Test.Acceptance/Features -lr " + testResultFile + @" -o " + featuresWithTestResultsDir
-
-    Shell.Exec("packages/Pickles.CommandLine.1.0.0/tools/pickles.exe", args)
+    let nunitOrangeArgs = testResultFile + " " + testReport
+    Shell.Exec("packages/NUnitOrange.2.1/tools/nunitorange.exe", nunitOrangeArgs)
     |> ignore
 
-    let log = String.concat @"\" [__SOURCE_DIRECTORY__; featuresWithTestResultsDir; "index.html"]
-    
-    match showPicklesReportInBrowser with
-    | "yes" -> Shell.Exec(chrome, log) |> ignore
+    match showResultInBrowser with
+    | "yes" -> Shell.Exec(chrome, testReport) |> ignore
     | _ -> ()
 
     ()
