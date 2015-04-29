@@ -4,6 +4,7 @@ using FluentAssertions;
 using Olifant.JiraMetrics.Lib.Jira.Model;
 using Olifant.JiraMetrics.Test.Acceptance.Pages;
 using Olifant.JiraMetrics.Test.Acceptance.Steps.Specs;
+using Olifant.JiraMetrics.Test.Utilities.Fakes;
 using Olifant.JiraMetrics.Test.Utilities.Helpers;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
@@ -33,8 +34,55 @@ namespace Olifant.JiraMetrics.Test.Acceptance.Steps
             ScenarioWrapper.BurnUpPage.NavigateTo();
         }
 
+        [When(@"I navigate to admin page")]
+        public void NavigateToAdminPage()
+        {
+            ScenarioWrapper.AdminPage = new AdminPage(new PhantomJsWrapper(FeatureWrapper.PhantomJsDriver));
+            ScenarioWrapper.AdminPage.NavigateTo();
+        }
+
+        [When(@"I choose to load JiraMetrics with project ""(.*)""")]
+        public void WhenIChooseToLoadJiraMetricsWithProject(string project)
+        {
+            ScenarioWrapper.AdminPage.Load(project);
+        }
+
+        [Then(@"I should be presented a list of issues been added:")]
+        public void ThenIShouldBePresentedAListOfIssuesBeenAdded(Table table)
+        {
+            ScenarioContext.Current.Pending();
+        }
+
+        [Given(@"the system contains the following issues:")]
+        public void ClearAndInsertIssuesIntoMongo(Table table)
+        {
+            // TODO: move to MongoWrapper
+            var givenIssues = table.CreateSet<IssueSpec>();
+            var issuesCollection = MongoWrapper.Instance.GetCollection<Issue>();
+
+            var issues = givenIssues
+                .Select(issue => IssueStubFactory.Create(issue.Key, issue.StoryPoints));
+
+            issuesCollection.Drop();
+            issuesCollection.InsertBatch(issues);
+            FeatureWrapper.PhantomJsDriver.Navigate().Refresh();
+        }
+   
+        [Given(@"Jira contains additional issues:")]
+        public void SetupIssuesAvailableInJira(Table table)
+        {
+            var givenIssues = table.CreateSet<IssueSpec>();
+            ScenarioWrapper.FakeJiraRestClient = new FakeJiraRestClient();
+
+            foreach (var issue in givenIssues)
+            {
+                ScenarioWrapper.FakeJiraRestClient
+                    .Jql2KeysLookup[issue.Project].Add(issue.Key);
+            }
+        }
+
         [Given(@"there exists a Jira project called '(.*)' with (.*) issues where each has story point of (.*)")]
-        public void InsertIssuesIntoMongo(string projectName, int noofIssues, int storyPoint)
+        public void InsertManyIssuesIntoMongo(string projectName, int noofIssues, int storyPoint)
         {
             // TODO: move to MongoWrapper
             var issuesCollection = MongoWrapper.Instance.GetCollection<Issue>();

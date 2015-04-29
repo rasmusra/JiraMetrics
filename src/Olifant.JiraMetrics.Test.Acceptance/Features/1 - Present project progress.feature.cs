@@ -157,9 +157,11 @@ this.FeatureBackground();
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("3 - Load JiraMetrics with new issues from Jira")]
+        [NUnit.Framework.CategoryAttribute("wip")]
         public virtual void _3_LoadJiraMetricsWithNewIssuesFromJira()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("3 - Load JiraMetrics with new issues from Jira", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("3 - Load JiraMetrics with new issues from Jira", new string[] {
+                        "wip"});
 #line 42
 this.ScenarioSetup(scenarioInfo);
 #line 9
@@ -168,26 +170,29 @@ this.FeatureBackground();
  testRunner.Given("I am logged in as \"Sixten\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
             TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
-                        "project",
-                        "issue"});
+                        "Key",
+                        "Story points"});
             table3.AddRow(new string[] {
-                        "Disco",
-                        "DISCO-1462"});
+                        "DISCO-620",
+                        "3"});
             table3.AddRow(new string[] {
-                        "OFU",
-                        "OFU-676"});
+                        "OFU-1462",
+                        "4"});
 #line 44
  testRunner.And("the system contains the following issues:", ((string)(null)), table3, "And ");
 #line hidden
             TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
-                        "project",
-                        "issue"});
+                        "Project",
+                        "Key",
+                        "Story Points"});
             table4.AddRow(new string[] {
                         "Disco",
-                        "DISCO-2299"});
+                        "DISCO-665",
+                        "5"});
             table4.AddRow(new string[] {
                         "OFU",
-                        "OFU-2067"});
+                        "OFU-2290",
+                        "6"});
 #line 48
  testRunner.And("Jira contains additional issues:", ((string)(null)), table4, "And ");
 #line 52

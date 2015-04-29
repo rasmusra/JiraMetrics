@@ -7,26 +7,44 @@ namespace Olifant.JiraMetrics.Test.Utilities.Fakes
 {
     public class FakeJiraRestClient : IJiraRestClient
     {
+        public FakeJiraRestClient()
+        {
+            Jql2KeysLookup = new Dictionary<string, List<string>>();
+        }
+
+        /// <summary>
+        /// add keys to this dict for mocking how jira should respond to queries
+        /// </summary>
+        public Dictionary<string, List<string>> Jql2KeysLookup { get; set; }
+
         public List<string> GetJsonChunks(string jql)
+        {
+            return Jql2KeysLookup.ContainsKey(jql)
+                ? Jql2KeysLookup[jql].SelectMany(JqlLookup).ToList() 
+                : JqlLookup(jql);
+        }
+
+        private static List<string> JqlLookup(string jql)
         {
             string result;
 
+
             switch (jql)
             {
-            case "Issues started before and after 2014-07-01":
-                result = ReadJsonFile("key in (OFU-2377,OFU-1462)");
-                break;
+                case "Issues started before and after 2014-07-01":
+                    result = ReadJsonFile("key in (OFU-2377,OFU-1462)");
+                    break;
 
-            case "TEST-JQL":
-                result = ReadJsonFile("key=SCSC-974");
-                break;
+                case "TEST-JQL":
+                    result = ReadJsonFile("key=SCSC-974");
+                    break;
 
-            default:
-                result = ReadJsonFile(jql);
-                break;
+                default:
+                    result = ReadJsonFile(jql);
+                    break;
             }
 
-            return new List<string> { result };
+            return new List<string> {result};
         }
 
         public string GetStatuses()

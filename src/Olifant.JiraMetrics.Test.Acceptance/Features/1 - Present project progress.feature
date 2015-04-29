@@ -38,17 +38,17 @@ Scenario: 2 - Plot issues from query in burn-up
 	| Start X | End X  | Start Y | End Y |
 	| start   | y14w51 | 0       | 12.5  |
 
-
+@wip
 Scenario: 3 - Load JiraMetrics with new issues from Jira
 	Given I am logged in as "Sixten"
 	And the system contains the following issues:
-	| project | issue      |
-	| Disco   | DISCO-1462 |
-	| OFU     | OFU-676    |
+	| Key       | Story points |
+	| DISCO-620 | 3            |
+	| OFU-1462  | 4            |
 	And Jira contains additional issues:
-	| project | issue      |
-	| Disco   | DISCO-2299 |
-	| OFU     | OFU-2067   | 
+	| Project | Key       | Story Points |
+	| Disco   | DISCO-665 | 5            |
+	| OFU     | OFU-2290  | 6            |
 	When I navigate to admin page
 	And I choose to load JiraMetrics with project "Disco"
 	Then I should be presented a list of issues been added:

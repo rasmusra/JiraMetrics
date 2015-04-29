@@ -95,6 +95,7 @@
     </Compile>
     <Compile Include="Hooks.cs" />
     <Compile Include="FeatureWrapper.cs" />
+    <Compile Include="Pages\AdminPage.cs" />
     <Compile Include="PhantomJsWrapper.cs" />
     <Compile Include="Properties\Annotations1.cs" />
     <Compile Include="Features\ChooseFilter.feature.cs">
@@ -121,6 +122,7 @@
     <Compile Include="Steps\Specs\BurnUpGraphSpec.cs" />
     <Compile Include="Steps\ChooseFilterSteps.cs" />
     <Compile Include="Steps\MakeItPossibleToAssignAnyExistingStatusesToCycleTimeSteps.cs" />
+    <Compile Include="Steps\Specs\IssueSpec.cs" />
     <Compile Include="Steps\Specs\DateFilterSpec.cs" />
     <Compile Include="Steps\Specs\CycleTimeReportEntrySpec.cs" />
     <Compile Include="Steps\Specs\CheckBoxSpec.cs" />

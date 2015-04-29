@@ -6,7 +6,7 @@ open Fake
 let srcRoot = "src"
 let outputDllFiles = !! "**/bin/**/*.dll"
 let projectFiles = !! "**/*.csproj"
-let buildArtifacts = "buildArtifacts"
+let buildArtifacts = String.concat @"\" [__SOURCE_DIRECTORY__; "buildArtifacts"]
 let testResultFile = "testResults.xml"
 let testReport = buildArtifacts + "/testReport.html"
 let featuresDir = buildArtifacts + "/features"

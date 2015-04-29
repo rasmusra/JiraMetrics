@@ -168,5 +168,40 @@ namespace Olifant.JiraMetrics.Test.Acceptance
                 ScenarioContext.Current["BurnUpPage"] = value;
             }
         }
+
+        // TODO: dry from above
+        public static AdminPage AdminPage
+        {
+            get
+            {
+                if (!ScenarioContext.Current.ContainsKey("AdminPage"))
+                {
+                    AdminPage = null;
+                }
+
+                return (AdminPage)ScenarioContext.Current["AdminPage"];
+            }
+            set
+            {
+                ScenarioContext.Current["AdminPage"] = value;
+            }
+        }
+
+        public static FakeJiraRestClient FakeJiraRestClient
+        {
+            get
+            {
+                if (!ScenarioContext.Current.ContainsKey("FakeJiraRestClient"))
+                {
+                    FakeJiraRestClient = null;
+                }
+
+                return (FakeJiraRestClient)ScenarioContext.Current["FakeJiraRestClient"];
+            }
+            set
+            {
+                ScenarioContext.Current["FakeJiraRestClient"] = value;
+            }
+        }
     }
 }
