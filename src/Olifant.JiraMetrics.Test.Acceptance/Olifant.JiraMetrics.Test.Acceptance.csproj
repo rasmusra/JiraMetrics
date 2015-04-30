@@ -94,9 +94,11 @@
       <DependentUpon>6 - Make it possible to assign any existing statuses to cycle time.feature</DependentUpon>
     </Compile>
     <Compile Include="Hooks.cs" />
-    <Compile Include="FeatureWrapper.cs" />
+    <Compile Include="Pages\PageNavigator.cs" />
     <Compile Include="Pages\AdminPage.cs" />
-    <Compile Include="PhantomJsWrapper.cs" />
+    <Compile Include="Pages\PageObject.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Properties\Annotations1.cs" />
     <Compile Include="Features\ChooseFilter.feature.cs">
       <AutoGen>True</AutoGen>
@@ -119,6 +121,8 @@
       <DependentUpon>1 - Present project progress.feature</DependentUpon>
     </Compile>
     <Compile Include="Pages\BurnUpPage.cs" />
+    <Compile Include="Steps\Specs\CycleSetupSpec.cs" />
+    <Compile Include="Steps\Specs\CycleSetupSpecManager.cs" />
     <Compile Include="Steps\Specs\BurnUpGraphSpec.cs" />
     <Compile Include="Steps\ChooseFilterSteps.cs" />
     <Compile Include="Steps\MakeItPossibleToAssignAnyExistingStatusesToCycleTimeSteps.cs" />

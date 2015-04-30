@@ -17,7 +17,7 @@ Background:
 	@no_data_changes
 Scenario: 1 - View burn-up
 	Given I am logged in as "Andreas"
-	When I navigate to burn-up page
+	When I navigate to "burn-up" page
 	And I wait, but not longer than 1 second
 	Then I should see a burn-up graph
 	And I should see a dropdown with selectable projects:
@@ -31,7 +31,7 @@ Scenario: 1 - View burn-up
 	@no_data_changes
 Scenario: 2 - Plot issues from query in burn-up
 	Given I am logged in as "Andreas"
-	And I navigate to burn-up page
+	And I navigate to "burn-up" page
 	When I query "Disco" 
 	Then I should see a burn-up graph
 	And I should see the following values in the graph:
@@ -49,7 +49,7 @@ Scenario: 3 - Load JiraMetrics with new issues from Jira
 	| Project | Key       | Story Points |
 	| Disco   | DISCO-665 | 5            |
 	| OFU     | OFU-2290  | 6            |
-	When I navigate to admin page
+	When I navigate to "admin" page
 	And I choose to load JiraMetrics with project "Disco"
 	Then I should be presented a list of issues been added:
 	| issue      | comment |
@@ -83,7 +83,7 @@ Scenario: 5 - Load JiraMetrics with changed issues from Jira
 	| project | issue      |
 	| Disco   | DISCO-2299 |
 	| OFU     | OFU-2067   | 
-	When I navigate to admin page
+	When I navigate to "admin" page
 	And I choose to load JiraMetrics with project "Disco"
 	Then I should be presented a list of updated issues:
 	| issue      | comment  |
@@ -118,7 +118,7 @@ Scenario: 7 - Loading JiraMetrics when no new issues needs to be loaded
 	| project | issue      |
 	| Disco   | DISCO-1462 |
 	| OFU     | OFU-2067   | 
-	When I navigate to admin page
+	When I navigate to "admin" page
 	And I choose to load JiraMetrics with project "Disco"
 	Then I should be presented a message "All issues are up-to-date for project "Disco"
 

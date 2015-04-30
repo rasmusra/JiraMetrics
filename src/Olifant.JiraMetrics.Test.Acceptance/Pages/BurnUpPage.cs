@@ -1,33 +1,38 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading;
 using NUnit.Framework;
+using Olifant.JiraMetrics.Test.Annotations;
 using Olifant.JiraMetrics.Test.Utilities.Helpers;
+using OpenQA.Selenium;
+using OpenQA.Selenium.PhantomJS;
 using OpenQA.Selenium.Support.UI;
 
 namespace Olifant.JiraMetrics.Test.Acceptance.Pages
 {
-    public class BurnUpPage 
+    public sealed class BurnUpPage : PageObject
     {
-        public BurnUpPage(PhantomJsWrapper phantomWrapper)
+        public BurnUpPage(PhantomJSDriver driver) : base(driver)
         {
-            PhantomWrapper = phantomWrapper;
         }
 
-        public PhantomJsWrapper PhantomWrapper { get; private set; }
+        protected override string VirtualPath { get { return ""; } }
 
-        public void NavigateTo()
+        public string ProjectDropdown
         {
-            var url = String.Format("http://localhost:{0}", IisExpressManager.Port);
-           PhantomWrapper.Driver.Navigate().GoToUrl(url);
+            get
+            {
+                return JQuery.Find("#ProjectList").Text();
+            }
         }
 
         public bool ChartDivContains(string expectedText)
         {
-            return PhantomWrapper.WaitForRendering(() =>
+            return WaitForRendering(() =>
             {
-                var chartDiv = FeatureWrapper.JQuery.Find("#chartDiv");
+                var chartDiv = JQuery.Find("#chartDiv");
                 return chartDiv.Text().Contains(expectedText);
             });
         }
@@ -39,31 +44,76 @@ namespace Olifant.JiraMetrics.Test.Acceptance.Pages
 
         public bool ChartContainerContains(params string[] expectedTexts)
         {
-            return PhantomWrapper.WaitForRendering(() =>
+            return WaitForRendering(() =>
             {
-                var chartContainer = FeatureWrapper.JQuery.Find("#chart_container");
+                var chartContainer = JQuery.Find("#chart_container");
                 return expectedTexts.All(text => chartContainer.Text().Contains(text));
             });
         }
 
         public void SearchForProject(string project)
         {
-            var projectDropdown = FeatureWrapper.PhantomJsDriver
-                .FindElementById("ProjectList");
+            var projectDropdown = Driver.FindElementById("ProjectList");
 
             new SelectElement(projectDropdown)
                 .SelectByText(project);
 
-            FeatureWrapper.JQuery.Find("#Search")
-                .Click();
+            JQuery.Find("#Search").Click();
         }
 
-        public string ProjectDropdown
+        public void ToggleStatuses()
         {
-            get
+            ClickTheButton("toggleStatusVisibility");
+        }
+
+        public void MoveStatus(string status, string @from, string to)
+        {
+            // TODO: naming convention coming up... hodoesitwork? :-/
+            var fromListboxName = from.Replace(" ", string.Empty) + "Listbox";
+            var fromListboxControl = new SelectElement(Driver.FindElement(By.Name(fromListboxName)));
+            fromListboxControl.SelectByText(status);
+
+            var buttonId = CreateButtonIdFromSpec(@from, to);
+            ClickTheButton(buttonId);
+        }
+
+        private void ClickTheButton(string buttonId)
+        {
+            var button = Driver.FindElement(By.Id(buttonId));
+            button.Click();
+        }
+
+        private static string CreateButtonIdFromSpec(string from, string to)
+        {
+            var buttonName = string.Format(
+                "from{0}To{1}Button",
+                CultureInfo.CurrentCulture.TextInfo.ToTitleCase(from).Replace(" ", string.Empty),
+                CultureInfo.CurrentCulture.TextInfo.ToTitleCase(to).Replace(" ", string.Empty));
+            return buttonName;
+        }
+
+        public bool PreCycleStatusesContains(List<string> expectedPreCycleStatuses)
+        {
+            return StatusesContains(expectedPreCycleStatuses, "#PreCycleStatusesListBox");
+        }
+
+        public bool CycleStatusesContains(List<string> expectedCycleStatuses)
+        {
+            return StatusesContains(expectedCycleStatuses, "#CycleStatusesListBox");
+        }
+
+        public bool PostCycleStatusesContains(List<string> expectedPostCycleStatuses)
+        {
+            return StatusesContains(expectedPostCycleStatuses, "#PostCycleStatusesListBox");
+        }
+
+        private bool StatusesContains(List<string> expectedPostCycleStatuses, string listBoxId)
+        {
+            return WaitForRendering(() =>
             {
-                return FeatureWrapper.JQuery.Find("#ProjectList").Text();
-            }
+                var actualStatuses = JQuery.Find(listBoxId).Text();
+                return expectedPostCycleStatuses.All(text => actualStatuses.Contains(text));
+            });
         }
     }
 }

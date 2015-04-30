@@ -1,21 +1,9 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Runtime.InteropServices;
-
-using FluentAssertions;
-using NUnit.Framework.Constraints;
-using Olifant.JiraMetrics.Test.Acceptance.Steps.Helpers;
-
-using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Support.UI;
+﻿using FluentAssertions;
+using Olifant.JiraMetrics.Test.Acceptance.Pages;
+using Olifant.JiraMetrics.Test.Acceptance.Steps.Specs;
 
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
-using TechTalk.SpecFlow.Tracing;
 
 namespace Olifant.JiraMetrics.Test.Acceptance.Steps
 {
@@ -32,45 +20,25 @@ namespace Olifant.JiraMetrics.Test.Acceptance.Steps
         [Then(@"I should see following setup for statuses in cycle:")]
         public void ThenIShouldSeeDefaultSetupForStatusesInCycle(Table table)
         {
-            var cycleSetupManager = new CycleSetupManager(table.CreateSet<CycleSetupSpec>());
+            var cycleSetupManager = new CycleSetupSpecManager(table.CreateSet<CycleSetupSpec>());
+            var burnUpPage = ScenarioWrapper.PageNavigator.GetCurrent<BurnUpPage>();
 
-            VerifyStatuses(cycleSetupManager.PreCycleStatuses, "PreCycleStatusesListbox");
-            VerifyStatuses(cycleSetupManager.CycleStatuses, "CycleStatusesListbox");
-            VerifyStatuses(cycleSetupManager.PostCycleStatuses, "PostCycleStatusesListbox");
-        }
-
-        private static void VerifyStatuses(List<string> expectedCycleStatuses, string webControlName)
-        {
-            var actualStatuses = FeatureWrapper.JQuery.Find("#" + webControlName);
-            expectedCycleStatuses.ForEach(expectedStatus => actualStatuses.Text()
-                .Should().Contain(expectedStatus));
+            burnUpPage.PreCycleStatusesContains(cycleSetupManager.PreCycleStatuses);
+            burnUpPage.CycleStatusesContains(cycleSetupManager.CycleStatuses);
+            burnUpPage.PostCycleStatusesContains(cycleSetupManager.PostCycleStatuses);
         }
 
         [When(@"I move status ""(.*)"" in ""(.*)"" to ""(.*)""")]
         public void MoveStatus(string status, string from, string to)
         {
-            var fromListboxName = from.Replace(" ", string.Empty) + "Listbox";
-            var fromListboxControl = new SelectElement(FeatureWrapper.PhantomJsDriver.FindElement(By.Name(fromListboxName)));
-            fromListboxControl.SelectByText(status);
-
-            var buttonId = CreateButtonIdFromSpec(@from, to);
-
-            this.ClickTheButton(buttonId);
-
-        }
-
-        [When(@"I click the button ""(.*)""")]
-        public void ClickTheButton(string buttonId)
-        {
-            var button = FeatureWrapper.PhantomJsDriver.FindElement(By.Id(buttonId));
-            button.Click();
+            ScenarioWrapper.PageNavigator.GetCurrent<BurnUpPage>().MoveStatus(status, from, to);
         }
 
         [When(@"I make the statuses visible")]
         [When(@"I hide the statuses")]
         public void ToggleStatuses()
         {
-            ClickTheButton("toggleStatusVisibility");
+            ScenarioWrapper.PageNavigator.GetCurrent<BurnUpPage>().ToggleStatuses();
         }
 
         [Then(@"the statuses should be hidden")]
@@ -78,65 +46,5 @@ namespace Olifant.JiraMetrics.Test.Acceptance.Steps
         {
             // how test this one? not a cruical one...
         }
-
-        private static string CreateButtonIdFromSpec(string from, string to)
-        {
-            var buttonName = string.Format(
-                "from{0}To{1}Button",
-                CultureInfo.CurrentCulture.TextInfo.ToTitleCase(from).Replace(" ", string.Empty),
-                CultureInfo.CurrentCulture.TextInfo.ToTitleCase(to).Replace(" ", string.Empty));
-            return buttonName;
-        }
-    }
-
-    public class CycleSetupManager
-    {
-        private readonly IEnumerable<CycleSetupSpec> cycleSetupSpecs;
-
-        public CycleSetupManager(IEnumerable<CycleSetupSpec> cycleSetupSpecs)
-        {
-            this.cycleSetupSpecs = cycleSetupSpecs;
-        }
-
-        public List<string> PreCycleStatuses
-        {
-            get
-            {
-                return this.GetStatuses(spec => spec.PrecycleStatus);
-            }
-        }
-
-        public List<string> CycleStatuses
-        {
-            get
-            {
-                return this.GetStatuses(spec => spec.CycleStatus);
-            }
-        }
-
-        public List<string> PostCycleStatuses
-        {
-            get
-            {
-                return this.GetStatuses(spec => spec.PostcycleStatus);
-            }
-        }
-
-        private List<string> GetStatuses(Func<CycleSetupSpec, string> specField)
-        {
-            return this.cycleSetupSpecs
-                .Select(specField)
-                .Where(field => !string.IsNullOrEmpty(field))
-                .ToList();
-        }
-    }
-
-    public class CycleSetupSpec
-    {
-        public string PrecycleStatus { get; set; }
-        
-        public string CycleStatus { get; set; }
-        
-        public string PostcycleStatus { get; set; }
     }
 }

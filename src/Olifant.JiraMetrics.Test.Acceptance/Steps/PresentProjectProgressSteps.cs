@@ -26,25 +26,17 @@ namespace Olifant.JiraMetrics.Test.Acceptance.Steps
             // TODO: find out how to manage authorization... 
         }
 
-        [Given(@"I navigate to burn-up page")]
-        [When(@"I navigate to burn-up page")]
-        public void NavigateToBurnUpPage()
+        [Given(@"I navigate to ""(.*)"" page")]
+        [When(@"I navigate to ""(.*)"" page")]
+        public void NavigateTo(string page)
         {
-            ScenarioWrapper.BurnUpPage = new BurnUpPage(new PhantomJsWrapper(FeatureWrapper.PhantomJsDriver));
-            ScenarioWrapper.BurnUpPage.NavigateTo();
-        }
-
-        [When(@"I navigate to admin page")]
-        public void NavigateToAdminPage()
-        {
-            ScenarioWrapper.AdminPage = new AdminPage(new PhantomJsWrapper(FeatureWrapper.PhantomJsDriver));
-            ScenarioWrapper.AdminPage.NavigateTo();
+            ScenarioWrapper.PageNavigator.GoTo(page);
         }
 
         [When(@"I choose to load JiraMetrics with project ""(.*)""")]
         public void WhenIChooseToLoadJiraMetricsWithProject(string project)
         {
-            ScenarioWrapper.AdminPage.Load(project);
+            ScenarioWrapper.PageNavigator.GetCurrent<AdminPage>().Load(project);
         }
 
         [Then(@"I should be presented a list of issues been added:")]
@@ -65,7 +57,8 @@ namespace Olifant.JiraMetrics.Test.Acceptance.Steps
 
             issuesCollection.Drop();
             issuesCollection.InsertBatch(issues);
-            FeatureWrapper.PhantomJsDriver.Navigate().Refresh();
+
+            ScenarioWrapper.PageNavigator.Current.Refresh();
         }
    
         [Given(@"Jira contains additional issues:")]
@@ -89,45 +82,48 @@ namespace Olifant.JiraMetrics.Test.Acceptance.Steps
             var issues = IssueStubFactory.CreateMany("DISCO-620", noofIssues, storyPoint);
             issues.ToList().ForEach(i => i.Fields.Project.Name = projectName);
             issuesCollection.InsertBatch(issues);
-            FeatureWrapper.PhantomJsDriver.Navigate().Refresh();
+
+            ScenarioWrapper.PageNavigator.Current.Refresh();
         }
 
         [When(@"I wait, but not longer than (.*) second")]
         [When(@"I wait, but not longer than (.*) seconds")]
         public void SetPageLoadTimeout(int timeoutInSeconds)
         {
-            ScenarioWrapper.BurnUpPage.PhantomWrapper.LoadTimeout = TimeSpan.FromSeconds(timeoutInSeconds);
+            ScenarioWrapper.PageNavigator.Current.LoadTimeout = TimeSpan.FromSeconds(timeoutInSeconds);
         }
 
         [Then(@"I should see a burn-up graph")]
         public void VerifyDefaultGraph()
         {
-            ScenarioWrapper.BurnUpPage.ChartContainerContains("Week", "Burnup", "start");
+            ScenarioWrapper.PageNavigator.GetCurrent<BurnUpPage>().ChartContainerContains("Week", "Burnup", "start");
         }
 
         [When(@"I select project '(.*)' and search for issues")]
         [When(@"I query ""(.*)""")]
         public void WhenISearch(string project)
         {
-            ScenarioWrapper.BurnUpPage.SearchForProject(project);
+            ScenarioWrapper.PageNavigator.GetCurrent<BurnUpPage>().SearchForProject(project);
         }
 
         [Then(@"I should see the following values in the graph:")]
         public void VerifyGraphValues(Table table)
         {
             var graphSpecList = table.CreateSet<BurnUpGraphSpec>().ToList();
-            ScenarioWrapper.BurnUpPage.ChartContainerContains(graphSpecList.SelectMany(gr => gr.Fields))
+            ScenarioWrapper.PageNavigator.GetCurrent<BurnUpPage>()
+                .ChartContainerContains(graphSpecList.SelectMany(gr => gr.Fields))
                 .Should().BeTrue();
         }
 
         [Then(@"I should see a dropdown with selectable projects:")]
         public void VerifyProjectDropdown(Table table)
         {
-            var projectDropdown = ScenarioWrapper.BurnUpPage.ProjectDropdown;
+            var projectDropdown = ScenarioWrapper.PageNavigator.GetCurrent<BurnUpPage>().ProjectDropdown;
 
-            table.Rows
-                .Select(row => row[0]).ToList()
-                .ForEach(expectedProject => projectDropdown.Should().Contain(expectedProject));
+            foreach (var expectedProject in table.Rows.Select(row => row[0]))
+            {
+                projectDropdown.Should().Contain(expectedProject);
+            }
         }
 
         [Then(@"the accumulated story points of all issues should be (.*)")]
@@ -135,7 +131,7 @@ namespace Olifant.JiraMetrics.Test.Acceptance.Steps
         {
             var expectedText = string.Format("data: [0, {0:0.0}]", expectedStoryPoints);
 
-            ScenarioWrapper.BurnUpPage.ChartDivContains(expectedText)
+            ScenarioWrapper.PageNavigator.GetCurrent<BurnUpPage>().ChartDivContains(expectedText)
                 .Should().BeTrue();
         }
     }

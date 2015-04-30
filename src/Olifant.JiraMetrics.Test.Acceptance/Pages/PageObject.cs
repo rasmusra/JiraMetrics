@@ -1,0 +1,53 @@
+using System;
+using System.Threading;
+using JQSelenium;
+using Olifant.JiraMetrics.Test.Utilities.Helpers;
+using OpenQA.Selenium.PhantomJS;
+
+namespace Olifant.JiraMetrics.Test.Acceptance.Pages
+{
+    public abstract class PageObject 
+    {
+        protected PageObject(PhantomJSDriver driver)
+        {
+            Driver = driver;
+            JQuery = new JQuery(driver);
+            LoadTimeout = TimeSpan.FromSeconds(1); // default
+
+            NavigateTo();
+        }
+
+        protected PhantomJSDriver Driver { get; private set; }
+
+        protected JQuery JQuery { get; set; }
+
+        public TimeSpan LoadTimeout { get; set; }
+
+        protected abstract string VirtualPath { get; }
+
+        public void Refresh()
+        {
+            Driver.Navigate().Refresh();
+        }
+
+        private void NavigateTo()
+        {
+            var url = String.Format("http://localhost:{0}{1}", IisExpressManager.Port, VirtualPath);
+            Driver.Navigate().GoToUrl(url);
+        }
+
+        protected bool WaitForRendering(Func<bool> shouldBeTrue)
+        {
+            var found = shouldBeTrue();
+            var startTime = DateTime.Now;
+
+            while (!found && DateTime.Now - startTime < LoadTimeout)
+            {
+                found = shouldBeTrue();
+                Thread.Sleep(500);
+            }
+
+            return found;
+        }
+    }
+}

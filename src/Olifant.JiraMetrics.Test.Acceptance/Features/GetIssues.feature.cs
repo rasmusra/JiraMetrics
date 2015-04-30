@@ -19,7 +19,7 @@ namespace Olifant.JiraMetrics.Test.Acceptance.Features
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "1.9.0.77")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("Get issues")]
+    [NUnit.Framework.DescriptionAttribute("GetCurrent issues")]
     public partial class GetIssuesFeature
     {
         
@@ -32,7 +32,7 @@ namespace Olifant.JiraMetrics.Test.Acceptance.Features
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Get issues", "In order to get a sense of how long time it takes to fix issues\r\nAs a person invo" +
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "GetCurrent issues", "In order to get a sense of how long time it takes to fix issues\r\nAs a person invo" +
                     "lved in Jira project\r\nI need ways to see cycle times", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
@@ -66,10 +66,10 @@ namespace Olifant.JiraMetrics.Test.Acceptance.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Get all defects from DISCO")]
+        [NUnit.Framework.DescriptionAttribute("GetCurrent all defects from DISCO")]
         public virtual void GetAllDefectsFromDISCO()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get all defects from DISCO", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("GetCurrent all defects from DISCO", ((string[])(null)));
 #line 7
 this.ScenarioSetup(scenarioInfo);
 #line 8

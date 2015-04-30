@@ -33,8 +33,8 @@ namespace Olifant.JiraMetrics.Test.Acceptance.Features
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "2 - Plot graph of 1000 Jira issues on web page", "In order to avoid falling asleep before graph is rendered\nAs a project lead\nIt sh" +
-                    "ould be possible to load a lot of issues within reasonalbe time", ProgrammingLanguage.CSharp, new string[] {
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "2 - Plot graph of 1000 Jira issues on web page", "In order to avoid falling asleep before graph is rendered\r\nAs a project lead\r\nIt " +
+                    "should be possible to load a lot of issues within reasonalbe time", ProgrammingLanguage.CSharp, new string[] {
                         "web"});
             testRunner.OnFeatureStart(featureInfo);
         }
@@ -77,7 +77,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 9
  testRunner.Given("I am logged in as \"Andreas\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 10
- testRunner.And("I navigate to burn-up page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("I navigate to \"burn-up\" page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 11
  testRunner.And("there exists a Jira project called \'Huge project\' with 1000 issues where each has" +
                     " story point of 13", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");

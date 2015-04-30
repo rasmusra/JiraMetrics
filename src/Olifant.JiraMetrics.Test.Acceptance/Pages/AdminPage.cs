@@ -4,31 +4,25 @@ using System.Linq;
 using System.Threading;
 using NUnit.Framework;
 using Olifant.JiraMetrics.Test.Utilities.Helpers;
+using OpenQA.Selenium.PhantomJS;
 using OpenQA.Selenium.Support.UI;
 
 namespace Olifant.JiraMetrics.Test.Acceptance.Pages
 {
-    public class AdminPage 
+    public class AdminPage : PageObject
     {
-        public AdminPage(PhantomJsWrapper phantomWrapper)
+        public AdminPage(PhantomJSDriver driver) : base(driver)
         {
-            PhantomWrapper = phantomWrapper;
         }
 
-        public PhantomJsWrapper PhantomWrapper { get; private set; }
-
-        public void NavigateTo()
-        {
-            var url = String.Format("http://localhost:{0}/Admin", IisExpressManager.Port);
-            PhantomWrapper.Driver.Navigate().GoToUrl(url);
-        }
+        protected override string VirtualPath { get { return "/Admin"; }  }
 
         public void Load(string project)
         {
-            FeatureWrapper.JQuery.Find("#projectTextBox")
+            JQuery.Find("#projectTextBox")
                 .Val(project);
 
-            FeatureWrapper.JQuery.Find("#Load")
+            JQuery.Find("#Load")
                 .Click();
         }
     }

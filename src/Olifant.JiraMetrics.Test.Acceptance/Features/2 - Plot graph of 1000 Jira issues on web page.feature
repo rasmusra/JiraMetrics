@@ -7,7 +7,7 @@ Feature: 2 - Plot graph of 1000 Jira issues on web page
 
 Scenario: Plot Burn Up For Huge Project
 	Given I am logged in as "Andreas"
-	And I navigate to burn-up page
+	And I navigate to "burn-up" page
 	And there exists a Jira project called 'Huge project' with 1000 issues where each has story point of 13
 	When I query "Huge project"	
 	And I wait, but not longer than 10 second

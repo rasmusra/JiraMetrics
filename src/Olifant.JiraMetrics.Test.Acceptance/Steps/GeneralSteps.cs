@@ -1,14 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using FluentAssertions;
 using Olifant.JiraMetrics.Lib;
 using Olifant.JiraMetrics.Lib.Metrics.Filters;
-using Olifant.JiraMetrics.Test.Acceptance.Steps.Helpers;
 using Olifant.JiraMetrics.Test.Acceptance.Steps.Specs;
 using Olifant.JiraMetrics.Test.Utilities.Fakes;
 using TechTalk.SpecFlow;
-using TechTalk.SpecFlow.Assist;
 
 namespace Olifant.JiraMetrics.Test.Acceptance.Steps
 {
@@ -83,19 +79,6 @@ namespace Olifant.JiraMetrics.Test.Acceptance.Steps
                     ScenarioContext.Current.Pending();
                     break;
             }
-        }
-
-        [Then(@"I should see the following controls:")]
-        public void VerifyControls(Table table)
-        {
-            var expectedControls = table.CreateSet<WebControlSpec>().ToList();
-
-            expectedControls.ForEach(
-                controlSpec =>
-                {
-                    FeatureWrapper.JQuery.Find("#" + controlSpec.Name)
-                        .Should().NotBeNull();
-                });
         }
     }
 }

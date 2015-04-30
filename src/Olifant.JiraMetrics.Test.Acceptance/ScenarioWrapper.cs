@@ -4,6 +4,7 @@ using Olifant.JiraMetrics.Lib.Metrics;
 using Olifant.JiraMetrics.Lib.Metrics.Filters;
 using Olifant.JiraMetrics.Test.Acceptance.Pages;
 using Olifant.JiraMetrics.Test.Utilities.Fakes;
+using OpenQA.Selenium.PhantomJS;
 using TechTalk.SpecFlow;
 
 namespace Olifant.JiraMetrics.Test.Acceptance
@@ -122,68 +123,37 @@ namespace Olifant.JiraMetrics.Test.Acceptance
             }
         }
 
-        public static int PageLoadTimeout
+        public static bool ResetDbAfterScenario
         {
             get
             {
-                return (int)ScenarioContext.Current["PageLoadTimeout"];
-            }
+                if (!ScenarioContext.Current.ContainsKey("ResetDbAfterScenario"))
+                {
+                    ResetDbAfterScenario = true;
+                }
 
+                return (bool)ScenarioContext.Current["ResetDbAfterScenario"];
+            }
             set
             {
-                ScenarioContext.Current["PageLoadTimeout"] = value;
+                ScenarioContext.Current["ResetDbAfterScenario"] = value;
             }
         }
 
-        public static bool DbNeedstoBeResetAfterScenario
+        public static PageNavigator PageNavigator
         {
             get
             {
-                if (!ScenarioContext.Current.ContainsKey("DbNeedstoBeResetAfterScenario"))
+                if (!ScenarioContext.Current.ContainsKey("PageNavigator"))
                 {
-                    DbNeedstoBeResetAfterScenario = true;
+                    PageNavigator = new PageNavigator(new PhantomJSDriver());
                 }
 
-                return (bool)ScenarioContext.Current["DbNeedstoBeResetAfterScenario"];
+                return (PageNavigator)ScenarioContext.Current["PageNavigator"];
             }
             set
             {
-                ScenarioContext.Current["DbNeedstoBeResetAfterScenario"] = value;
-            }
-        }
-
-        public static BurnUpPage BurnUpPage
-        {
-            get
-            {
-                if (!ScenarioContext.Current.ContainsKey("BurnUpPage"))
-                {
-                    BurnUpPage = null;
-                }
-
-                return (BurnUpPage)ScenarioContext.Current["BurnUpPage"];
-            }
-            set
-            {
-                ScenarioContext.Current["BurnUpPage"] = value;
-            }
-        }
-
-        // TODO: dry from above
-        public static AdminPage AdminPage
-        {
-            get
-            {
-                if (!ScenarioContext.Current.ContainsKey("AdminPage"))
-                {
-                    AdminPage = null;
-                }
-
-                return (AdminPage)ScenarioContext.Current["AdminPage"];
-            }
-            set
-            {
-                ScenarioContext.Current["AdminPage"] = value;
+                ScenarioContext.Current["PageNavigator"] = value;
             }
         }
 
