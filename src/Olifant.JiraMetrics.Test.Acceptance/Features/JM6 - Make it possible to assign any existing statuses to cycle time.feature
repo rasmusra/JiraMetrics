@@ -1,5 +1,5 @@
 ﻿@web
-Feature: 6 - Make it possible to assign any existing statuses to cycle time 
+Feature: JM6 - Make it possible to assign any existing statuses to cycle time 
 	To be able to work with cycle times
 	As a person involved in Jira project
 	I need the exported cycle times presented in a report

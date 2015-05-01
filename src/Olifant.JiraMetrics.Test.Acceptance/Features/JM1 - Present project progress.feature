@@ -1,5 +1,5 @@
 ﻿@web
-Feature: 1 - Present project progress
+Feature: JM1 - Present project progress
 	In order to get a grip on project risks 
 	As a stakeholder
 	I want to see the project progress in a burn-up 

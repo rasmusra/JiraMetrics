@@ -78,20 +78,20 @@
     <Compile Include="..\GlobalAssemblyInfo.cs">
       <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="Features\2 - Plot graph of 1000 Jira issues on web page.feature.cs">
+    <Compile Include="Features\JM2 - Plot graph of 1000 Jira issues on web page.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>2 - Plot graph of 1000 Jira issues on web page.feature</DependentUpon>
+      <DependentUpon>JM2 - Plot graph of 1000 Jira issues on web page.feature</DependentUpon>
     </Compile>
     <Compile Include="Features\CreateValueAddedTimeReport.feature.cs">
       <DependentUpon>CreateValueAddedTimeReport.feature</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Features\6 - Make it possible to assign any existing statuses to cycle time.feature.cs">
+    <Compile Include="Features\JM6 - Make it possible to assign any existing statuses to cycle time.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>6 - Make it possible to assign any existing statuses to cycle time.feature</DependentUpon>
+      <DependentUpon>JM6 - Make it possible to assign any existing statuses to cycle time.feature</DependentUpon>
     </Compile>
     <Compile Include="Hooks.cs" />
     <Compile Include="Pages\PageNavigator.cs" />
@@ -115,10 +115,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>GetIssues.feature</DependentUpon>
     </Compile>
-    <Compile Include="Features\1 - Present project progress.feature.cs">
+    <Compile Include="Features\JM1 - Present project progress.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>1 - Present project progress.feature</DependentUpon>
+      <DependentUpon>JM1 - Present project progress.feature</DependentUpon>
     </Compile>
     <Compile Include="Pages\BurnUpPage.cs" />
     <Compile Include="Steps\Specs\CycleSetupSpec.cs" />
@@ -147,9 +147,9 @@
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Features\2 - Plot graph of 1000 Jira issues on web page.feature">
+    <None Include="Features\JM2 - Plot graph of 1000 Jira issues on web page.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>2 - Plot graph of 1000 Jira issues on web page.feature.cs</LastGenOutput>
+      <LastGenOutput>JM2 - Plot graph of 1000 Jira issues on web page.feature.cs</LastGenOutput>
     </None>
     <None Include="Features\CreateValueAddedTimeReport.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
@@ -166,17 +166,17 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CreateHistogram.feature.cs</LastGenOutput>
     </None>
-    <None Include="Features\6 - Make it possible to assign any existing statuses to cycle time.feature">
+    <None Include="Features\JM6 - Make it possible to assign any existing statuses to cycle time.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>6 - Make it possible to assign any existing statuses to cycle time.feature.cs</LastGenOutput>
+      <LastGenOutput>JM6 - Make it possible to assign any existing statuses to cycle time.feature.cs</LastGenOutput>
     </None>
     <None Include="Features\GetIssues.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>GetIssues.feature.cs</LastGenOutput>
     </None>
-    <None Include="Features\1 - Present project progress.feature">
+    <None Include="Features\JM1 - Present project progress.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>1 - Present project progress.feature.cs</LastGenOutput>
+      <LastGenOutput>JM1 - Present project progress.feature.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <ItemGroup>

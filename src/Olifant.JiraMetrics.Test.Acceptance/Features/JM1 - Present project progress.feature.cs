@@ -19,21 +19,21 @@ namespace Olifant.JiraMetrics.Test.Acceptance.Features
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "1.9.0.77")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("1 - Present project progress")]
+    [NUnit.Framework.DescriptionAttribute("JM1 - Present project progress")]
     [NUnit.Framework.CategoryAttribute("web")]
-    public partial class _1_PresentProjectProgressFeature
+    public partial class JM1_PresentProjectProgressFeature
     {
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "1 - Present project progress.feature"
+#line 1 "JM1 - Present project progress.feature"
 #line hidden
         
         [NUnit.Framework.TestFixtureSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "1 - Present project progress", "In order to get a grip on project risks \r\nAs a stakeholder\r\nI want to see the pro" +
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "JM1 - Present project progress", "In order to get a grip on project risks \r\nAs a stakeholder\r\nI want to see the pro" +
                     "ject progress in a burn-up \r\nand the graph should be updated daily", ProgrammingLanguage.CSharp, new string[] {
                         "web"});
             testRunner.OnFeatureStart(featureInfo);

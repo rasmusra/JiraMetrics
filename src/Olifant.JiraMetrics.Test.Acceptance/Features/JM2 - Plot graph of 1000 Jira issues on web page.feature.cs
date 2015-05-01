@@ -19,21 +19,21 @@ namespace Olifant.JiraMetrics.Test.Acceptance.Features
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "1.9.0.77")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("2 - Plot graph of 1000 Jira issues on web page")]
+    [NUnit.Framework.DescriptionAttribute("JM2 - Plot graph of 1000 Jira issues on web page")]
     [NUnit.Framework.CategoryAttribute("web")]
-    public partial class _2_PlotGraphOf1000JiraIssuesOnWebPageFeature
+    public partial class JM2_PlotGraphOf1000JiraIssuesOnWebPageFeature
     {
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "2 - Plot graph of 1000 Jira issues on web page.feature"
+#line 1 "JM2 - Plot graph of 1000 Jira issues on web page.feature"
 #line hidden
         
         [NUnit.Framework.TestFixtureSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "2 - Plot graph of 1000 Jira issues on web page", "In order to avoid falling asleep before graph is rendered\r\nAs a project lead\r\nIt " +
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "JM2 - Plot graph of 1000 Jira issues on web page", "In order to avoid falling asleep before graph is rendered\r\nAs a project lead\r\nIt " +
                     "should be possible to load a lot of issues within reasonalbe time", ProgrammingLanguage.CSharp, new string[] {
                         "web"});
             testRunner.OnFeatureStart(featureInfo);

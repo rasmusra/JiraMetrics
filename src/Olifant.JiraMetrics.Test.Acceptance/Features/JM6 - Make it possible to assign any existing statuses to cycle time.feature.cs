@@ -19,21 +19,21 @@ namespace Olifant.JiraMetrics.Test.Acceptance.Features
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "1.9.0.77")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("6 - Make it possible to assign any existing statuses to cycle time")]
+    [NUnit.Framework.DescriptionAttribute("JM6 - Make it possible to assign any existing statuses to cycle time")]
     [NUnit.Framework.CategoryAttribute("web")]
-    public partial class _6_MakeItPossibleToAssignAnyExistingStatusesToCycleTimeFeature
+    public partial class JM6_MakeItPossibleToAssignAnyExistingStatusesToCycleTimeFeature
     {
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "6 - Make it possible to assign any existing statuses to cycle time.feature"
+#line 1 "JM6 - Make it possible to assign any existing statuses to cycle time.feature"
 #line hidden
         
         [NUnit.Framework.TestFixtureSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "6 - Make it possible to assign any existing statuses to cycle time", "To be able to work with cycle times\r\nAs a person involved in Jira project\r\nI need" +
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "JM6 - Make it possible to assign any existing statuses to cycle time", "To be able to work with cycle times\r\nAs a person involved in Jira project\r\nI need" +
                     " the exported cycle times presented in a report", ProgrammingLanguage.CSharp, new string[] {
                         "web"});
             testRunner.OnFeatureStart(featureInfo);

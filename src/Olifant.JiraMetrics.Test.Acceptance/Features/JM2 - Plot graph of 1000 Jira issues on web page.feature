@@ -1,5 +1,5 @@
 ﻿@web
-Feature: 2 - Plot graph of 1000 Jira issues on web page
+Feature: JM2 - Plot graph of 1000 Jira issues on web page
 	In order to avoid falling asleep before graph is rendered
 	As a project lead
 	It should be possible to load a lot of issues within reasonalbe time
