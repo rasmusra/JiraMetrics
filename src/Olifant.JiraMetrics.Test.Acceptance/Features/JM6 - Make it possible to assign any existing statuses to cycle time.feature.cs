@@ -34,7 +34,7 @@ namespace Olifant.JiraMetrics.Test.Acceptance.Features
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "JM6 - Make it possible to assign any existing statuses to cycle time", "To be able to work with cycle times\r\nAs a person involved in Jira project\r\nI need" +
-                    " the exported cycle times presented in a report", ProgrammingLanguage.CSharp, new string[] {
+                    " ways to define what statuses should be in the cycle time", ProgrammingLanguage.CSharp, new string[] {
                         "web"});
             testRunner.OnFeatureStart(featureInfo);
         }
