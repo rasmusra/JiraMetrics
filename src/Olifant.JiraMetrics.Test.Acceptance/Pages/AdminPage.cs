@@ -19,11 +19,16 @@ namespace Olifant.JiraMetrics.Test.Acceptance.Pages
 
         public void Load(string project)
         {
-            JQuery.Find("#projectTextBox")
+            JQuery.Find("#ProjectTextBox")
                 .Val(project);
 
             JQuery.Find("#Load")
                 .Click();
+        }
+
+        public bool LoadedIssuesReportContains(IEnumerable<string> @select)
+        {
+            return WaitForRendering(() => false);
         }
     }
 }

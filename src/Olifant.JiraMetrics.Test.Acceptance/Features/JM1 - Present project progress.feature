@@ -42,18 +42,19 @@ Scenario: 2 - Plot issues from query in burn-up
 Scenario: 3 - Load JiraMetrics with new issues from Jira
 	Given I am logged in as "Sixten"
 	And the system contains the following issues:
-	| Key       | Story points |
-	| DISCO-620 | 3            |
-	| OFU-1462  | 4            |
+	| Key      | Story points |
+	| JM1-620  | 3            |
+	| OFU-1462 | 4            |
 	And Jira contains additional issues:
-	| Project | Key       | Story Points |
-	| Disco   | DISCO-665 | 5            |
-	| OFU     | OFU-2290  | 6            |
+	| Project | Key      | Story Points |
+	| JM1     | JM1-665  | 5            |
+	| OFU     | OFU-2290 | 6            |
 	When I navigate to "admin" page
 	And I choose to load JiraMetrics with project "Disco"
+	And I wait, but not longer than 1 second
 	Then I should be presented a list of issues been added:
-	| issue      | comment |
-	| DISCO-2299 | Added!  | 
+	| issue   | action |
+	| JM1-665 | Added! |
 
 
 Scenario: 4 - Updating graph with new issues

@@ -90,7 +90,7 @@ namespace Olifant.JiraMetrics.Test.Unit
         private static IIssueReportModel ReadFirstIssue(string jiraKey, Status[] statuses, string startedLabel = "")
         {
             var query = string.Format("key={0}", jiraKey);
-            var json = new FakeJiraRestClient().GetJsonChunks(query);
+            var json = new FakeJiraRestClient("Stubs").GetJsonChunks(query);
             var issues = JsonConvert.DeserializeObject<Issues>(json.First());
 
             var target = IssueReportModelFactory.Create(issues.IssueList, new CycleTimeRule(statuses, startedLabel))

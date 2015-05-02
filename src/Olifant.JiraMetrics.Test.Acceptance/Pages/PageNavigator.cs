@@ -9,7 +9,7 @@ namespace Olifant.JiraMetrics.Test.Acceptance.Pages
     {
         private readonly PhantomJSDriver _driver;
 
-        public PageNavigator(PhantomJSDriver driver)
+        public PageNavigator()
         {
             _driver = CreateDriver();
         }

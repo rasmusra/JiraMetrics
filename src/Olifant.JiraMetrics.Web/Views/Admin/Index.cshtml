@@ -1,0 +1,22 @@
+﻿<div>
+    @using (Html.BeginForm("Load", "Admin", FormMethod.Post, new {id = "load"}))
+    {
+        <script type="text/javascript">
+            $(function() {
+
+                $('#Load').click(function() {
+                    var project = $('#ProjectTextBox').val();
+
+                    var input = $("<input>")
+                        .attr("type", "hidden")
+                        .attr("name", "project")
+                        .val(project);
+                    $('#Load').append($(input));
+                });
+            });
+        </script>
+
+        @Html.TextBox("ProjectTextBox")
+        <input id="Load" type="submit" value="Load"/>
+    }
+</div>

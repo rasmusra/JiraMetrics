@@ -100,11 +100,11 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("GetCurrent value Added Time info with cycles in full process")]
+        [NUnit.Framework.DescriptionAttribute("Get value Added Time info with cycles in full process")]
         [NUnit.Framework.IgnoreAttribute()]
         public virtual void GetValueAddedTimeInfoWithCyclesInFullProcess()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("GetCurrent value Added Time info with cycles in full process", new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get value Added Time info with cycles in full process", new string[] {
                         "ignore"});
 #line 24
 this.ScenarioSetup(scenarioInfo);
@@ -230,11 +230,11 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("GetCurrent value-added time info with cycles in test phase")]
+        [NUnit.Framework.DescriptionAttribute("Get value-added time info with cycles in test phase")]
         [NUnit.Framework.IgnoreAttribute()]
         public virtual void GetValue_AddedTimeInfoWithCyclesInTestPhase()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("GetCurrent value-added time info with cycles in test phase", new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get value-added time info with cycles in test phase", new string[] {
                         "ignore"});
 #line 47
 this.ScenarioSetup(scenarioInfo);

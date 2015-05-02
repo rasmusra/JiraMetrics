@@ -146,7 +146,7 @@ namespace Olifant.JiraMetrics.Test.Acceptance
             {
                 if (!ScenarioContext.Current.ContainsKey("PageNavigator"))
                 {
-                    PageNavigator = new PageNavigator(new PhantomJSDriver());
+                    PageNavigator = new PageNavigator();
                 }
 
                 return (PageNavigator)ScenarioContext.Current["PageNavigator"];
@@ -154,23 +154,6 @@ namespace Olifant.JiraMetrics.Test.Acceptance
             set
             {
                 ScenarioContext.Current["PageNavigator"] = value;
-            }
-        }
-
-        public static FakeJiraRestClient FakeJiraRestClient
-        {
-            get
-            {
-                if (!ScenarioContext.Current.ContainsKey("FakeJiraRestClient"))
-                {
-                    FakeJiraRestClient = null;
-                }
-
-                return (FakeJiraRestClient)ScenarioContext.Current["FakeJiraRestClient"];
-            }
-            set
-            {
-                ScenarioContext.Current["FakeJiraRestClient"] = value;
             }
         }
     }

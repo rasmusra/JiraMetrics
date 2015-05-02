@@ -96,6 +96,7 @@ namespace Olifant.JiraMetrics.Web.Controllers
             var filters = new List<IIssueFilter> { new WorkDoneFilter() };
             var cycleTimeRule = new CycleTimeRule(cycleStatuses);
 
+            // TODO: move to repo, or something
             var mongoAccess = new MongoAccess(ConfigurationManager.AppSettings["ConnectionString"]);
             var q = from issue in mongoAccess.GetCollection<Issue>().AsQueryable<Issue>()
                     where issue.Fields.Project.Name == project 

@@ -15,7 +15,7 @@ namespace Olifant.JiraMetrics.Test.Utilities.Helpers
     {
         public static Issue Create(string issueKey, int givenStoryPoints)
         {
-            var json = FakeJiraRestClient.ReadJsonFile(string.Format("key={0}", issueKey));
+            var json = new FakeJiraRestClient("Stubs").ReadJsonFile(string.Format("key={0}", issueKey));
             var issue = JsonConvert.DeserializeObject<Issues>(json).IssueList.First();
             issue.Fields.StoryPoints = givenStoryPoints;
             return issue;
@@ -30,7 +30,7 @@ namespace Olifant.JiraMetrics.Test.Utilities.Helpers
 
         public static IList<Issue> CreateFromFiles()
         {
-            var jsonList = FakeJiraRestClient.ReadAllJsonFiles();
+            var jsonList = new FakeJiraRestClient("Stubs").ReadAllJsonFiles();
             var issueList = jsonList
                 .Select(JsonConvert.DeserializeObject<Issues>)
                 .SelectMany(issues => issues.IssueList)

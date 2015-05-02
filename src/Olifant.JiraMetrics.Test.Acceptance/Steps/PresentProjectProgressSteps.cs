@@ -39,12 +39,6 @@ namespace Olifant.JiraMetrics.Test.Acceptance.Steps
             ScenarioWrapper.PageNavigator.GetCurrent<AdminPage>().Load(project);
         }
 
-        [Then(@"I should be presented a list of issues been added:")]
-        public void ThenIShouldBePresentedAListOfIssuesBeenAdded(Table table)
-        {
-            ScenarioContext.Current.Pending();
-        }
-
         [Given(@"the system contains the following issues:")]
         public void ClearAndInsertIssuesIntoMongo(Table table)
         {
@@ -58,20 +52,17 @@ namespace Olifant.JiraMetrics.Test.Acceptance.Steps
             issuesCollection.Drop();
             issuesCollection.InsertBatch(issues);
 
-            ScenarioWrapper.PageNavigator.Current.Refresh();
+            if (ScenarioWrapper.PageNavigator.Current != null)
+            {
+                ScenarioWrapper.PageNavigator.Current.Refresh();
+            }
         }
    
         [Given(@"Jira contains additional issues:")]
         public void SetupIssuesAvailableInJira(Table table)
         {
-            var givenIssues = table.CreateSet<IssueSpec>();
-            ScenarioWrapper.FakeJiraRestClient = new FakeJiraRestClient();
-
-            foreach (var issue in givenIssues)
-            {
-                ScenarioWrapper.FakeJiraRestClient
-                    .Jql2KeysLookup[issue.Project].Add(issue.Key);
-            }
+            // the stubs needs to be in place in beforehand. 
+            // We cannot mock anything in fakejiraclient due to lack of inteerprocess communication
         }
 
         [Given(@"there exists a Jira project called '(.*)' with (.*) issues where each has story point of (.*)")]
@@ -83,7 +74,10 @@ namespace Olifant.JiraMetrics.Test.Acceptance.Steps
             issues.ToList().ForEach(i => i.Fields.Project.Name = projectName);
             issuesCollection.InsertBatch(issues);
 
-            ScenarioWrapper.PageNavigator.Current.Refresh();
+            if (ScenarioWrapper.PageNavigator.Current != null)
+            {
+                ScenarioWrapper.PageNavigator.Current.Refresh();
+            }
         }
 
         [When(@"I wait, but not longer than (.*) second")]
@@ -96,7 +90,16 @@ namespace Olifant.JiraMetrics.Test.Acceptance.Steps
         [Then(@"I should see a burn-up graph")]
         public void VerifyDefaultGraph()
         {
-            ScenarioWrapper.PageNavigator.GetCurrent<BurnUpPage>().ChartContainerContains("Week", "Burnup", "start");
+            ScenarioWrapper.PageNavigator.GetCurrent<BurnUpPage>().ChartContainerContains("Week", "Burnup", "start")
+                .Should().BeTrue("the chart component were not found on page.");
+        }
+
+        [Then(@"I should be presented a list of issues been added:")]
+        public void ThenIShouldBePresentedAListOfIssuesBeenAdded(Table table)
+        {
+            var expectedIssues = table.CreateSet<IssueSpec>();
+            ScenarioWrapper.PageNavigator.GetCurrent<AdminPage>().LoadedIssuesReportContains(expectedIssues.Select(i => i.Key))
+                .Should().BeTrue("there were expected issues not found in the load-report");
         }
 
         [When(@"I select project '(.*)' and search for issues")]

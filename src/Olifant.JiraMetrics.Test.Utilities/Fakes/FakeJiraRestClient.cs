@@ -1,30 +1,27 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
+using MongoDB.Bson.IO;
 using Olifant.JiraMetrics.Lib.Jira;
 
 namespace Olifant.JiraMetrics.Test.Utilities.Fakes
 {
     public class FakeJiraRestClient : IJiraRestClient
     {
-        public FakeJiraRestClient()
-        {
-            Jql2KeysLookup = new Dictionary<string, List<string>>();
-        }
+        private readonly string _stubDirectory;
 
-        /// <summary>
-        /// add keys to this dict for mocking how jira should respond to queries
-        /// </summary>
-        public Dictionary<string, List<string>> Jql2KeysLookup { get; set; }
+        public FakeJiraRestClient(string stubDirectory)
+        {
+            _stubDirectory = stubDirectory;
+        }
 
         public List<string> GetJsonChunks(string jql)
         {
-            return Jql2KeysLookup.ContainsKey(jql)
-                ? Jql2KeysLookup[jql].SelectMany(JqlLookup).ToList() 
-                : JqlLookup(jql);
+            return JqlLookup(jql);
         }
 
-        private static List<string> JqlLookup(string jql)
+        private List<string> JqlLookup(string jql)
         {
             string result;
 
@@ -49,19 +46,23 @@ namespace Olifant.JiraMetrics.Test.Utilities.Fakes
 
         public string GetStatuses()
         {
-            return File.ReadAllText(Path.Combine("Stubs", "statuses.json"));
+            return File.ReadAllText(Path.Combine(_stubDirectory, "statuses.json"));
         }
 
-        public static string ReadJsonFile(string filename)
+        public string ReadJsonFile(string filename)
         {
-            return File.ReadAllText(Path.Combine("Stubs", string.Format("{0}.json", filename)));
+            return File.ReadAllText(Path.Combine(_stubDirectory, string.Format("{0}.json", filename)));
         }
 
-        public static IList<string> ReadAllJsonFiles()
+        public IList<string> ReadAllJsonFiles()
         {
-            var stubs = Directory.GetFiles("Stubs", "key*.json");
+            var stubs = Directory.GetFiles(_stubDirectory, "key*.json");
             var jsonTexts = stubs.Select(File.ReadAllText).ToList();
             return jsonTexts;
+        }
+
+        public void AddIssueStubToFakeProject(string project, string key)
+        {
         }
     }
 }

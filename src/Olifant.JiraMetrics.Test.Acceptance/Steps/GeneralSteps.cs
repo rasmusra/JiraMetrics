@@ -33,7 +33,7 @@ namespace Olifant.JiraMetrics.Test.Acceptance.Steps
         public void StartProgram()
         {
             ScenarioWrapper.FakeTextEditorProxy = new FakeTextEditorProxy();
-            ScenarioWrapper.JiraCyclesManager = new JiraMetricsFacade(new FakeJiraRestClient());
+            ScenarioWrapper.JiraCyclesManager = new JiraMetricsFacade(new FakeJiraRestClient("Stubs"));
         }
 
         [When(@"I click the ""(.*)"" button")]

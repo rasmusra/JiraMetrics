@@ -122,6 +122,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Bootstrapper.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Models\ProjectViewModel.cs" />
     <Compile Include="Models\CyclesViewModel.cs" />
     <Compile Include="Models\BurnUpViewModel.cs" />
@@ -204,6 +205,7 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Shared\Cycles.cshtml" />
     <Content Include="Views\Shared\Projects.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
