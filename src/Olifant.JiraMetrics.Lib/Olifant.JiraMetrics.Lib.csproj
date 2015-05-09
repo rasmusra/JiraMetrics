@@ -59,6 +59,7 @@
     <Compile Include="Jira\IJiraRestClient.cs" />
     <Compile Include="Jira\ChunkedJiraRestClient.cs" />
     <Compile Include="Jira\JiraCredentials.cs" />
+    <Compile Include="Jira\JiraProjectQuery.cs" />
     <Compile Include="Jira\JqlChunkHelper.cs" />
     <Compile Include="Jira\Model\Changelog.cs" />
     <Compile Include="Jira\Model\ChangeRequestType.cs" />

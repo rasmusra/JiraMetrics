@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using FluentAssertions;
 using Olifant.JiraMetrics.Lib.Jira.Model;
@@ -33,13 +34,32 @@ namespace Olifant.JiraMetrics.Test.Acceptance.Steps
             ScenarioWrapper.PageNavigator.GoTo(page);
         }
 
-        [When(@"I choose to load JiraMetrics with project ""(.*)""")]
-        public void WhenIChooseToLoadJiraMetricsWithProject(string project)
+        [When(@"I load JiraMetrics with issues from Jira project ""(.*)""")]
+        public void LoadFromJira(string project)
         {
             ScenarioWrapper.PageNavigator.GetCurrent<AdminPage>().Load(project);
         }
 
-        [Given(@"the system contains the following issues:")]
+        [When(@"I choose to load JiraMetrics with project ""(.*)""")]
+        [When(@"I load JiraMetrics with project ""(.*)"" having the following issue:")]
+        [When(@"I load JiraMetrics with project ""(.*)"" having the following issues:")]
+        public void WhenILoadJiraMetricsWithProjectHavingTheFollowingIssue(string project, Table table)
+        {
+            // the issues in the supplied table needs to be in the test data population, 
+            // table is actually only in scenario for explaining example in the spec
+            LoadFromJira(project);
+        }
+
+        [Then(@"within (.*) seconds I should be able to see the following values for project ""(.*)"" in the burn-up graph:")]
+        public void GoToBurnUpAndVerifyGraph(int timeoutInSeconds, string project , Table table)
+        {
+            ScenarioWrapper.PageNavigator.GoTo("burn-up");
+            ScenarioWrapper.PageNavigator.GetCurrent<BurnUpPage>().SearchForProject(project);
+            ScenarioWrapper.PageNavigator.Current.LoadTimeout = TimeSpan.FromSeconds(timeoutInSeconds);
+            VerifyGraphValues(table);
+        }
+
+        [Given(@"JiraMetrics contains the following issues:")]
         public void ClearAndInsertIssuesIntoMongo(Table table)
         {
             // TODO: move to MongoWrapper
@@ -57,12 +77,26 @@ namespace Olifant.JiraMetrics.Test.Acceptance.Steps
                 ScenarioWrapper.PageNavigator.Current.Refresh();
             }
         }
-   
+
         [Given(@"Jira contains additional issues:")]
         public void SetupIssuesAvailableInJira(Table table)
         {
-            // the stubs needs to be in place in beforehand. 
-            // We cannot mock anything in fakejiraclient due to lack of inteerprocess communication
+            // It gets really messy to setup scenarios Jira during runtime (mock), because in order to achieve 
+            // inter-process communication with web-server we need to write json files to webservers stub directory. 
+            // Instead, let's settle with making sure that the expected issues are available in the stub directory
+            // that is already in place.
+            var expectedIssues = table.CreateSet<IssueSpec>().ToList();
+            var fakeClient = new FakeJiraRestClient("Stubs");
+
+            // this will fail on missing stub files
+            var missingIssue = expectedIssues
+                .Select(issue => issue.Key)
+                .FirstOrDefault(key => !fakeClient.MatchingFileExists(string.Format("*{0}*.json", key)));
+
+            if (missingIssue != null)
+            {
+                throw new NotImplementedException(string.Format("Cannot find stub-file for key: {0}", missingIssue));
+            }
         }
 
         [Given(@"there exists a Jira project called '(.*)' with (.*) issues where each has story point of (.*)")]
@@ -90,21 +124,21 @@ namespace Olifant.JiraMetrics.Test.Acceptance.Steps
         [Then(@"I should see a burn-up graph")]
         public void VerifyDefaultGraph()
         {
-            ScenarioWrapper.PageNavigator.GetCurrent<BurnUpPage>().ChartContainerContains("Week", "Burnup", "start")
+            ScenarioWrapper.PageNavigator.GetCurrent<BurnUpPage>().ChartContains("Week", "Burnup", "start")
                 .Should().BeTrue("the chart component were not found on page.");
         }
 
-        [Then(@"I should be presented a list of issues been added:")]
+        [Then(@"I should be presented a list of all issues that has been added:")]
         public void ThenIShouldBePresentedAListOfIssuesBeenAdded(Table table)
         {
-            var expectedIssues = table.CreateSet<IssueSpec>();
-            ScenarioWrapper.PageNavigator.GetCurrent<AdminPage>().LoadedIssuesReportContains(expectedIssues.Select(i => i.Key))
-                .Should().BeTrue("there were expected issues not found in the load-report");
+            var expectedIssues = table.CreateSet<LoadedIssueSpec>();
+            ScenarioWrapper.PageNavigator.GetCurrent<AdminPage>().LoadedIssuesReportContains(expectedIssues)
+                .Should().BeTrue("expected issues should be found in page");
         }
 
         [When(@"I select project '(.*)' and search for issues")]
         [When(@"I query ""(.*)""")]
-        public void WhenISearch(string project)
+        public void Search(string project)
         {
             ScenarioWrapper.PageNavigator.GetCurrent<BurnUpPage>().SearchForProject(project);
         }
@@ -112,9 +146,10 @@ namespace Olifant.JiraMetrics.Test.Acceptance.Steps
         [Then(@"I should see the following values in the graph:")]
         public void VerifyGraphValues(Table table)
         {
-            var graphSpecList = table.CreateSet<BurnUpGraphSpec>().ToList();
+            var graphSpecList = table.CreateSet<BurnUpGraphSpec>();
+
             ScenarioWrapper.PageNavigator.GetCurrent<BurnUpPage>()
-                .ChartContainerContains(graphSpecList.SelectMany(gr => gr.Fields))
+                .ChartContains(graphSpecList.SelectMany(gr => gr.Fields))
                 .Should().BeTrue();
         }
 

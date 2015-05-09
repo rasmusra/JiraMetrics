@@ -21,6 +21,15 @@ namespace Olifant.JiraMetrics.Test.Utilities.Fakes
             return JqlLookup(jql);
         }
 
+        public List<string> GetJsonChunks(JiraProjectQuery project)
+        {
+            // read all stub files with file names matching project name
+            // TODO: this feels really messy
+            var pattern = string.Format("key={0}*.json", project.ProjectName);
+            var allIssues = ReadMatchingJsonFiles(pattern).ToList();
+            return allIssues;
+        }
+
         private List<string> JqlLookup(string jql)
         {
             string result;
@@ -61,8 +70,17 @@ namespace Olifant.JiraMetrics.Test.Utilities.Fakes
             return jsonTexts;
         }
 
-        public void AddIssueStubToFakeProject(string project, string key)
+        public bool MatchingFileExists(string pattern)
         {
+            var stubs = Directory.GetFiles(_stubDirectory, pattern);
+            return stubs.Any();
+        }
+
+        private IList<string> ReadMatchingJsonFiles(string pattern)
+        {
+            var stubs = Directory.GetFiles(_stubDirectory, pattern);
+            var jsonTexts = stubs.Select(File.ReadAllText).ToList();
+            return jsonTexts;
         }
     }
 }

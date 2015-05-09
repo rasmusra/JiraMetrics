@@ -38,40 +38,45 @@ Scenario: 2 - Plot issues from query in burn-up
 	| Start X | End X  | Start Y | End Y |
 	| start   | y14w51 | 0       | 12.5  |
 
-@wip
 Scenario: 3 - Load JiraMetrics with new issues from Jira
 	Given I am logged in as "Sixten"
-	And the system contains the following issues:
-	| Key      | Story points |
-	| JM1-620  | 3            |
-	| OFU-1462 | 4            |
+	And JiraMetrics contains the following issues:
+	| Key       | Story points |
+	| DISCO-620 | 7            |
+	| OFU-1462  | 4            |
 	And Jira contains additional issues:
-	| Project | Key      | Story Points |
-	| JM1     | JM1-665  | 5            |
-	| OFU     | OFU-2290 | 6            |
+	| Project | Key       | Story Points |
+	| DISCO   | DISCO-665 | 1            |
+	| DISCO   | DISCO-729 | 5            |
+	| OFU     | OFU-2290  | 6            |
 	When I navigate to "admin" page
-	And I choose to load JiraMetrics with project "Disco"
-	And I wait, but not longer than 1 second
-	Then I should be presented a list of issues been added:
-	| issue   | action |
-	| JM1-665 | Added! |
+	And I load JiraMetrics with issues from Jira project "Disco"
+	And I wait, but not longer than 5 seconds
+	Then I should be presented a list of all issues that has been added:
+	| issue     | action |
+	| DISCO-665 | Added  |
+	| DISCO-729 | Added  |
 
 
+@wip
 Scenario: 4 - Updating graph with new issues
 	Given I am logged in as "Sixten"
-	And the system contains the following issues:
-	| project | issue      |
-	| Disco   | DISCO-1462 |
-	| OFU     | OFU-676    |
-	And I have the following values in the burn-up graph:
-	| Start X | End X  | Start Y | End Y |
-	| start   | y14w51 | 0       | 12.5  |
-	When the following issue is added to the system from Jira:
-	| project | issue      |
-	| Disco   | DISCO-2299 |
-	And I should see the following values in the graph:
-	| Start X | End X  | Start Y | End Y |
-	| start   | y14w51 | 0       | 12.5  |
+	And JiraMetrics contains the following issues:
+	| Key       | Story points |
+	| DISCO-620 | 7            |
+	| OFU-1462  | 4            |
+	When I navigate to "admin" page
+	And I load JiraMetrics with project "Disco" having the following issue:
+	| Project | Key       | Story Points | Status |
+	| DISCO   | DISCO-665 | 1            | Closed |
+	And I navigate to "burn-up" page
+	And statuses are made visible
+	And status "Open" is moved from "Pre Cycle Statuses" to "Cycle Statuses"
+	And I query "Disco"
+	And I wait, but not longer than 10 second
+	Then I should see the following values in the graph:
+	| Start X | End X  | Y values |
+	| start   | y14w45 | 0, 1, 8  |
 
 
 Scenario: 5 - Load JiraMetrics with changed issues from Jira

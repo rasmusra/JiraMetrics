@@ -8,19 +8,44 @@ namespace Olifant.JiraMetrics.Test.Acceptance
     [Binding]
     public class Hooks
     {
-        [BeforeFeature]
-        public static void SetUp()
+        [BeforeFeature("web")]
+        public static void SetUpIis()
         {
-            Console.WriteLine("Hooks: Kill running processes...");
+            Console.WriteLine("BeforeTestRun: Kill running processes...");
             IisExpressManager.Kill();
             WinProcessWrapper.KillByName("phantomjs");
 
-            Console.WriteLine("Hooks: Setup db...");
+            Console.WriteLine("BeforeTestRun: Setup db...");
             MongoWrapper.Init(ConfigurationManager.AppSettings["ConnectionString"],
                 IssueStubFactory.CreateFromFiles());
 
-            Console.WriteLine("Hooks: Setup web...");
+            Console.WriteLine("BeforeTestRun: Setup web...");
             IisExpressManager.SetupFakes("FakeStructureMap.xml");
+
+            Console.WriteLine("BeforeTestRun: Starting iisexpress...");
+            IisExpressManager.Start();
+        }
+
+        [AfterFeature("web")]
+        public static void TearDownIis()
+        {
+            Console.WriteLine("AfterTestRun: Tear down web...");
+            IisExpressManager.RemoveFakes();
+            IisExpressManager.Kill();
+        }
+
+        [AfterScenario("web")]
+        public static void TearDownWebDriver()
+        {
+            try
+            {
+                ScenarioWrapper.PageNavigator.Dispose();
+                WinProcessWrapper.KillByName("phantomjs");
+            }
+            catch (Exception e)
+            {
+                Console.Write("Problems when tearing down web driver: " + e);
+            }
         }
 
         [BeforeFeature]
@@ -31,38 +56,6 @@ namespace Olifant.JiraMetrics.Test.Acceptance
             Console.WriteLine(FeatureContext.Current.FeatureInfo.Description);
             Console.WriteLine();
         }
-
-        /// <summary>
-        /// Add tag @web to setup an iisexpress server during scenario
-        /// </summary>
-        #region web
-
-        [BeforeScenario("web")]
-        public static void SetupBrowser()
-        {
-            Console.WriteLine("Starting iisexpress...");
-            IisExpressManager.Start();
-        }
-
-        [AfterScenario("web")]
-        public static void TearDown()
-        {
-            Console.WriteLine("Hooks: Tear down web...");
-            IisExpressManager.RemoveFakes();
-            IisExpressManager.Kill();
-
-            try
-            {
-                ScenarioWrapper.PageNavigator.Dispose();
-                WinProcessWrapper.KillByName("phantomjs");
-            }
-            catch (Exception e)
-            {
-                Console.Write("Problems when tearing down phantomjs: " + e);
-            }
-        }
-
-        #endregion
 
         [BeforeScenario]
         public static void MakeScenarioLogReadableBefore()

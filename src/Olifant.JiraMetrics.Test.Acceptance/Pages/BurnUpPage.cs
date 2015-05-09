@@ -1,11 +1,6 @@
-using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Threading;
-using NUnit.Framework;
-using Olifant.JiraMetrics.Test.Annotations;
-using Olifant.JiraMetrics.Test.Utilities.Helpers;
 using OpenQA.Selenium;
 using OpenQA.Selenium.PhantomJS;
 using OpenQA.Selenium.Support.UI;
@@ -37,16 +32,16 @@ namespace Olifant.JiraMetrics.Test.Acceptance.Pages
             });
         }
 
-        public bool ChartContainerContains(IEnumerable<string> expectedTexts)
+        public bool ChartContains(IEnumerable<string> expectedTexts)
         {
-            return ChartContainerContains(expectedTexts.ToArray());
+            return ChartContains(expectedTexts.ToArray());
         }
 
-        public bool ChartContainerContains(params string[] expectedTexts)
+        public bool ChartContains(params string[] expectedTexts)
         {
             return WaitForRendering(() =>
             {
-                var chartContainer = JQuery.Find("#chart_container");
+                var chartContainer = JQuery.Find("#chartDiv");
                 return expectedTexts.All(text => chartContainer.Text().Contains(text));
             });
         }

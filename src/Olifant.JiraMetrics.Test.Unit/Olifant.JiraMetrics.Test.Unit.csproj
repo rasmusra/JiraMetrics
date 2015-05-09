@@ -69,6 +69,7 @@
     <Compile Include="Fakes\FakeCycleTimeRule.cs" />
     <Compile Include="IssueStubFactory.cs" />
     <Compile Include="JiraCredentialsTests.cs" />
+    <Compile Include="JiraProjectSearchTests.cs" />
     <Compile Include="JqlChunkHelperTests.cs" />
     <Compile Include="Mocks\IssueReportModelMockFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

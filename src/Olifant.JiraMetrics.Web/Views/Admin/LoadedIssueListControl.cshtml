@@ -1,0 +1,16 @@
+﻿@using Olifant.JiraMetrics.Web.ViewModels
+@model LoadedIssuesViewModel
+
+<table class="pure-table-bordered" style="width:400px">
+    <tr>
+        <th style="width:50%">Issue</th>
+        <th style="width:50%">Action</th>
+    </tr>
+    @foreach (var item in Model.LoadedIssues)
+    {
+        <tr>
+            <td>@item.Key</td>
+            <td>@item.Action</td>
+        </tr>
+    }
+</table>

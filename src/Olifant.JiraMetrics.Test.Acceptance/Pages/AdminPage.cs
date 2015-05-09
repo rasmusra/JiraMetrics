@@ -1,11 +1,7 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
-using NUnit.Framework;
-using Olifant.JiraMetrics.Test.Utilities.Helpers;
+using Olifant.JiraMetrics.Test.Acceptance.Steps.Specs;
 using OpenQA.Selenium.PhantomJS;
-using OpenQA.Selenium.Support.UI;
 
 namespace Olifant.JiraMetrics.Test.Acceptance.Pages
 {
@@ -19,16 +15,22 @@ namespace Olifant.JiraMetrics.Test.Acceptance.Pages
 
         public void Load(string project)
         {
-            JQuery.Find("#ProjectTextBox")
-                .Val(project);
-
-            JQuery.Find("#Load")
-                .Click();
+            JQuery.Find("#ProjectTextBox").Val(project);
+            JQuery.Find("#LoadIssues").Click();
         }
 
-        public bool LoadedIssuesReportContains(IEnumerable<string> @select)
+        public bool LoadedIssuesReportContains(IEnumerable<LoadedIssueSpec> expectedLoadedIssues)
         {
-            return WaitForRendering(() => false);
+            return WaitForRendering(() =>
+            {
+                var actualLoadedIssues = JQuery.Find("#LoadedIssueListControl").Text();
+                var loadedIssueSpecs = expectedLoadedIssues as IList<LoadedIssueSpec> ?? expectedLoadedIssues.ToList();
+
+                var containsKey = loadedIssueSpecs.All(expectedLoadedIssue => actualLoadedIssues.Contains(expectedLoadedIssue.Issue));
+                var containsAction = loadedIssueSpecs.All(expectedLoadedIssue => actualLoadedIssues.Contains(expectedLoadedIssue.Action));
+
+                return containsAction && containsKey;
+            });
         }
     }
 }

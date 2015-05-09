@@ -126,6 +126,7 @@
     <Compile Include="Steps\Specs\BurnUpGraphSpec.cs" />
     <Compile Include="Steps\ChooseFilterSteps.cs" />
     <Compile Include="Steps\MakeItPossibleToAssignAnyExistingStatusesToCycleTimeSteps.cs" />
+    <Compile Include="Steps\Specs\LoadedIssueSpec.cs" />
     <Compile Include="Steps\Specs\IssueSpec.cs" />
     <Compile Include="Steps\Specs\DateFilterSpec.cs" />
     <Compile Include="Steps\Specs\CycleTimeReportEntrySpec.cs" />

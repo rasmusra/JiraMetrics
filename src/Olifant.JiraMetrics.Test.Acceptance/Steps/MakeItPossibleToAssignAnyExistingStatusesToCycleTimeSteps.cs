@@ -29,12 +29,14 @@ namespace Olifant.JiraMetrics.Test.Acceptance.Steps
         }
 
         [When(@"I move status ""(.*)"" in ""(.*)"" to ""(.*)""")]
+        [When(@"status ""(.*)"" is moved from ""(.*)"" to ""(.*)""")]
         public void MoveStatus(string status, string from, string to)
         {
             ScenarioWrapper.PageNavigator.GetCurrent<BurnUpPage>().MoveStatus(status, from, to);
         }
 
         [When(@"I make the statuses visible")]
+        [When(@"statuses are made visible")]
         [When(@"I hide the statuses")]
         public void ToggleStatuses()
         {

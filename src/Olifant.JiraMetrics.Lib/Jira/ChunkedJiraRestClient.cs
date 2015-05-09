@@ -40,6 +40,11 @@ namespace Olifant.JiraMetrics.Lib.Jira
             return result;
         }
 
+        public List<string> GetJsonChunks(JiraProjectQuery project)
+        {
+            return GetJsonChunks(project.JqlQuery);
+        }
+
         public DateTime? GetFirstIssuesStartDate(string jql)
         {
             var jqlOrdered = JqlChunkHelper.SetToOrderByCreadedDate(jql);
