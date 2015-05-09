@@ -1,9 +1,6 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using FluentAssertions;
+﻿using FluentAssertions;
 using NUnit.Framework;
+using Olifant.JiraMetrics.Lib.Jira;
 
 namespace Olifant.JiraMetrics.Test.Unit
 {
