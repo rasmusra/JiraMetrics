@@ -12,13 +12,13 @@ using NUnit.Framework;
 
 namespace Olifant.JiraMetrics.Test.Unit
 {
-    public class BurnUpWeekIterationTests
+    public class BurnUpGraphWeekTests
     {
         [Test]
         public void AddingWeekHandlesNewYearIsPassed()
         {
             //arrange
-            var iteration = new BurnUpWeekIteration("2014-12-27");
+            var iteration = new BurnUpGraphWeek("2014-12-27");
 
             //act
             var target = iteration.AddWeek();
@@ -32,8 +32,18 @@ namespace Olifant.JiraMetrics.Test.Unit
         [TestCase("2014-12-30", "y15w1")]
         public void SuppliesWeeklabel(string givenDate, string expectedWeekLabel)
         {
-            var iteration = new BurnUpWeekIteration(givenDate);
+            var iteration = new BurnUpGraphWeek(givenDate);
             iteration.WeekLabel.ShouldBeEquivalentTo(expectedWeekLabel);
+        }
+
+        [Test]
+        public void CreatesRangeOfWeeks()
+        {
+            var startWeek = new BurnUpGraphWeek("2014-12-11");
+            var endWeek = new BurnUpGraphWeek("2015-01-20");
+            var actualWeeks = startWeek.To(endWeek).Select(w => w.WeekLabel).ToList();
+
+            actualWeeks.Should().ContainInOrder("y14w50", "y14w51", "y14w52", "y15w1", "y15w2", "y15w3", "y15w4");
         }
     }
 }

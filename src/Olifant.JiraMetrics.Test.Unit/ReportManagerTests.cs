@@ -24,13 +24,13 @@ namespace Olifant.JiraMetrics.Test.Unit
             // arrange
             var fakeTextEditorProxy = new FakeTextEditorProxy();
             var target = new TextReportManager(fakeTextEditorProxy);
-            const string GivenJql = "some jql\nhaving linebreaks and\rother nasties";
+            const string givenJql = "some jql\nhaving linebreaks and\rother nasties";
 
             // act
             target.GenerateCycleTimeReport(
                 new List<IssueReportModel>(),
                 new CycleTimeRule(Status.Create(new[] { "Implement", "Implementing", "Review" })),
-                GivenJql,
+                givenJql,
                 new List<IIssueFilter>());
 
             // assert
@@ -49,10 +49,11 @@ namespace Olifant.JiraMetrics.Test.Unit
             };
 
             //act
-            var burnUpData = BurnUpGraph.SummonData(issueReportModels);
+            var burnUpData = new BurnUpGraph(issueReportModels);
 
             // assert
-            burnUpData.Keys.Select(k => k.WeekLabel).Should().ContainInOrder(new[] { "y14w16", "y14w17", "y14w18" });
+            burnUpData.Weeks.Select(bugw => bugw.WeekLabel)
+                .Should().ContainInOrder(new[] { "y14w16", "y14w17", "y14w18" });
         }
 
         [Test]
@@ -67,11 +68,11 @@ namespace Olifant.JiraMetrics.Test.Unit
             };
 
             //act
-            var burnUpData = BurnUpGraph.SummonData(issueReportModels);
-            var points = burnUpData.Values.Select(v => v.StoryPoints);
+            var burnUpData = new BurnUpGraph(issueReportModels);
 
             // assert
-            points.Should().ContainInOrder(new decimal[] { 5, 5, 10 });
+            burnUpData.AccumulatedPointsList
+                .Should().ContainInOrder(new decimal[] { 5, 5, 10 });
         }
     }
 }

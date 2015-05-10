@@ -14,7 +14,7 @@ namespace Olifant.JiraMetrics.Web.Models
 {
     public class BurnUpViewModel
     {
-        public BurnUpViewModel(Dictionary<BurnUpWeekIteration, BurnUpValue> burnUpData)
+        public BurnUpViewModel(BurnUpGraph burnUpData)
         {
             Chart = CreateChart(burnUpData);
         }
@@ -22,10 +22,10 @@ namespace Olifant.JiraMetrics.Web.Models
         [DisplayName("Chart")]
         public Highcharts Chart { get; set; }
 
-        private Highcharts CreateChart(Dictionary<BurnUpWeekIteration, BurnUpValue> burnUpData)
+        private Highcharts CreateChart(BurnUpGraph burnUpData)
         {
-            var xaxis = CreateXaxis(burnUpData);
-            var yaxisValues = CreateYAxis(burnUpData);
+            var xaxis = CreateXaxis(burnUpData.Weeks);
+            var yaxisValues = CreateYAxis(burnUpData.AccumulatedPointsList);
             var yaxis = new YAxis
             {
                 Min = 0, 
@@ -46,21 +46,17 @@ namespace Olifant.JiraMetrics.Web.Models
             return chart;
         }
 
-        private static List<object> CreateYAxis(Dictionary<BurnUpWeekIteration, BurnUpValue> burnUpData)
+        private static List<object> CreateYAxis(IEnumerable<decimal> accumulatedPoints)
         {
             var yaxisValues = new List<object> {"0"};
-            yaxisValues.AddRange(burnUpData.Values
-                .Select(v => v.StoryPoints)
-                .Cast<object>());
-;
-
+            yaxisValues.AddRange(accumulatedPoints.Cast<object>());
             return yaxisValues;
         }
 
-        private static XAxis CreateXaxis(Dictionary<BurnUpWeekIteration, BurnUpValue> burnUpData)
+        private static XAxis CreateXaxis(List<BurnUpGraphWeek> weeks)
         {
             var xaxisValues = new List<string> {"start"};
-            xaxisValues.AddRange(burnUpData.Keys.Select(k => k.WeekLabel));
+            xaxisValues.AddRange(weeks.Select(k => k.WeekLabel));
             var xaxis = new XAxis {Categories = xaxisValues.ToArray(), Title = new XAxisTitle {Text = "Week"}};
             return xaxis;
         }

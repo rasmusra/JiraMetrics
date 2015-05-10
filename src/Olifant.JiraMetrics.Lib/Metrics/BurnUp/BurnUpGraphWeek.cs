@@ -1,21 +1,22 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
 
 namespace Olifant.JiraMetrics.Lib.Metrics.BurnUp
 {
     [DebuggerDisplay("{WeekLabel}")]
-    public class BurnUpWeekIteration : IComparable<BurnUpWeekIteration>
+    public class BurnUpGraphWeek : IComparable<BurnUpGraphWeek>, IEquatable<BurnUpGraphWeek>
     {
         public readonly int Week;
         public readonly int Year;
 
-        public BurnUpWeekIteration(string date)
+        public BurnUpGraphWeek(string date)
             : this(DateTime.Parse(date))
         {
         }
 
-        public BurnUpWeekIteration(DateTime date)
+        public BurnUpGraphWeek(DateTime date)
         {
             this.Week = date.GetIso8601WeekOfYear();
             this.Year = date.Year;
@@ -29,26 +30,23 @@ namespace Olifant.JiraMetrics.Lib.Metrics.BurnUp
 
         public string WeekLabel
         {
-            get
-            {
-                return string.Format("y{0}w{1}", this.Year % 100, this.Week);
-            }
+            get { return string.Format("y{0}w{1}", this.Year%100, this.Week); }
         }
 
-        public int GetHashCode(BurnUpWeekIteration obj)
+        public override int GetHashCode()
         {
-            return obj.WeekLabel.GetHashCode();
+            return this.WeekLabel.GetHashCode();
         }
 
-        public int CompareTo(BurnUpWeekIteration other)
+        public int CompareTo(BurnUpGraphWeek other)
         {
             return string.Compare(this.WeekLabel, other.WeekLabel, StringComparison.Ordinal);
         }
 
-        public BurnUpWeekIteration AddWeek()
+        public BurnUpGraphWeek AddWeek()
         {
             var date = FirstDateOfWeekIso8601(this.Year, this.Week);
-            return new BurnUpWeekIteration(date.AddDays(7));
+            return new BurnUpGraphWeek(date.AddDays(7));
         }
 
         private static DateTime FirstDateOfWeekIso8601(int year, int weekOfYear)
@@ -66,8 +64,21 @@ namespace Olifant.JiraMetrics.Lib.Metrics.BurnUp
                 weekNum -= 1;
             }
 
-            var result = firstThursday.AddDays(weekNum * 7);
+            var result = firstThursday.AddDays(weekNum*7);
             return result.AddDays(-3);
+        }
+
+        public IEnumerable<BurnUpGraphWeek> To(BurnUpGraphWeek endWeek)
+        {
+            for (var week = this; week.CompareTo(endWeek) <= 0; week = week.AddWeek())
+            {
+                yield return week;
+            }
+        }
+
+        public bool Equals(BurnUpGraphWeek other)
+        {
+            return this.WeekLabel == other.WeekLabel;
         }
     }
 }

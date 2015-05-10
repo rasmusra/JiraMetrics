@@ -1,7 +1,7 @@
 using System;
 using System.Text;
 
-namespace Olifant.JiraMetrics.Test.UnitTests
+namespace Olifant.JiraMetrics.Lib.Jira
 {
     public class JiraCredentials
     {

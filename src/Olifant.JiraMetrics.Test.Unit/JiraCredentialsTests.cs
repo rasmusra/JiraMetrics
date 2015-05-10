@@ -1,8 +1,6 @@
 ﻿using FluentAssertions;
-
-using Olifant.JiraMetrics.Test.UnitTests;
-
 using NUnit.Framework;
+using Olifant.JiraMetrics.Lib.Jira;
 
 namespace Olifant.JiraMetrics.Test.Unit
 {

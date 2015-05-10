@@ -74,8 +74,8 @@
     <Compile Include="Jira\Model\Status.cs" />
     <Compile Include="Metrics\Model\IIssueReportModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Metrics\BurnUp\BurnUpValue.cs" />
-    <Compile Include="Metrics\BurnUp\BurnUpWeekIteration.cs" />
+    <Compile Include="Metrics\BurnUp\BurnUpGraphThroughput.cs" />
+    <Compile Include="Metrics\BurnUp\BurnUpGraphWeek.cs" />
     <Compile Include="Metrics\CycleTimeRule.cs" />
     <Compile Include="Metrics\Filters\IIssueFilter.cs" />
     <Compile Include="Metrics\Filters\DoneDateFilter.cs" />

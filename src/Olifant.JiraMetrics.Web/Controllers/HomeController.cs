@@ -33,7 +33,7 @@ namespace Olifant.JiraMetrics.Web.Controllers
                 ? new List<IIssueReportModel>()
                 : GetIssues(project, deserializedStatuses);
 
-            var burnUpData = BurnUpGraph.SummonData(issues);
+            var burnUpData = new BurnUpGraph(issues);
             var burnUpModel = new BurnUpViewModel(burnUpData);
 
             return View(burnUpModel);
