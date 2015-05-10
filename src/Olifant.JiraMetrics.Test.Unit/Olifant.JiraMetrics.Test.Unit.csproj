@@ -61,8 +61,12 @@
     <Compile Include="..\GlobalAssemblyInfo.cs">
       <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="BurnUpGraphTests.cs" />
-    <Compile Include="BurnUpGraphThroughputTests.cs" />
+    <Compile Include="BurnUpGraphTests.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BurnUpGraphThroughputTests.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="BurnUpGraphWeekTests.cs" />
     <Compile Include="CycleTimeRuleTests.cs" />
     <Compile Include="IssueTests.cs" />
