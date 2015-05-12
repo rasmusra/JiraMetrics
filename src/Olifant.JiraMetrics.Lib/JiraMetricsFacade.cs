@@ -6,7 +6,6 @@ using Olifant.JiraMetrics.Lib.Jira.Model;
 using Olifant.JiraMetrics.Lib.Metrics;
 using Olifant.JiraMetrics.Lib.Metrics.Filters;
 using Olifant.JiraMetrics.Lib.Metrics.Model;
-using Olifant.JiraMetrics.Lib.Metrics.TextReport;
 
 using Newtonsoft.Json;
 
@@ -21,16 +20,9 @@ namespace Olifant.JiraMetrics.Lib
             this.jiraRestClient = jiraRestClient;
         }
 
-        public void GenerateCycleTimeReport(string jql, CycleTimeRule cycleTimeRule, List<IIssueFilter> filters, int chunkSizeInDays, ITextEditorProxy textEditorProxy)
+        public IList<IIssueReportModel> GetIssues(string jql, CycleTimeRule cycleTimeRule)
         {
-            var reportItemModels = GetIssues(jql, cycleTimeRule, filters);
-            var reportManager = new TextReportManager(textEditorProxy);
-
-            reportManager.GenerateCycleTimeReport(
-                reportItemModels, 
-                cycleTimeRule, 
-                jql, 
-                filters);
+            return GetIssues(jql, cycleTimeRule, new List<IIssueFilter>());
         }
 
         public IList<IIssueReportModel> GetIssues(string jql, CycleTimeRule cycleTimeRule, List<IIssueFilter> filters)
@@ -56,18 +48,6 @@ namespace Olifant.JiraMetrics.Lib
                     }).ToList());
 
             return reportItemModels;
-        }
-
-        public void GenerateValueAddedTimeReport(string jql, CycleTimeRule cycleTimeRule, List<IIssueFilter> filters, int chunkSizeInDays, ITextEditorProxy textEditorProxy)
-        {
-            var reportItemModels = GetIssues(jql, cycleTimeRule, filters);
-            var reportManager = new TextReportManager(textEditorProxy);
-
-            reportManager.GenerateValueAddedTimeReport(
-                reportItemModels,
-                cycleTimeRule,
-                jql,
-                filters);
         }
     }
 }

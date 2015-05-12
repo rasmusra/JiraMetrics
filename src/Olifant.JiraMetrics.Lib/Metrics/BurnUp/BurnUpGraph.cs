@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
-using MongoDB.Driver;
 using Olifant.JiraMetrics.Lib.Metrics.Model;
 
 namespace Olifant.JiraMetrics.Lib.Metrics.BurnUp
@@ -45,14 +45,13 @@ namespace Olifant.JiraMetrics.Lib.Metrics.BurnUp
                 return;
             }
 
-            var orderedIterations = issueReportModels
-                .Select(irm => new BurnUpGraphWeek(irm.DoneDateTime))
-                .OrderBy(i => i.WeekLabel);
+            var firstWeek = new BurnUpGraphWeek(issueReportModels.Min(irm => irm.DoneDateTime));
+            var lastWeek = new BurnUpGraphWeek(issueReportModels.Max(irm => irm.DoneDateTime));
 
-            foreach (var week in orderedIterations.First().To(orderedIterations.Last()))
+            foreach (var week in firstWeek.To(lastWeek))
             {
                 var matchingIssues = issueReportModels
-                    .Where(irm => week.CompareTo(new BurnUpGraphWeek(irm.DoneDateTime)) == 0)
+                    .Where(irm => week.Contains(DateTime.Parse(irm.DoneDateTime)))
                     .ToList();
 
                 _weekToThroughputDict[week] = new BurnUpGraphThroughput(matchingIssues);

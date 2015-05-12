@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Olifant.JiraMetrics.Lib.Metrics.Model;
 
@@ -7,9 +6,9 @@ namespace Olifant.JiraMetrics.Lib.Metrics.BurnUp
 {
     public class BurnUpGraphThroughput
     {
-        private readonly IList<IIssueReportModel> _issues = new List<IIssueReportModel>();
+        private readonly IEnumerable<IIssueReportModel> _issues;
 
-        public BurnUpGraphThroughput(IList<IIssueReportModel> issues)
+        public BurnUpGraphThroughput(IEnumerable<IIssueReportModel> issues)
         {
             _issues = issues;
         }

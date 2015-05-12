@@ -1,84 +1,66 @@
 ﻿using System;
-using System.Collections.Generic;
-using Olifant.JiraMetrics.Lib;
-using Olifant.JiraMetrics.Lib.Metrics.Filters;
+using System.Linq;
 using Olifant.JiraMetrics.Test.Acceptance.Steps.Specs;
 using Olifant.JiraMetrics.Test.Utilities.Fakes;
 using TechTalk.SpecFlow;
+using TechTalk.SpecFlow.Assist;
 
 namespace Olifant.JiraMetrics.Test.Acceptance.Steps
 {
     [Binding]
-    public class GeneralSteps
+    public sealed class GeneralSteps
     {
-        private const int HugeChunkSizeToPreventMultipleCallsOfSameStubFile = 10000;
-
-        [Given(@"the checkbox ""(.*)"" is ""(.*)""")]
-        public void GivenTheCheckboxIs(string checkBoxName, string checkBoxValue)
+        [Given(@"this is not pending anymore")]
+        public void Pending()
         {
-            var givenCheckBoxValue = new CheckBoxSpec{ IsChecked = checkBoxValue };
-            switch (checkBoxName)
+            ScenarioContext.Current.Pending();
+        }
+
+        [Given(@"I am logged in as ""(.*)""")]
+        [Given(@"a team member named ""(.*)""")]
+        [Given(@"a project lead named ""(.*)""")]
+        [Given(@"a stakeholder named ""(.*)""")]
+        [Given(@"a system named ""(.*)""")]
+        [Given(@"a project named ""(.*)""")]
+        [Given(@"a project site named ""(.*)""")]
+        public void NoAction(string value)
+        {
+            // TODO: find out how to manage authorization... 
+        }
+
+        [Given(@"I navigate to ""(.*)"" page")]
+        [When(@"I navigate to ""(.*)"" page")]
+        public void NavigateTo(string page)
+        {
+            ScenarioWrapper.PageNavigator.GoTo(page);
+        }
+
+        [Given(@"Jira contains additional issues:")]
+        public void SetupIssuesAvailableInJira(Table table)
+        {
+            // It gets really messy to setup scenarios Jira during runtime (mock), because in order to achieve 
+            // inter-process communication with web-server we need to write json files to webservers stub directory. 
+            // Instead, let's settle with making sure that the expected issues are available in the stub directory
+            // that is already in place.
+            var expectedIssues = table.CreateSet<IssueSpec>().ToList();
+            var fakeClient = new FakeJiraRestClient("Stubs");
+
+            // this will fail on missing stub files
+            var missingIssue = expectedIssues
+                .Select(issue => issue.Key)
+                .FirstOrDefault(key => !fakeClient.MatchingFileExists(string.Format("*{0}*.json", key)));
+
+            if (missingIssue != null)
             {
-            case "Save query":
-                ScenarioWrapper.SaveQuery = givenCheckBoxValue.IsTrue;
-                break;
-            default:
-                throw new NotImplementedException(string.Format("Checkbox {0} not implemented yet", checkBoxName));
+                throw new NotImplementedException(string.Format("Cannot find stub-file for key: {0}", missingIssue));
             }
         }
 
-        [Given(@"program is started")]
-        [When(@"I start the program")]
-        [When(@"I restart the program")]
-        public void StartProgram()
+        [When(@"I wait, but not longer than (.*) second")]
+        [When(@"I wait, but not longer than (.*) seconds")]
+        public void SetPageLoadTimeout(int timeoutInSeconds)
         {
-            ScenarioWrapper.FakeTextEditorProxy = new FakeTextEditorProxy();
-            ScenarioWrapper.JiraCyclesManager = new JiraMetricsFacade(new FakeJiraRestClient("Stubs"));
-        }
-
-        [When(@"I click the ""(.*)"" button")]
-        public void WhenIClickTheButton(string buttonName)
-        {
-            var filters = new List<IIssueFilter>()
-                    {
-                        ScenarioWrapper.StartDateTimeFilter
-                    };
-
-            if (ScenarioWrapper.WorkDoneFilter != null)
-            {
-                filters.Add(ScenarioWrapper.WorkDoneFilter);
-            }
-
-            if (ScenarioWrapper.DoneDateTimeFilter != null)
-            {
-                filters.Add(ScenarioWrapper.DoneDateTimeFilter);
-            }
-
-            switch (buttonName) 
-            {
-                case "Cycle time report":
-                    ScenarioWrapper.FakeTextEditorProxy = new FakeTextEditorProxy();
-                    ScenarioWrapper.JiraCyclesManager.GenerateCycleTimeReport(
-                        ScenarioWrapper.Jql,
-                        ScenarioWrapper.CycleTimeRule,
-                        filters,
-                        HugeChunkSizeToPreventMultipleCallsOfSameStubFile,
-                        ScenarioWrapper.FakeTextEditorProxy);
-                    break;
-                case "Value added time report":
-                    ScenarioWrapper.FakeTextEditorProxy = new FakeTextEditorProxy();
-                    ScenarioWrapper.JiraCyclesManager.GenerateValueAddedTimeReport(
-                        ScenarioWrapper.Jql,
-                        ScenarioWrapper.CycleTimeRule,
-                        filters,
-                        HugeChunkSizeToPreventMultipleCallsOfSameStubFile,
-                        ScenarioWrapper.FakeTextEditorProxy);
-                    break;
-                default:
-                    Console.WriteLine("--> pending: Button {0} not implemented yet", buttonName);
-                    ScenarioContext.Current.Pending();
-                    break;
-            }
+            ScenarioWrapper.PageNavigator.Current.LoadTimeout = TimeSpan.FromSeconds(timeoutInSeconds);
         }
     }
 }

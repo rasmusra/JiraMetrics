@@ -80,5 +80,10 @@ namespace Olifant.JiraMetrics.Lib.Metrics.BurnUp
         {
             return this.WeekLabel == other.WeekLabel;
         }
+
+        public bool Contains(DateTime date)
+        {
+            return this.WeekLabel == new BurnUpGraphWeek(date).WeekLabel;
+        }
     }
 }

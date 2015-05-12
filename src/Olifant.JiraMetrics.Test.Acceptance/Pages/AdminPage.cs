@@ -32,5 +32,14 @@ namespace Olifant.JiraMetrics.Test.Acceptance.Pages
                 return containsAction && containsKey;
             });
         }
+
+        public bool LoadedIssuesReportContains(string expectedMessage)
+        {
+            return WaitForRendering(() =>
+            {
+                var actualLoadedIssuesReport = JQuery.Find("#LoadedIssueListControl").Text();
+                return actualLoadedIssuesReport.Contains(expectedMessage);
+            });
+        }
     }
 }

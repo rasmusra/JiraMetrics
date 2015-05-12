@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
-using Olifant.JiraMetrics.WinApp;
 using Olifant.JiraMetrics.Lib;
 using Olifant.JiraMetrics.Lib.Jira;
 using Olifant.JiraMetrics.Lib.Jira.Model;
@@ -70,24 +69,26 @@ namespace Olifant.JiraMetrics.WinApp
         private void GenerateReport(int chunkSizeInDays)
         {
             var jiraClient = new ChunkedJiraRestClient(chunkSizeInDays);
-            var controller = new JiraMetricsFacade(jiraClient);
+            var jiraMetricsFacade = new JiraMetricsFacade(jiraClient);
 
             try
             {
                 var statuses = Status.Create(this.cycleListBox.Items.Cast<string>().ToArray());
                 var preCycleStatuses = Status.Create(this.precycleListBox.Items.Cast<string>().ToArray());
-
+                var filters = this.SummonFilters();
                 var cycleTimeRule = new CycleTimeRule(
                     statuses,
                     preCycleStatuses,
                     "started");
 
-                controller.GenerateCycleTimeReport(
-                    this.jqlTextBox.Text,
+                var reportItemModels = jiraMetricsFacade.GetIssues(this.jqlTextBox.Text, cycleTimeRule, filters);
+                
+                var reportManager = new TextReportManager(new NotepadProxy());
+                reportManager.GenerateCycleTimeReport(
+                    reportItemModels,
                     cycleTimeRule,
-                    this.SummonFilters(),
-                    chunkSizeInDays,
-                    new NotepadProxy());
+                    this.jqlTextBox.Text,
+                    filters);
             }
             catch (Exception ex)
             {

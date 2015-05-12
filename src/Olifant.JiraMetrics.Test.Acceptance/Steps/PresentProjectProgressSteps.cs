@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using FluentAssertions;
 using Olifant.JiraMetrics.Lib.Jira.Model;
 using Olifant.JiraMetrics.Test.Acceptance.Pages;
 using Olifant.JiraMetrics.Test.Acceptance.Steps.Specs;
-using Olifant.JiraMetrics.Test.Utilities.Fakes;
 using Olifant.JiraMetrics.Test.Utilities.Helpers;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
@@ -15,32 +13,12 @@ namespace Olifant.JiraMetrics.Test.Acceptance.Steps
     [Binding]
     public class PresentProjectProgressSteps
     {
-        [Given(@"I am logged in as ""(.*)""")]
-        [Given(@"a team member named ""(.*)""")]
-        [Given(@"a project lead named ""(.*)""")]
-        [Given(@"a stakeholder named ""(.*)""")]
-        [Given(@"a system named ""(.*)""")]
-        [Given(@"a project named ""(.*)""")]
-        [Given(@"a project site named ""(.*)""")]
-        public void NoAction(string value)
-        {
-            // TODO: find out how to manage authorization... 
-        }
-
-        [Given(@"I navigate to ""(.*)"" page")]
-        [When(@"I navigate to ""(.*)"" page")]
-        public void NavigateTo(string page)
-        {
-            ScenarioWrapper.PageNavigator.GoTo(page);
-        }
-
         [When(@"I load JiraMetrics with issues from Jira project ""(.*)""")]
         public void LoadFromJira(string project)
         {
             ScenarioWrapper.PageNavigator.GetCurrent<AdminPage>().Load(project);
         }
 
-        [When(@"I choose to load JiraMetrics with project ""(.*)""")]
         [When(@"I load JiraMetrics with project ""(.*)"" having the following issue:")]
         [When(@"I load JiraMetrics with project ""(.*)"" having the following issues:")]
         public void WhenILoadJiraMetricsWithProjectHavingTheFollowingIssue(string project, Table table)
@@ -78,49 +56,6 @@ namespace Olifant.JiraMetrics.Test.Acceptance.Steps
             }
         }
 
-        [Given(@"Jira contains additional issues:")]
-        public void SetupIssuesAvailableInJira(Table table)
-        {
-            // It gets really messy to setup scenarios Jira during runtime (mock), because in order to achieve 
-            // inter-process communication with web-server we need to write json files to webservers stub directory. 
-            // Instead, let's settle with making sure that the expected issues are available in the stub directory
-            // that is already in place.
-            var expectedIssues = table.CreateSet<IssueSpec>().ToList();
-            var fakeClient = new FakeJiraRestClient("Stubs");
-
-            // this will fail on missing stub files
-            var missingIssue = expectedIssues
-                .Select(issue => issue.Key)
-                .FirstOrDefault(key => !fakeClient.MatchingFileExists(string.Format("*{0}*.json", key)));
-
-            if (missingIssue != null)
-            {
-                throw new NotImplementedException(string.Format("Cannot find stub-file for key: {0}", missingIssue));
-            }
-        }
-
-        [Given(@"there exists a Jira project called '(.*)' with (.*) issues where each has story point of (.*)")]
-        public void InsertManyIssuesIntoMongo(string projectName, int noofIssues, int storyPoint)
-        {
-            // TODO: move to MongoWrapper
-            var issuesCollection = MongoWrapper.Instance.GetCollection<Issue>();
-            var issues = IssueStubFactory.CreateMany("DISCO-620", noofIssues, storyPoint);
-            issues.ToList().ForEach(i => i.Fields.Project.Name = projectName);
-            issuesCollection.InsertBatch(issues);
-
-            if (ScenarioWrapper.PageNavigator.Current != null)
-            {
-                ScenarioWrapper.PageNavigator.Current.Refresh();
-            }
-        }
-
-        [When(@"I wait, but not longer than (.*) second")]
-        [When(@"I wait, but not longer than (.*) seconds")]
-        public void SetPageLoadTimeout(int timeoutInSeconds)
-        {
-            ScenarioWrapper.PageNavigator.Current.LoadTimeout = TimeSpan.FromSeconds(timeoutInSeconds);
-        }
-
         [Then(@"I should see a burn-up graph")]
         public void VerifyDefaultGraph()
         {
@@ -128,8 +63,15 @@ namespace Olifant.JiraMetrics.Test.Acceptance.Steps
                 .Should().BeTrue("the chart component were not found on page.");
         }
 
+        [Then(@"I should be presented a message ""(.*)""")]
+        public void VerifyLoadedIssuesReport(string expectedMessage)
+        {
+            ScenarioWrapper.PageNavigator.GetCurrent<AdminPage>().LoadedIssuesReportContains(expectedMessage)
+                .Should().BeTrue("expected issues should be found in page");
+        }
+
         [Then(@"I should be presented a list of all issues that has been added:")]
-        public void ThenIShouldBePresentedAListOfIssuesBeenAdded(Table table)
+        public void VerifyLoadedIssuesReport(Table table)
         {
             var expectedIssues = table.CreateSet<LoadedIssueSpec>();
             ScenarioWrapper.PageNavigator.GetCurrent<AdminPage>().LoadedIssuesReportContains(expectedIssues)
@@ -138,7 +80,7 @@ namespace Olifant.JiraMetrics.Test.Acceptance.Steps
 
         [When(@"I select project '(.*)' and search for issues")]
         [When(@"I query ""(.*)""")]
-        public void Search(string project)
+        public void SearchForProject(string project)
         {
             ScenarioWrapper.PageNavigator.GetCurrent<BurnUpPage>().SearchForProject(project);
         }
@@ -171,6 +113,12 @@ namespace Olifant.JiraMetrics.Test.Acceptance.Steps
 
             ScenarioWrapper.PageNavigator.GetCurrent<BurnUpPage>().ChartDivContains(expectedText)
                 .Should().BeTrue();
+        }
+
+        [Given(@"JiraMetrics contains all the latest versions of issues in Jira")]
+        public void GivenJiraMetricsContainsAllTheLatestVersionsOfIssuesInJira()
+        {
+            Hooks.ResetChangedDataAfterScenario();
         }
     }
 }
