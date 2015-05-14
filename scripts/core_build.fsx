@@ -31,6 +31,8 @@ Target "Clean" (fun _ ->
 Target "Publish specs" (fun _ ->
     let picklesArgs = "-f " + srcRoot + "/Olifant.JiraMetrics.Test.Acceptance/Features -o " + featuresDir
     let pickles = projRoot + "/packages/Pickles.CommandLine.1.0.0/tools/pickles.exe"
+    trace pickles
+    trace picklesArgs
     let errorCode = Shell.Exec(pickles, picklesArgs)
     ()
 )
