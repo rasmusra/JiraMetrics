@@ -147,15 +147,15 @@
   <ItemGroup>
     <ProjectReference Include="..\Olifant.JiraMetrics.Lib\Olifant.JiraMetrics.Lib.csproj">
       <Project>{83132b03-4b4a-4bf8-9ed3-f62293bad898}</Project>
-      <Name>HM.JiraMetrics.Lib</Name>
+      <Name>Olifant.JiraMetrics.Lib</Name>
     </ProjectReference>
     <ProjectReference Include="..\Olifant.JiraMetrics.Test.Utilities\Olifant.JiraMetrics.Test.Utilities.csproj">
       <Project>{3610b81e-243d-4597-adf2-0f0370d4caff}</Project>
-      <Name>HM.JiraMetrics.Test.Fakes</Name>
+      <Name>Olifant.JiraMetrics.Test.Utilities</Name>
     </ProjectReference>
     <ProjectReference Include="..\Olifant.JiraMetrics.Test.Unit\Olifant.JiraMetrics.Test.Unit.csproj">
       <Project>{B16DF238-C925-4273-B453-9FDEBB057527}</Project>
-      <Name>HM.JiraMetrics.Test.Unit</Name>
+      <Name>Olifant.JiraMetrics.Test.Unit</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -121,7 +121,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Olifant.JiraMetrics.Lib\Olifant.JiraMetrics.Lib.csproj">
       <Project>{83132b03-4b4a-4bf8-9ed3-f62293bad898}</Project>
-      <Name>HM.JiraMetrics.Lib</Name>
+      <Name>Olifant.JiraMetrics.Lib</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
