@@ -27,6 +27,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{1B6894
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{63ABA974-9840-49F1-9C6A-093FAAE264F5}"
 	ProjectSection(SolutionItems) = preProject
+		build.bat = build.bat
 		GlobalAssemblyInfo.cs = GlobalAssemblyInfo.cs
 		README.md = README.md
 	EndProjectSection
@@ -36,9 +37,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "scripts", "scripts", "{5549B6E3-B4F1-4EEF-B3F1-B4854246D4EB}"
 	ProjectSection(SolutionItems) = preProject
 		scripts\build.fsx = scripts\build.fsx
-		scripts\ci_build.bat = scripts\ci_build.bat
-		scripts\ci_build.fsx = scripts\ci_build.fsx
-		scripts\core_build.fsx = scripts\core_build.fsx
+		scripts\build_targets.fsx = scripts\build_targets.fsx
+		scripts\fsi_build.fsx = scripts\fsi_build.fsx
 		scripts\setupMongoDb.bat = scripts\setupMongoDb.bat
 		scripts\startMongoDb.bat = scripts\startMongoDb.bat
 	EndProjectSection
@@ -154,7 +154,7 @@ Global
 		{DEE44FC7-CD01-470E-B75B-5ED8CB48C50A} = {A41B06A1-F0BC-412A-97A3-0F644432D616}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		VisualSVNWorkingCopyRoot = ..\..
 		SelectedEnterpriseLibraryConfigurationSetV5 = EntLibV5Src
+		VisualSVNWorkingCopyRoot = ..\..
 	EndGlobalSection
 EndGlobal

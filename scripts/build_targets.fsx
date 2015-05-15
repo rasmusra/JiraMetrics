@@ -28,11 +28,18 @@ Target "Clean" (fun _ ->
     CleanDir buildArtifacts
 )
 
+Target "Restore packages" (fun _ ->
+    !! (projRoot + "/**/packages.config")
+    |> Seq.iter (RestorePackage (fun p -> 
+    { RestorePackageDefaults with
+        OutputPath = projRoot + "/packages"
+        ToolPath = projRoot + "/tools/nuget/nuget.exe"
+    }))
+)
+
 Target "Publish specs" (fun _ ->
-    let picklesArgs = "-f " + srcRoot + "/Olifant.JiraMetrics.Test.Acceptance/Features -o " + featuresDir
+    let picklesArgs = "-f " + srcRoot + "/Olifant.JiraMetrics.Test.Acceptance/Features --sn JiraMetrics -o " + featuresDir
     let pickles = projRoot + "/packages/Pickles.CommandLine.1.0.0/tools/pickles.exe"
-    trace pickles
-    trace picklesArgs
     let errorCode = Shell.Exec(pickles, picklesArgs)
     ()
 )
@@ -106,5 +113,9 @@ Target "SetupMongoDb" (fun _ ->
 
 // Dependencies
 "Clean"
+==> "Restore packages"
 ==> "Build"
 ==> "Test"
+
+"Restore packages"
+==> "Publish specs"

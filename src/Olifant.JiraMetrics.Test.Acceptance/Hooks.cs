@@ -11,25 +11,25 @@ namespace Olifant.JiraMetrics.Test.Acceptance
         [BeforeFeature("web")]
         public static void SetUpIis()
         {
-            Console.WriteLine("BeforeTestRun: Kill running processes...");
+            Console.WriteLine("Kill running processes...");
             IisExpressManager.Kill();
             WinProcessWrapper.KillByName("phantomjs");
 
-            Console.WriteLine("BeforeTestRun: Setup db...");
+            Console.WriteLine("Setup db...");
             MongoWrapper.Init(ConfigurationManager.AppSettings["ConnectionString"],
                 IssueStubFactory.CreateFromFiles());
 
-            Console.WriteLine("BeforeTestRun: Setup web...");
+            Console.WriteLine("Setup web...");
             IisExpressManager.SetupFakes("FakeStructureMap.xml");
 
-            Console.WriteLine("BeforeTestRun: Starting iisexpress...");
+            Console.WriteLine("Starting iisexpress...");
             IisExpressManager.Start();
         }
 
         [AfterFeature("web")]
         public static void TearDownIis()
         {
-            Console.WriteLine("AfterTestRun: Tear down web...");
+            Console.WriteLine("Tear down web...");
             IisExpressManager.RemoveFakes();
             IisExpressManager.Kill();
         }
