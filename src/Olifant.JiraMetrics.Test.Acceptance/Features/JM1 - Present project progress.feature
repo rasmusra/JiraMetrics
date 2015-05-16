@@ -6,17 +6,8 @@ Feature: JM1 - Present project progress
 	and the graph should be updated daily
 
 
-Background:
-	Given a team member named "Andreas"
-	And a project lead named "Sixten"
-	And a stakeholder named "Berit"
-	And a system named "JiraMetrics"
-	And a project named "JiraMetrics"
-
-
 	@no_data_changes
 Scenario: 1 - View burn-up
-	Given I am logged in as "Andreas"
 	When I navigate to "burn-up" page
 	And I wait, but not longer than 1 second
 	Then I should see a burn-up graph
@@ -30,8 +21,7 @@ Scenario: 1 - View burn-up
 
 	@no_data_changes
 Scenario: 2 - Plot issues from query in burn-up
-	Given I am logged in as "Andreas"
-	And I navigate to "burn-up" page
+	Given I navigate to "burn-up" page
 	When I query "Disco" 
 	Then I should see a burn-up graph
 	And I should see the following values in the graph:
@@ -39,8 +29,7 @@ Scenario: 2 - Plot issues from query in burn-up
 	| start   | 0, 1     |
 
 Scenario: 3 - Load JiraMetrics with new issues from Jira
-	Given I am logged in as "Sixten"
-	And JiraMetrics contains the following issues:
+	Given JiraMetrics contains the following issues:
 	| Key       | Story points |
 	| DISCO-665 | 7            |
 	| OFU-1462  | 4            |
@@ -59,8 +48,7 @@ Scenario: 3 - Load JiraMetrics with new issues from Jira
 
 
 Scenario: 4 - Updating graph with new issues
-	Given I am logged in as "Sixten"
-	And JiraMetrics contains the following issues:
+	Given JiraMetrics contains the following issues:
 	| Key       | Story points |
 	| DISCO-665 | 1            |
 	| OFU-1462  | 4            |
@@ -76,27 +64,24 @@ Scenario: 4 - Updating graph with new issues
 	| start   | y14w51 | 0, 1, 3.5, 10.5, 12.0, 13.0 |
 
 
+	@wip
 Scenario: 5 - Load JiraMetrics with changed issues from Jira
-	Given I am logged in as "Sixten"
-	And JiraMetrics contains the following issues:
+	Given JiraMetrics contain the following issue:
 	| Key       | Story points |
-	| DISCO-620 | 7            |
-	| OFU-1462  | 4            |
-	And Jira contains additional issues:
+	| DISCO-665 | 1            |
+	And Jira contains updated issues from '2015-05-15':
 	| Project | Key       | Story Points |
-	| DISCO   | DISCO-665 | 1            |
-	| DISCO   | DISCO-729 | 5            |
-	| OFU     | OFU-2290  | 6            |
+	| DISCO   | DISCO-665 | 40           |
 	When I navigate to "admin" page
-	And I choose to load JiraMetrics with project "Disco"
-	Then I should be presented a list of updated issues:
-	| issue      | comment  |
-	| DISCO-2299 | Updated! | 
+	And I load JiraMetrics with issues from Jira project "Disco"
+	And I wait, but not longer than 5 seconds
+	Then I should be presented a list of all issues that has been updated:
+	| issue     | action  |
+	| DISCO-665 | Updated |
 
 
 Scenario: 6 - Updating graph with changed issues
-	Given I am logged in as "Sixten"
-	And the system contains the following issues:
+	Given the system contains the following issues:
 	| project | issue      | status       | Story Points |
 	| Disco   | DISCO-1462 | Closed       | 3            |
 	| Disco   | DISCO-2299 | Implementing | 4            |
@@ -112,11 +97,9 @@ Scenario: 6 - Updating graph with changed issues
 	| start   | y14w51 | 0       | 7.0  |
 
 
-@wip
 @no_data_changes
 Scenario: 7 - Loading JiraMetrics when no new issues needs to be loaded
-	Given I am logged in as "Sixten"
-	And JiraMetrics contains all the latest versions of issues in Jira
+	Given JiraMetrics contains all the latest versions of issues in Jira
 	When I navigate to "admin" page
 	And I load JiraMetrics with issues from Jira project "Disco"
 	And I wait, but not longer than 5 second

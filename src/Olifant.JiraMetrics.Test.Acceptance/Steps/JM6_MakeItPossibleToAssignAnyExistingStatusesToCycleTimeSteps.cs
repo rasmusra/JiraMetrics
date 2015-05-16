@@ -8,7 +8,7 @@ using TechTalk.SpecFlow.Assist;
 namespace Olifant.JiraMetrics.Test.Acceptance.Steps
 {
     [Binding]
-    public class MakeItPossibleToAssignAnyExistingStatusesToCycleTimeSteps
+    public class JM6_MakeItPossibleToAssignAnyExistingStatusesToCycleTimeSteps
     {
         [Then(@"I should be able to see the following header in the report: ""(.*)""")]
         public void ThenIShouldBeAbleToSeeTheFollowingHeaderInTheReport(string expectedHeader)

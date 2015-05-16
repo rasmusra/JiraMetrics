@@ -10,7 +10,7 @@ using TechTalk.SpecFlow;
 namespace Olifant.JiraMetrics.Test.Acceptance.Steps
 {
     [Binding]
-    public class PlotGraphOf1000JiraIssuesOnWebPage
+    public class JM2_PlotGraphOf1000JiraIssuesOnWebPage
     {
 
         [Given(@"there exists a Jira project called '(.*)' with (.*) issues where each has story point of (.*)")]

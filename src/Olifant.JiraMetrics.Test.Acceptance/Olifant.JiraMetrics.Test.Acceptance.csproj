@@ -102,13 +102,13 @@
     </Compile>
     <Compile Include="Pages\BurnUpPage.cs" />
     <Compile Include="Steps\GeneralSteps.cs" />
-    <Compile Include="Steps\PlotGraphOf1000JiraIssuesOnWebPage.cs">
+    <Compile Include="Steps\JM2_PlotGraphOf1000JiraIssuesOnWebPage.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Steps\Specs\CycleSetupSpec.cs" />
     <Compile Include="Steps\Specs\CycleSetupSpecManager.cs" />
     <Compile Include="Steps\Specs\BurnUpGraphSpec.cs" />
-    <Compile Include="Steps\MakeItPossibleToAssignAnyExistingStatusesToCycleTimeSteps.cs" />
+    <Compile Include="Steps\JM6_MakeItPossibleToAssignAnyExistingStatusesToCycleTimeSteps.cs" />
     <Compile Include="Steps\Specs\LoadedIssueSpec.cs" />
     <Compile Include="Steps\Specs\IssueSpec.cs" />
     <Compile Include="Steps\Specs\DateFilterSpec.cs" />
@@ -121,7 +121,7 @@
     <Compile Include="ScenarioWrapper.cs" />
     <Compile Include="Steps\Specs\JqlQuerySpec.cs" />
     <Compile Include="Steps\Specs\WebControlSpec.cs" />
-    <Compile Include="Steps\PresentProjectProgressSteps.cs" />
+    <Compile Include="Steps\JM1_PresentProjectProgressSteps.cs" />
     <Compile Include="Steps\Specs\ValueAddedTimeReportSpec.cs" />
   </ItemGroup>
   <ItemGroup>

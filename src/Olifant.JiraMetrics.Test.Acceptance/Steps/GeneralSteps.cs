@@ -16,18 +16,6 @@ namespace Olifant.JiraMetrics.Test.Acceptance.Steps
             ScenarioContext.Current.Pending();
         }
 
-        [Given(@"I am logged in as ""(.*)""")]
-        [Given(@"a team member named ""(.*)""")]
-        [Given(@"a project lead named ""(.*)""")]
-        [Given(@"a stakeholder named ""(.*)""")]
-        [Given(@"a system named ""(.*)""")]
-        [Given(@"a project named ""(.*)""")]
-        [Given(@"a project site named ""(.*)""")]
-        public void NoAction(string value)
-        {
-            // TODO: find out how to manage authorization... 
-        }
-
         [Given(@"I navigate to ""(.*)"" page")]
         [When(@"I navigate to ""(.*)"" page")]
         public void NavigateTo(string page)

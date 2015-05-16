@@ -11,7 +11,7 @@ using TechTalk.SpecFlow.Assist;
 namespace Olifant.JiraMetrics.Test.Acceptance.Steps
 {
     [Binding]
-    public class PresentProjectProgressSteps
+    public class JM1_PresentProjectProgressSteps
     {
         [When(@"I load JiraMetrics with issues from Jira project ""(.*)""")]
         public void LoadFromJira(string project)
@@ -37,6 +37,7 @@ namespace Olifant.JiraMetrics.Test.Acceptance.Steps
             VerifyGraphValues(table);
         }
 
+        [Given(@"JiraMetrics contain the following issue:")]
         [Given(@"JiraMetrics contains the following issues:")]
         public void ClearAndInsertIssuesIntoMongo(Table table)
         {
@@ -119,6 +120,18 @@ namespace Olifant.JiraMetrics.Test.Acceptance.Steps
         public void GivenJiraMetricsContainsAllTheLatestVersionsOfIssuesInJira()
         {
             // we will hereby ASSUME that default db setup means jirametrics is up-to-date with Jira
+        }
+
+        [Given(@"Jira contains updated issues from '(.*)':")]
+        public void GivenJiraContainsUpdatedIssuesFrom(string givenUpdatedDate, Table table)
+        {
+            ScenarioContext.Current.Pending();
+        }
+
+        [Then(@"I should be presented a list of all issues that has been updated:")]
+        public void ThenIShouldBePresentedAListOfAllIssuesThatHasBeenUpdated(Table table)
+        {
+            ScenarioContext.Current.Pending();
         }
     }
 }
