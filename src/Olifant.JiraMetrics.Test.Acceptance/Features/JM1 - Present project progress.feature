@@ -35,47 +35,45 @@ Scenario: 2 - Plot issues from query in burn-up
 	When I query "Disco" 
 	Then I should see a burn-up graph
 	And I should see the following values in the graph:
-	| Start X | End X  | Start Y | End Y |
-	| start   | y14w51 | 0       | 12.5  |
+	| Start X | Y values |
+	| start   | 0, 1     |
 
 Scenario: 3 - Load JiraMetrics with new issues from Jira
 	Given I am logged in as "Sixten"
 	And JiraMetrics contains the following issues:
 	| Key       | Story points |
-	| DISCO-620 | 7            |
+	| DISCO-665 | 7            |
 	| OFU-1462  | 4            |
 	And Jira contains additional issues:
 	| Project | Key       | Story Points |
-	| DISCO   | DISCO-665 | 1            |
-	| DISCO   | DISCO-729 | 5            |
+	| DISCO   | DISCO-937 | 1            |
+	| DISCO   | DISCO-846 | 5            |
 	| OFU     | OFU-2290  | 6            |
 	When I navigate to "admin" page
 	And I load JiraMetrics with issues from Jira project "Disco"
 	And I wait, but not longer than 5 seconds
 	Then I should be presented a list of all issues that has been added:
 	| issue     | action |
-	| DISCO-665 | Added  |
-	| DISCO-729 | Added  |
+	| DISCO-937 | Added  |
+	| DISCO-846 | Added  |
 
 
 Scenario: 4 - Updating graph with new issues
 	Given I am logged in as "Sixten"
 	And JiraMetrics contains the following issues:
 	| Key       | Story points |
-	| DISCO-620 | 7            |
+	| DISCO-665 | 1            |
 	| OFU-1462  | 4            |
 	When I navigate to "admin" page
 	And I load JiraMetrics with project "Disco" having the following issue:
-	| Project | Key       | Story Points | Status |
-	| DISCO   | DISCO-665 | 1            | Closed |
+	| Project | Key       | Story Points | Status   |
+	| DISCO   | DISCO-620 | 7            | Resolved |
 	And I navigate to "burn-up" page
-	And statuses are made visible
-	And status "Open" is moved from "Pre Cycle Statuses" to "Cycle Statuses"
 	And I query "Disco"
 	And I wait, but not longer than 10 second
 	Then I should see the following values in the graph:
-	| Start X | End X  | Y values |
-	| start   | y14w45 | 0, 1, 8  |
+	| Start X | End X  | Y values                    |
+	| start   | y14w51 | 0, 1, 3.5, 10.5, 12.0, 13.0 |
 
 
 Scenario: 5 - Load JiraMetrics with changed issues from Jira
@@ -117,7 +115,6 @@ Scenario: 6 - Updating graph with changed issues
 @wip
 @no_data_changes
 Scenario: 7 - Loading JiraMetrics when no new issues needs to be loaded
-	Given this is not pending anymore
 	Given I am logged in as "Sixten"
 	And JiraMetrics contains all the latest versions of issues in Jira
 	When I navigate to "admin" page

@@ -104,13 +104,6 @@ Target "StartMongoDb" (fun _ ->
     ()
 )
 
-// populates mongo db with the test data dump file
-Target "SetupMongoDb" (fun _ ->
-    let args = "-d " + mongoDb + " -c issue --file " + srcRoot + "/Olifant.JiraMetrics.Test.Utilities/Stubs/jirametricsdb_dump.json --upsert -h localhost:" + mongoPort
-    let errorCode = Shell.Exec(mongoPath + "/mongoimport", args)
-    ()
-)
-
 // Dependencies
 "Clean"
 ==> "Restore packages"

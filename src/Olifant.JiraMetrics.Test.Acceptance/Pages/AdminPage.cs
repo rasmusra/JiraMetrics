@@ -21,7 +21,7 @@ namespace Olifant.JiraMetrics.Test.Acceptance.Pages
 
         public bool LoadedIssuesReportContains(IEnumerable<LoadedIssueSpec> expectedLoadedIssues)
         {
-            return WaitForRendering(() =>
+            return TryUntilTimeout(() =>
             {
                 var actualLoadedIssues = JQuery.Find("#LoadedIssueListControl").Text();
                 var loadedIssueSpecs = expectedLoadedIssues as IList<LoadedIssueSpec> ?? expectedLoadedIssues.ToList();
@@ -35,7 +35,7 @@ namespace Olifant.JiraMetrics.Test.Acceptance.Pages
 
         public bool LoadedIssuesReportContains(string expectedMessage)
         {
-            return WaitForRendering(() =>
+            return TryUntilTimeout(() =>
             {
                 var actualLoadedIssuesReport = JQuery.Find("#LoadedIssueListControl").Text();
                 return actualLoadedIssuesReport.Contains(expectedMessage);

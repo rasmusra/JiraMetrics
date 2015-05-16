@@ -8,6 +8,9 @@ namespace Olifant.JiraMetrics.Lib.Jira.Model
         [JsonProperty("created")]
         public string Created { get; set; }
 
+        [JsonProperty("updated")]
+        public string Updated { get; set; }
+
         [JsonProperty("summary")]
         public string Summary { get; set; }
         

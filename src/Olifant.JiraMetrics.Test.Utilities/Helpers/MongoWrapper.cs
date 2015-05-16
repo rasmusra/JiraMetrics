@@ -1,10 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using MongoDB.Driver;
 using Olifant.JiraMetrics.Lib.Jira.Model;
 
@@ -20,9 +15,10 @@ namespace Olifant.JiraMetrics.Test.Utilities.Helpers
             MongoConnectionStringBuilder = new MongoConnectionStringBuilder(connectionString);
         }
 
-        public static void Init(string connectionString, IList<Issue> createFromFiles)
+        public static void Init(string connectionString, IList<Issue> issues)
         {
             _instance = new MongoWrapper(connectionString);
+            _instance.InitTestPopulation(issues);
         }
 
         public static MongoWrapper Instance

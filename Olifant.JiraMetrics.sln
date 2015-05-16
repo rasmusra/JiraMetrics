@@ -39,7 +39,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "scripts", "scripts", "{5549
 		scripts\build.fsx = scripts\build.fsx
 		scripts\build_targets.fsx = scripts\build_targets.fsx
 		scripts\fsi_build.fsx = scripts\fsi_build.fsx
-		scripts\setupMongoDb.bat = scripts\setupMongoDb.bat
+		scripts\setup_test_data.fsx = scripts\setup_test_data.fsx
 		scripts\startMongoDb.bat = scripts\startMongoDb.bat
 	EndProjectSection
 EndProject
@@ -154,7 +154,7 @@ Global
 		{DEE44FC7-CD01-470E-B75B-5ED8CB48C50A} = {A41B06A1-F0BC-412A-97A3-0F644432D616}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SelectedEnterpriseLibraryConfigurationSetV5 = EntLibV5Src
 		VisualSVNWorkingCopyRoot = ..\..
+		SelectedEnterpriseLibraryConfigurationSetV5 = EntLibV5Src
 	EndGlobalSection
 EndGlobal

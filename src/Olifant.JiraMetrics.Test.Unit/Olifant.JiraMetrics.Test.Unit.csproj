@@ -69,10 +69,10 @@
     </Compile>
     <Compile Include="BurnUpGraphWeekTests.cs" />
     <Compile Include="CycleTimeRuleTests.cs" />
+    <Compile Include="IssueStubFactory.cs" />
     <Compile Include="IssueTests.cs" />
     <Compile Include="ExtensionTests.cs" />
     <Compile Include="Fakes\FakeCycleTimeRule.cs" />
-    <Compile Include="IssueStubFactory.cs" />
     <Compile Include="JiraCredentialsTests.cs" />
     <Compile Include="JiraProjectSearchTests.cs" />
     <Compile Include="JqlChunkHelperTests.cs" />

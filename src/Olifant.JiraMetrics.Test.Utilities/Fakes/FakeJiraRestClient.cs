@@ -1,9 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using MongoDB.Bson.IO;
+using Newtonsoft.Json;
 using Olifant.JiraMetrics.Lib.Jira;
+using Olifant.JiraMetrics.Lib.Jira.Model;
 
 namespace Olifant.JiraMetrics.Test.Utilities.Fakes
 {
@@ -23,11 +26,19 @@ namespace Olifant.JiraMetrics.Test.Utilities.Fakes
 
         public List<string> GetJsonChunks(JiraProjectQuery project)
         {
-            // read all stub files with file names matching project name
-            // TODO: this feels really messy
-            var pattern = string.Format("key={0}*.json", project.ProjectName);
-            var allIssues = ReadMatchingJsonFiles(pattern).ToList();
-            return allIssues;
+            // CHEAT: deserialize all json stubs for checking which issues that is updated.
+            // Then read the updated issues again from json.
+            // This will mimic Jira servers ability to filter on updated date.
+            var jsonChunks = ReadAllJsonFiles();
+            var updatedIssues = jsonChunks
+                .SelectMany(chunk => JsonConvert.DeserializeObject<Issues>(chunk).IssueList)
+                .Where(issue => issue.Fields.Project.Name==project.ProjectName)
+                .Where(issue => DateTime.Parse(issue.Fields.Updated) > project.UpdateDate)
+                .Select(issue => string.Format("*{0}*", issue.Key))
+                .SelectMany(ReadMatchingJsonFiles)
+                .Distinct()
+                .ToList();
+            return updatedIssues;
         }
 
         private List<string> JqlLookup(string jql)
@@ -76,7 +87,7 @@ namespace Olifant.JiraMetrics.Test.Utilities.Fakes
             return stubs.Any();
         }
 
-        private IList<string> ReadMatchingJsonFiles(string pattern)
+        public IList<string> ReadMatchingJsonFiles(string pattern)
         {
             var stubs = Directory.GetFiles(_stubDirectory, pattern);
             var jsonTexts = stubs.Select(File.ReadAllText).ToList();

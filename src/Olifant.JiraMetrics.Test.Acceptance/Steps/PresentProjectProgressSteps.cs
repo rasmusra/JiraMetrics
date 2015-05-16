@@ -45,7 +45,7 @@ namespace Olifant.JiraMetrics.Test.Acceptance.Steps
             var issuesCollection = MongoWrapper.Instance.GetCollection<Issue>();
 
             var issues = givenIssues
-                .Select(issue => IssueStubFactory.Create(issue.Key, issue.StoryPoints));
+                .Select(issue => JiraStubFactory.Create(issue.Key, issue.StoryPoints));
 
             issuesCollection.Drop();
             issuesCollection.InsertBatch(issues);
@@ -118,7 +118,7 @@ namespace Olifant.JiraMetrics.Test.Acceptance.Steps
         [Given(@"JiraMetrics contains all the latest versions of issues in Jira")]
         public void GivenJiraMetricsContainsAllTheLatestVersionsOfIssuesInJira()
         {
-            Hooks.ResetChangedDataAfterScenario();
+            // we will hereby ASSUME that default db setup means jirametrics is up-to-date with Jira
         }
     }
 }

@@ -9,5 +9,6 @@ namespace Olifant.JiraMetrics.Web.ViewModels
     public class LoadedIssuesViewModel
     {
         public IEnumerable<LoadedIssue> LoadedIssues { get; set; }
+        public string ProjectName { get; set; }
     }
 }

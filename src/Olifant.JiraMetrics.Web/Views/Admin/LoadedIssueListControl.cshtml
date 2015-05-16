@@ -1,16 +1,23 @@
 ﻿@using Olifant.JiraMetrics.Web.ViewModels
 @model LoadedIssuesViewModel
 
-<table class="pure-table-bordered" style="width:400px">
-    <tr>
-        <th style="width:50%">Issue</th>
-        <th style="width:50%">Action</th>
-    </tr>
-    @foreach (var item in Model.LoadedIssues)
-    {
+@if (@Model.LoadedIssues.Any())
+{
+    <table class="pure-table-bordered" style="width: 400px">
         <tr>
-            <td>@item.Key</td>
-            <td>@item.Action</td>
+            <th style="width: 50%">Issue</th>
+            <th style="width: 50%">Action</th>
         </tr>
-    }
-</table>
+        @foreach (var item in Model.LoadedIssues)
+        {
+            <tr>
+                <td>@item.Key</td>
+                <td>@item.Action</td>
+            </tr>
+        }
+    </table>
+}
+else
+{
+    <div>All issues are up-to-date for project @Model.ProjectName</div>
+}

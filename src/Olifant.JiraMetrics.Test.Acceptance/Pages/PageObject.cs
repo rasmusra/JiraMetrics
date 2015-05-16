@@ -36,18 +36,20 @@ namespace Olifant.JiraMetrics.Test.Acceptance.Pages
             Driver.Navigate().GoToUrl(url);
         }
 
-        protected bool WaitForRendering(Func<bool> shouldBeTrue)
+        protected bool TryUntilTimeout(Func<bool> evaluate)
         {
-            var found = shouldBeTrue();
             var startTime = DateTime.Now;
+            Func<bool> isTimedOut =  () => DateTime.Now - startTime > LoadTimeout;
+            var isOk = evaluate();
 
-            while (!found && DateTime.Now - startTime < LoadTimeout)
+            while (!isOk && !isTimedOut())
             {
-                found = shouldBeTrue();
+                isOk = evaluate();
+                if (isOk) break;
                 Thread.Sleep(500);
             }
 
-            return found;
+            return isOk;
         }
     }
 }

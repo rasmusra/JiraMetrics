@@ -18,7 +18,7 @@ namespace Olifant.JiraMetrics.Test.Acceptance.Steps
         {
             // TODO: move to MongoWrapper
             var issuesCollection = MongoWrapper.Instance.GetCollection<Issue>();
-            var issues = IssueStubFactory.CreateMany("DISCO-620", noofIssues, storyPoint);
+            var issues = JiraStubFactory.CreateMany("DISCO-620", noofIssues, storyPoint);
             issues.ToList().ForEach(i => i.Fields.Project.Name = projectName);
             issuesCollection.InsertBatch(issues);
 

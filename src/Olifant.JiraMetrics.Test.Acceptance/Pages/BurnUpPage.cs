@@ -25,7 +25,7 @@ namespace Olifant.JiraMetrics.Test.Acceptance.Pages
 
         public bool ChartDivContains(string expectedText)
         {
-            return WaitForRendering(() =>
+            return TryUntilTimeout(() =>
             {
                 var chartDiv = JQuery.Find("#chartDiv");
                 return chartDiv.Text().Contains(expectedText);
@@ -39,7 +39,7 @@ namespace Olifant.JiraMetrics.Test.Acceptance.Pages
 
         public bool ChartContains(params string[] expectedTexts)
         {
-            return WaitForRendering(() =>
+            return TryUntilTimeout(() =>
             {
                 var chartContainer = JQuery.Find("#chartDiv");
                 return expectedTexts.All(text => chartContainer.Text().Contains(text));
@@ -104,7 +104,7 @@ namespace Olifant.JiraMetrics.Test.Acceptance.Pages
 
         private bool StatusesContains(List<string> expectedPostCycleStatuses, string listBoxId)
         {
-            return WaitForRendering(() =>
+            return TryUntilTimeout(() =>
             {
                 var actualStatuses = JQuery.Find(listBoxId).Text();
                 return expectedPostCycleStatuses.All(text => actualStatuses.Contains(text));

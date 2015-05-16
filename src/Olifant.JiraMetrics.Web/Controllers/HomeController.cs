@@ -64,6 +64,10 @@ namespace Olifant.JiraMetrics.Web.Controllers
                                                                   "Describing Requirement",
                                                                   "Build & Configure",     
                                                                   "Building & Configuring",
+                                                                  "Implement",
+                                                                  "Implementing",
+                                                                  "Test",
+                                                                  "Testing",
                                                                   "System Testing",        
                                                                   "Describe Requirement",  
                                                                   "Review"
@@ -80,10 +84,6 @@ namespace Olifant.JiraMetrics.Web.Controllers
                                                                       "System Test Done",
                                                                       "Design Architecture",
                                                                       "Designing Architecture",
-                                                                      "Implement",
-                                                                      "Implementing",
-                                                                      "Test",
-                                                                      "Testing",
                                                                       "Deployed In Test",
                                                                   }
                                       };

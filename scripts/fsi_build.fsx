@@ -1,7 +1,6 @@
     // include Fake lib
 #r @"..\tools\FAKE\tools\FakeLib.dll"
 open Fake
-open Fake.EnvironmentHelper
 
 let mutable target = "test"
 
@@ -10,7 +9,7 @@ for arg in fsi.CommandLineArgs do
      if arg.StartsWith("target:") then target <- arg.Split(':').GetValue(1) :?> string
      else if arg.StartsWith("Target:") then target <- arg.Split(':').GetValue(1) :?> string
 
-#load "core_build.fsx"
+#load "build_targets.fsx"
 
 // start build
 AdditionalSyntax.RunParameterTargetOrDefault "Test" target

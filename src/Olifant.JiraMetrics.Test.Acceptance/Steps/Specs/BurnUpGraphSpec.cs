@@ -16,8 +16,8 @@ namespace Olifant.JiraMetrics.Test.Acceptance.Steps.Specs
             get
             {
                 var values = YValuesList;
-                values.Add(StartX);
-                values.Add(EndX);
+                values.Add(StartX ?? "");
+                values.Add(EndX ?? "");
 
                 return values;
             }
@@ -44,7 +44,7 @@ namespace Olifant.JiraMetrics.Test.Acceptance.Steps.Specs
                     return new List<string>();
 
                 var sortedYValues = YValues.Split(',')
-                    .OrderBy(int.Parse)
+                    .OrderBy(decimal.Parse)
                     .Select(s => s.Trim())
                     .ToList();
 

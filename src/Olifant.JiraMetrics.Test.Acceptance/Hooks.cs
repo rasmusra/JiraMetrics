@@ -9,7 +9,7 @@ namespace Olifant.JiraMetrics.Test.Acceptance
     public class Hooks
     {
         [BeforeFeature("web")]
-        public static void SetUpIis()
+        public static void SetUp()
         {
             Console.WriteLine("Kill running processes...");
             IisExpressManager.Kill();
@@ -17,7 +17,7 @@ namespace Olifant.JiraMetrics.Test.Acceptance
 
             Console.WriteLine("Setup db...");
             MongoWrapper.Init(ConfigurationManager.AppSettings["ConnectionString"],
-                IssueStubFactory.CreateFromFiles());
+                JiraStubFactory.CreateFromIssueFiles());
 
             Console.WriteLine("Setup web...");
             IisExpressManager.SetupFakes("FakeStructureMap.xml");
@@ -83,7 +83,7 @@ namespace Olifant.JiraMetrics.Test.Acceptance
         {
             if (ScenarioWrapper.ResetDbAfterScenario)
             {
-                MongoWrapper.Instance.InitTestPopulation(IssueStubFactory.CreateFromFiles());
+                MongoWrapper.Instance.InitTestPopulation(JiraStubFactory.CreateFromIssueFiles());
             }
 
             ScenarioWrapper.ResetDbAfterScenario = true;

@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.IO;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using MoreLinq;
 using Newtonsoft.Json;
 using Olifant.JiraMetrics.Lib.Jira.Model;
@@ -11,11 +7,23 @@ using Olifant.JiraMetrics.Test.Utilities.Fakes;
 
 namespace Olifant.JiraMetrics.Test.Utilities.Helpers
 {
-    public static class IssueStubFactory
+    public static class JiraStubFactory
     {
+        private static FakeJiraRestClient _fakeJiraClient;
+
+        public static void Setup(string stubsDir)
+        {
+            _fakeJiraClient = new FakeJiraRestClient(stubsDir);
+        }
+
+        public static FakeJiraRestClient FakeJiraRestClient
+        {
+            get { return _fakeJiraClient ?? (_fakeJiraClient = new FakeJiraRestClient("Stubs")); }
+        }
+
         public static Issue Create(string issueKey, int givenStoryPoints)
         {
-            var json = new FakeJiraRestClient("Stubs").ReadJsonFile(string.Format("key={0}", issueKey));
+            var json = FakeJiraRestClient.ReadJsonFile(string.Format("key={0}", issueKey));
             var issue = JsonConvert.DeserializeObject<Issues>(json).IssueList.First();
             issue.Fields.StoryPoints = givenStoryPoints;
             return issue;
@@ -28,9 +36,14 @@ namespace Olifant.JiraMetrics.Test.Utilities.Helpers
             return issues;                      
         }
 
-        public static IList<Issue> CreateFromFiles()
+        public static IList<Issue> CreateFromIssueFiles()
         {
-            var jsonList = new FakeJiraRestClient("Stubs").ReadAllJsonFiles();
+            return CreateFromFiles("key=*.json");
+        }
+
+        public static IList<Issue> CreateFromFiles(string pattern)
+        {
+            var jsonList = FakeJiraRestClient.ReadMatchingJsonFiles(pattern);
             var issueList = jsonList
                 .Select(JsonConvert.DeserializeObject<Issues>)
                 .SelectMany(issues => issues.IssueList)
