@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization;
 using MongoDB.Driver;
 using Olifant.JiraMetrics.Lib.Jira.Model;
 
@@ -15,10 +18,10 @@ namespace Olifant.JiraMetrics.Test.Utilities.Helpers
             MongoConnectionStringBuilder = new MongoConnectionStringBuilder(connectionString);
         }
 
-        public static void Init(string connectionString, IList<Issue> issues)
+        public static void Init(string connectionString, IList<Issue> issues, IList<string> jiraStubs)
         {
             _instance = new MongoWrapper(connectionString);
-            _instance.InitTestPopulation(issues);
+            _instance.InitTestPopulation(issues, jiraStubs);
         }
 
         public static MongoWrapper Instance
@@ -33,18 +36,26 @@ namespace Olifant.JiraMetrics.Test.Utilities.Helpers
             }
         }
 
-        public void InitTestPopulation(IList<Issue> issues)
+        public void InitTestPopulation(IList<Issue> issues, IList<string> jiraJson)
         {
             DropDatabase();
             GetCollection<Issue>().InsertBatch(issues);
+
+            var jiraBson = jiraJson.Select(BsonSerializer.Deserialize<BsonDocument>);
+            GetDb().GetCollection("jira").InsertBatch(jiraBson);
         }
 
         public MongoCollection<T> GetCollection<T>()
         {
+            return GetDb().GetCollection<T>(typeof(T).Name.ToLower());
+        }
+
+        private MongoDatabase GetDb()
+        {
             var client = new MongoClient(MongoConnectionStringBuilder.ConnectionString);
             var server = client.GetServer();
             var db = server.GetDatabase(MongoConnectionStringBuilder.DatabaseName);
-            return db.GetCollection<T>(typeof(T).Name.ToLower());
+            return db;
         }
 
         private void DropDatabase()

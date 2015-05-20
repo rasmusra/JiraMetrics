@@ -28,6 +28,7 @@ Scenario: 2 - Plot issues from query in burn-up
 	| Start X | Y values |
 	| start   | 0, 1     |
 
+
 Scenario: 3 - Load JiraMetrics with new issues from Jira
 	Given JiraMetrics contains the following issues:
 	| Key       | Story points |

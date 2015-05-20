@@ -17,7 +17,8 @@ namespace Olifant.JiraMetrics.Test.Acceptance
 
             Console.WriteLine("Setup db...");
             MongoWrapper.Init(ConfigurationManager.AppSettings["ConnectionString"],
-                JiraStubFactory.CreateFromIssueFiles());
+                JiraStubFactory.CreateFromIssueFiles(), 
+                JiraStubFactory.FakeJiraRestClient.ReadAllJsonFiles());
 
             Console.WriteLine("Setup web...");
             IisExpressManager.SetupFakes("FakeStructureMap.xml");
@@ -83,7 +84,9 @@ namespace Olifant.JiraMetrics.Test.Acceptance
         {
             if (ScenarioWrapper.ResetDbAfterScenario)
             {
-                MongoWrapper.Instance.InitTestPopulation(JiraStubFactory.CreateFromIssueFiles());
+                MongoWrapper.Instance.InitTestPopulation(
+                    JiraStubFactory.CreateFromIssueFiles(),
+                    JiraStubFactory.FakeJiraRestClient.ReadAllJsonFiles());
             }
 
             ScenarioWrapper.ResetDbAfterScenario = true;

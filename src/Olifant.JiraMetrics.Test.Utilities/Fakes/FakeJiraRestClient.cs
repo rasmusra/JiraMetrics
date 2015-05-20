@@ -2,14 +2,13 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text.RegularExpressions;
-using MongoDB.Bson.IO;
 using Newtonsoft.Json;
 using Olifant.JiraMetrics.Lib.Jira;
 using Olifant.JiraMetrics.Lib.Jira.Model;
 
 namespace Olifant.JiraMetrics.Test.Utilities.Fakes
 {
+    // TODO: read from mongo instead of files
     public class FakeJiraRestClient : IJiraRestClient
     {
         private readonly string _stubDirectory;
@@ -43,30 +42,9 @@ namespace Olifant.JiraMetrics.Test.Utilities.Fakes
 
         private List<string> JqlLookup(string jql)
         {
-            string result;
-
-
-            switch (jql)
-            {
-                case "Issues started before and after 2014-07-01":
-                    result = ReadJsonFile("key in (OFU-2377,OFU-1462)");
-                    break;
-
-                case "TEST-JQL":
-                    result = ReadJsonFile("key=SCSC-974");
-                    break;
-
-                default:
-                    result = ReadJsonFile(jql);
-                    break;
-            }
+            var result = ReadJsonFile(jql);
 
             return new List<string> {result};
-        }
-
-        public string GetStatuses()
-        {
-            return File.ReadAllText(Path.Combine(_stubDirectory, "statuses.json"));
         }
 
         public string ReadJsonFile(string filename)

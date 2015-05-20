@@ -10,12 +10,6 @@ namespace Olifant.JiraMetrics.Test.Acceptance.Steps
     [Binding]
     public class JM6_MakeItPossibleToAssignAnyExistingStatusesToCycleTimeSteps
     {
-        [Then(@"I should be able to see the following header in the report: ""(.*)""")]
-        public void ThenIShouldBeAbleToSeeTheFollowingHeaderInTheReport(string expectedHeader)
-        {
-            ScenarioWrapper.FakeTextEditorProxy.ActualHeader.ShouldBeEquivalentTo(expectedHeader);
-        }
-
         [Then(@"I should see default setup for statuses in cycle:")]
         [Then(@"I should see following setup for statuses in cycle:")]
         public void ThenIShouldSeeDefaultSetupForStatusesInCycle(Table table)

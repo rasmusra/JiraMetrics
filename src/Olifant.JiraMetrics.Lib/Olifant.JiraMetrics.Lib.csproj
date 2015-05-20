@@ -55,7 +55,6 @@
     <Compile Include="AppConfigWrapper.cs" />
     <Compile Include="Data\MongoAccess.cs" />
     <Compile Include="Extensions.cs" />
-    <Compile Include="JiraMetricsFacade.cs" />
     <Compile Include="Jira\IJiraRestClient.cs" />
     <Compile Include="Jira\ChunkedJiraRestClient.cs" />
     <Compile Include="Jira\JiraCredentials.cs" />
